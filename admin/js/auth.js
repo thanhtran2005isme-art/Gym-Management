@@ -17,15 +17,6 @@ const users = [
         email: 'trainer@fitzone.vn',
         role: 'trainer',
         avatar: 'https://ui-avatars.com/api/?name=Trainer&background=10b981&color=fff'
-    },
-    {
-        id: 3,
-        username: 'member',
-        password: 'member123',
-        name: 'Lê Thị Hội Viên',
-        email: 'member@fitzone.vn',
-        role: 'member',
-        avatar: 'https://ui-avatars.com/api/?name=Member&background=3b82f6&color=fff'
     }
 ];
 
@@ -42,12 +33,6 @@ const rolePermissions = {
         color: '#10b981',
         permissions: ['view_schedule', 'manage_own_schedule', 'view_members', 'checkin_session'],
         menuItems: ['dashboard', 'schedule', 'members', 'checkin']
-    },
-    member: {
-        label: 'Hội viên',
-        color: '#3b82f6',
-        permissions: ['view_own_profile', 'view_own_schedule', 'view_own_invoices'],
-        menuItems: ['dashboard', 'schedule', 'invoices']
     }
 };
 

@@ -16,10 +16,6 @@ const roleConfig = {
     trainer: {
         label: 'Huấn luyện viên', 
         menuItems: ['dashboard', 'schedule', 'members', 'checkin']
-    },
-    member: {
-        label: 'Hội viên',
-        menuItems: ['dashboard', 'schedule', 'invoices']
     }
 };
 
