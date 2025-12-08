@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitZone - Gym Management System</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon"><i class="fas fa-dumbbell"></i></div>
+                    <div class="logo-text">
+                        <span class="logo-name">FitZone</span>
+                        <span class="logo-tagline">Gym Management</span>
+                    </div>
+                </div>
+                <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" title="Thu gọn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <span class="nav-section-title">MENU CHÍNH</span>
+                    <ul>
+                        <li class="nav-item active" data-page="dashboard">
+                            <a href="#dashboard"><i class="fas fa-th-large"></i><span>Dashboard</span></a>
+                        </li>
+                        <li class="nav-item" data-page="members">
+                            <a href="#members"><i class="fas fa-users"></i><span>Hội viên</span><span class="nav-badge" id="membersBadge">5</span></a>
+                        </li>
+                        <li class="nav-item" data-page="packages">
+                            <a href="#packages"><i class="fas fa-box-open"></i><span>Gói tập</span></a>
+                        </li>
+                        <li class="nav-item" data-page="trainers">
+                            <a href="#trainers"><i class="fas fa-user-ninja"></i><span>Huấn luyện viên</span><span class="nav-badge success">12</span></a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">HOẠT ĐỘNG</span>
+                    <ul>
+                        <li class="nav-item" data-page="schedule">
+                            <a href="#schedule"><i class="fas fa-calendar-alt"></i><span>Lịch tập</span></a>
+                        </li>
+                        <li class="nav-item" data-page="checkin">
+                            <a href="#checkin"><i class="fas fa-qrcode"></i><span>Check-in</span><span class="nav-badge warning">5</span></a>
+                        </li>
+                        <li class="nav-item" data-page="facilities">
+                            <a href="#facilities"><i class="fas fa-dumbbell"></i><span>Thiết bị</span></a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">TÀI CHÍNH</span>
+                    <ul>
+                        <li class="nav-item" data-page="invoices">
+                            <a href="#invoices"><i class="fas fa-file-invoice-dollar"></i><span>Hóa đơn</span></a>
+                        </li>
+                        <li class="nav-item" data-page="reports">
+                            <a href="#reports"><i class="fas fa-chart-line"></i><span>Báo cáo</span></a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">HỆ THỐNG</span>
+                    <ul>
+                        <li class="nav-item" data-page="settings">
+                            <a href="#settings"><i class="fas fa-cog"></i><span>Cài đặt</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="theme-switcher">
+                    <button class="theme-btn" id="themeToggle" title="Đổi giao diện">
+                        <i class="fas fa-sun" id="themeIcon"></i>
+                        <span id="themeText">Light Mode</span>
+                    </button>
+                </div>
+                <div class="user-info">
+                    <img src="https://ui-avatars.com/api/?name=Admin&background=6366f1&color=fff" alt="Admin">
+                    <div class="user-details">
+                        <span class="user-name">Nguyễn Admin</span>
+                        <span class="user-role">Quản trị viên</span>
+                    </div>
+                    <button class="user-menu-btn" id="userMenuBtn"><i class="fas fa-ellipsis-v"></i></button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="header">
+                <div class="header-left">
+                    <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+                    <div class="breadcrumb">
+                        <span class="breadcrumb-item"><i class="fas fa-home"></i></span>
+                        <span class="breadcrumb-separator">/</span>
+                        <span class="breadcrumb-item active">Dashboard</span>
+                    </div>
+                </div>
+                <div class="header-center">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Tìm kiếm hội viên, PT, gói tập...">
+                        <kbd>Ctrl+K</kbd>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="header-btn" id="fullscreenBtn" title="Toàn màn hình"><i class="fas fa-expand"></i></button>
+                    <button class="header-btn notification-btn" title="Thông báo">
+                        <i class="fas fa-bell"></i><span class="badge">3</span>
+                    </button>
+                    <button class="btn btn-primary btn-glow" onclick="openModal('addMemberModal')">
+                        <i class="fas fa-plus"></i><span>Thêm hội viên</span>
+                    </button>
+                </div>
+            </header>
+
+            <div class="content">
+                <div class="welcome-banner">
+                    <div class="welcome-content">
+                        <h1>Chào mừng trở lại, Admin! 👋</h1>
+                        <p>Hôm nay là <span id="currentDate"></span>. Bạn có <strong>5 hội viên</strong> sắp hết hạn.</p>
+                    </div>
+                    <div class="welcome-illustration"><i class="fas fa-dumbbell"></i></div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon blue"><i class="fas fa-users"></i></div>
+                        <div class="stat-info"><p>Tổng hội viên</p><h3 id="totalMembers">156</h3></div>
+                        <div class="stat-trend up"><i class="fas fa-arrow-up"></i> 12%</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon green"><i class="fas fa-id-card"></i></div>
+                        <div class="stat-info"><p>Thẻ còn hạn</p><h3 id="activeCards">142</h3></div>
+                        <div class="stat-trend up"><i class="fas fa-arrow-up"></i> 8%</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon orange"><i class="fas fa-clock"></i></div>
+                        <div class="stat-info"><p>Sắp hết hạn</p><h3 id="expiringCards">14</h3></div>
+                        <div class="stat-trend down"><i class="fas fa-arrow-down"></i> 3%</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon purple"><i class="fas fa-money-bill-wave"></i></div>
+                        <div class="stat-info"><p>Doanh thu tháng</p><h3>45.2M</h3></div>
+                        <div class="stat-trend up"><i class="fas fa-arrow-up"></i> 18%</div>
+                    </div>
+                </div>
+
+                <div class="main-grid">
+                    <div class="card members-card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-users"></i> Danh sách hội viên</h2>
+                            <div class="card-actions">
+                                <select id="filterStatus" onchange="filterMembers()">
+                                    <option value="all">Tất cả</option>
+                                    <option value="active">Còn hạn</option>
+                                    <option value="expiring">Sắp hết hạn</option>
+                                    <option value="expired">Hết hạn</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-container">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Hội viên</th><th>Mã thẻ</th><th>Gói tập</th>
+                                            <th>Ngày bắt đầu</th><th>Ngày hết hạn</th><th>Trạng thái</th><th>Thao tác</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="membersTableBody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="side-panel">
+                        <div class="card packages-card">
+                            <div class="card-header"><h2><i class="fas fa-box-open"></i> Gói tập</h2></div>
+                            <div class="card-body"><div class="package-list" id="packageList"></div></div>
+                        </div>
+                        <div class="card expiring-card">
+                            <div class="card-header"><h2><i class="fas fa-exclamation-triangle"></i> Sắp hết hạn</h2></div>
+                            <div class="card-body"><div class="expiring-list" id="expiringList"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+
+    <!-- Add Member Modal -->
+    <div class="modal" id="addMemberModal">
+        <div class="modal-overlay" onclick="closeModal('addMemberModal')"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-user-plus"></i> Đăng ký hội viên mới</h2>
+                <button class="close-btn" onclick="closeModal('addMemberModal')"><i class="fas fa-times"></i></button>
+            </div>
+            <form id="addMemberForm" onsubmit="addMember(event)">
+                <div class="modal-body">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-user"></i> Họ và tên</label>
+                            <input type="text" id="memberName" required placeholder="Nhập họ tên">
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-phone"></i> Số điện thoại</label>
+                            <input type="tel" id="memberPhone" required placeholder="Nhập số điện thoại">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-envelope"></i> Email</label>
+                            <input type="email" id="memberEmail" required placeholder="Nhập email">
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-venus-mars"></i> Giới tính</label>
+                            <select id="memberGender" required>
+                                <option value="">Chọn giới tính</option>
+                                <option value="male">Nam</option>
+                                <option value="female">Nữ</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-box"></i> Gói tập</label>
+                            <select id="memberPackage" required onchange="updateEndDate()">
+                                <option value="">Chọn gói tập</option>
+                                <option value="1" data-duration="30" data-price="500000">Gói 1 tháng - 500,000đ</option>
+                                <option value="2" data-duration="90" data-price="1200000">Gói 3 tháng - 1,200,000đ</option>
+                                <option value="3" data-duration="180" data-price="2000000">Gói 6 tháng - 2,000,000đ</option>
+                                <option value="4" data-duration="365" data-price="3500000">Gói 12 tháng - 3,500,000đ</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-calendar"></i> Ngày bắt đầu</label>
+                            <input type="date" id="startDate" required onchange="updateEndDate()">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-calendar-check"></i> Ngày hết hạn</label>
+                            <input type="date" id="endDate" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-money-bill"></i> Số tiền</label>
+                            <input type="text" id="totalAmount" readonly placeholder="Tự động tính">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('addMemberModal')">Hủy</button>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Đăng ký</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Member Modal -->
+    <div class="modal" id="editMemberModal">
+        <div class="modal-overlay" onclick="closeModal('editMemberModal')"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-edit"></i> Chỉnh sửa hội viên</h2>
+                <button class="close-btn" onclick="closeModal('editMemberModal')"><i class="fas fa-times"></i></button>
+            </div>
+            <form id="editMemberForm" onsubmit="updateMember(event)">
+                <input type="hidden" id="editMemberId">
+                <div class="modal-body">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-user"></i> Họ và tên</label>
+                            <input type="text" id="editMemberName" required>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-phone"></i> Số điện thoại</label>
+                            <input type="tel" id="editMemberPhone" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-envelope"></i> Email</label>
+                            <input type="email" id="editMemberEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-id-card"></i> Mã thẻ</label>
+                            <input type="text" id="editCardId" readonly>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-calendar"></i> Ngày bắt đầu</label>
+                            <input type="date" id="editStartDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-calendar-check"></i> Ngày hết hạn</label>
+                            <input type="date" id="editEndDate" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('editMemberModal')">Hủy</button>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Cập nhật</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- Renew Modal -->
+    <div class="modal" id="renewModal">
+        <div class="modal-overlay" onclick="closeModal('renewModal')"></div>
+        <div class="modal-content modal-sm">
+            <div class="modal-header">
+                <h2><i class="fas fa-sync"></i> Gia hạn thẻ tập</h2>
+                <button class="close-btn" onclick="closeModal('renewModal')"><i class="fas fa-times"></i></button>
+            </div>
+            <form id="renewForm" onsubmit="renewMembership(event)">
+                <input type="hidden" id="renewMemberId">
+                <div class="modal-body">
+                    <div class="member-renew-info" id="renewMemberInfo"></div>
+                    <div class="form-group">
+                        <label><i class="fas fa-box"></i> Chọn gói gia hạn</label>
+                        <select id="renewPackage" required>
+                            <option value="">Chọn gói tập</option>
+                            <option value="1" data-duration="30" data-price="500000">Gói 1 tháng - 500,000đ</option>
+                            <option value="2" data-duration="90" data-price="1200000">Gói 3 tháng - 1,200,000đ</option>
+                            <option value="3" data-duration="180" data-price="2000000">Gói 6 tháng - 2,000,000đ</option>
+                            <option value="4" data-duration="365" data-price="3500000">Gói 12 tháng - 3,500,000đ</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('renewModal')">Hủy</button>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i> Gia hạn</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Thao tác thành công!</span>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
