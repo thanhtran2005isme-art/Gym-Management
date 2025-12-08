@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập - FitZone Gym</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <!-- Left Side - Branding -->
+        <div class="login-branding">
+            <div class="branding-content">
+                <div class="logo-large">
+                    <div class="logo-icon-large"><i class="fas fa-dumbbell"></i></div>
+                    <h1>FitZone</h1>
+                    <p>Gym Management System</p>
+                </div>
+                <div class="branding-features">
+                    <div class="feature-item">
+                        <i class="fas fa-users"></i>
+                        <span>Quản lý hội viên</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Lịch tập & PT</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Báo cáo doanh thu</span>
+                    </div>
+                </div>
+            </div>
+            <div class="branding-decoration">
+                <div class="circle circle-1"></div>
+                <div class="circle circle-2"></div>
+                <div class="circle circle-3"></div>
+            </div>
+        </div>
+
+        <!-- Right Side - Login Form -->
+        <div class="login-form-section">
+            <div class="login-form-container">
+                <div class="login-header">
+                    <h2>Chào mừng trở lại! 👋</h2>
+                    <p>Đăng nhập để tiếp tục quản lý</p>
+                </div>
+
+                <form id="loginForm" onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Tên đăng nhập</label>
+                        <input type="text" id="username" required placeholder="Nhập tên đăng nhập" autocomplete="username">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-lock"></i> Mật khẩu</label>
+                        <div class="password-input">
+                            <input type="password" id="password" required placeholder="Nhập mật khẩu" autocomplete="current-password">
+                            <button type="button" class="toggle-password" onclick="togglePassword()">
+                                <i class="fas fa-eye" id="eyeIcon"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="remember-me">
+                            <input type="checkbox" id="rememberMe">
+                            <span>Ghi nhớ đăng nhập</span>
+                        </label>
+                        <a href="#" class="forgot-password">Quên mật khẩu?</a>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-login">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>Đăng nhập</span>
+                    </button>
+
+                    <div class="login-error" id="loginError">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span id="errorMessage">Sai tên đăng nhập hoặc mật khẩu!</span>
+                    </div>
+                </form>
+
+                <div class="demo-accounts">
+                    <p><i class="fas fa-info-circle"></i> Tài khoản demo:</p>
+                    <div class="demo-list">
+                        <button type="button" class="demo-btn admin" onclick="fillDemo('admin', 'admin123')">
+                            <i class="fas fa-user-shield"></i> Admin
+                        </button>
+                        <button type="button" class="demo-btn trainer" onclick="fillDemo('trainer', 'trainer123')">
+                            <i class="fas fa-user-ninja"></i> PT
+                        </button>
+                        <button type="button" class="demo-btn member" onclick="fillDemo('member', 'member123')">
+                            <i class="fas fa-user"></i> Hội viên
+                        </button>
+                    </div>
+                </div>
+
+                <div class="theme-toggle-login">
+                    <button type="button" onclick="toggleThemeLogin()" id="themeToggleLogin">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>

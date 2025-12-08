@@ -7,8 +7,28 @@ let packages = [
     { id: 4, name: 'Gói 12 tháng', duration: 365, price: 3500000 }
 ];
 
+// ===== Role Config =====
+const roleConfig = {
+    admin: {
+        label: 'Quản trị viên',
+        menuItems: ['dashboard', 'members', 'packages', 'trainers', 'schedule', 'checkin', 'facilities', 'invoices', 'reports', 'settings']
+    },
+    trainer: {
+        label: 'Huấn luyện viên', 
+        menuItems: ['dashboard', 'schedule', 'members', 'checkin']
+    },
+    member: {
+        label: 'Hội viên',
+        menuItems: ['dashboard', 'schedule', 'invoices']
+    }
+};
+
 // ===== Initialize =====
 document.addEventListener('DOMContentLoaded', function() {
+    // Check authentication
+    const user = checkAuth();
+    if (!user) return;
+    
     // Set default date
     document.getElementById('startDate').valueAsDate = new Date();
     
@@ -21,6 +41,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initTheme();
     initSidebar();
     initCurrentDate();
+    initUserInfo(user);
+    initMenuByRole(user.role);
     
     renderMembers();
     renderPackages();
@@ -86,6 +108,69 @@ function initCurrentDate() {
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         dateEl.textContent = new Date().toLocaleDateString('vi-VN', options);
     }
+}
+
+// ===== Init User Info =====
+function initUserInfo(user) {
+    // Update sidebar user info
+    const userName = document.querySelector('.user-name');
+    const userRole = document.querySelector('.user-role');
+    const userAvatar = document.querySelector('.user-info img');
+    
+    if (userName) userName.textContent = user.name;
+    if (userRole) userRole.textContent = roleConfig[user.role]?.label || user.role;
+    if (userAvatar) userAvatar.src = user.avatar;
+    
+    // Update welcome message
+    const welcomeH1 = document.querySelector('.welcome-content h1');
+    if (welcomeH1) {
+        welcomeH1.textContent = `Chào mừng trở lại, ${user.name.split(' ').pop()}! 👋`;
+    }
+}
+
+// ===== Init Menu By Role =====
+function initMenuByRole(role) {
+    const allowedMenus = roleConfig[role]?.menuItems || [];
+    
+    document.querySelectorAll('.nav-item').forEach(item => {
+        const page = item.dataset.page;
+        if (page && !allowedMenus.includes(page)) {
+            item.style.display = 'none';
+        }
+    });
+    
+    // Hide sections if all items are hidden
+    document.querySelectorAll('.nav-section').forEach(section => {
+        const visibleItems = section.querySelectorAll('.nav-item:not([style*="display: none"])');
+        if (visibleItems.length === 0) {
+            section.style.display = 'none';
+        }
+    });
+    
+    // Hide admin-only buttons for non-admin
+    if (role !== 'admin') {
+        document.querySelectorAll('.admin-only').forEach(el => el.style.display = 'none');
+    }
+}
+
+// ===== Check Auth =====
+function checkAuth() {
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    const currentUser = localStorage.getItem('currentUser');
+    
+    if (!isLoggedIn || !currentUser) {
+        window.location.href = 'login.html';
+        return null;
+    }
+    
+    return JSON.parse(currentUser);
+}
+
+// ===== Logout =====
+function logout() {
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('isLoggedIn');
+    window.location.href = 'login.html';
 }
 
 // ===== Event Listeners =====
