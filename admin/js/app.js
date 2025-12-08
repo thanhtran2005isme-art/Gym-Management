@@ -169,6 +169,16 @@ function logout() {
     window.location.href = 'login.html';
 }
 
+// ===== Confirm Logout =====
+function confirmLogout() {
+    if (confirm('Bạn có chắc muốn đăng xuất?')) {
+        showToast('Đang đăng xuất...', 'success');
+        setTimeout(() => {
+            logout();
+        }, 500);
+    }
+}
+
 // ===== Event Listeners =====
 function initEventListeners() {
     // Theme toggle
@@ -256,34 +266,43 @@ function handleSearch(e) {
 }
 
 
-// ===== Sample Data =====
+// ===== Member Status Constants =====
+const MEMBER_STATUS = {
+    ACTIVE: 'active',
+    EXPIRING: 'expiring',      // Còn <= 7 ngày
+    EXPIRED: 'expired'
+};
+
+// ===== Sample Data - 20 Hội viên =====
 function loadSampleData() {
     const sampleMembers = [
-        {
-            id: 1, name: 'Nguyễn Văn An', phone: '0901234567', email: 'an.nguyen@email.com',
-            gender: 'male', cardId: 'GYM001', packageId: 3, packageName: 'Gói 6 tháng',
-            startDate: '2024-10-01', endDate: '2025-04-01', createdAt: new Date().toISOString()
-        },
-        {
-            id: 2, name: 'Trần Thị Bình', phone: '0912345678', email: 'binh.tran@email.com',
-            gender: 'female', cardId: 'GYM002', packageId: 2, packageName: 'Gói 3 tháng',
-            startDate: '2024-11-15', endDate: '2025-02-15', createdAt: new Date().toISOString()
-        },
-        {
-            id: 3, name: 'Lê Minh Cường', phone: '0923456789', email: 'cuong.le@email.com',
-            gender: 'male', cardId: 'GYM003', packageId: 4, packageName: 'Gói 12 tháng',
-            startDate: '2024-06-01', endDate: '2025-06-01', createdAt: new Date().toISOString()
-        },
-        {
-            id: 4, name: 'Phạm Thu Dung', phone: '0934567890', email: 'dung.pham@email.com',
-            gender: 'female', cardId: 'GYM004', packageId: 1, packageName: 'Gói 1 tháng',
-            startDate: '2024-12-01', endDate: '2024-12-31', createdAt: new Date().toISOString()
-        },
-        {
-            id: 5, name: 'Hoàng Văn Em', phone: '0945678901', email: 'em.hoang@email.com',
-            gender: 'male', cardId: 'GYM005', packageId: 2, packageName: 'Gói 3 tháng',
-            startDate: '2024-09-01', endDate: '2024-12-01', createdAt: new Date().toISOString()
-        }
+        // Hội viên còn hạn (ACTIVE)
+        { id: 1, name: 'Nguyễn Văn An', phone: '0901234567', email: 'an.nguyen@email.com', gender: 'male', cardId: 'GYM001', packageId: 4, packageName: 'Gói 12 tháng', startDate: '2024-06-01', endDate: '2025-06-01', createdAt: '2024-06-01' },
+        { id: 2, name: 'Trần Thị Bình', phone: '0912345678', email: 'binh.tran@email.com', gender: 'female', cardId: 'GYM002', packageId: 3, packageName: 'Gói 6 tháng', startDate: '2024-09-01', endDate: '2025-03-01', createdAt: '2024-09-01' },
+        { id: 3, name: 'Lê Minh Cường', phone: '0923456789', email: 'cuong.le@email.com', gender: 'male', cardId: 'GYM003', packageId: 4, packageName: 'Gói 12 tháng', startDate: '2024-03-15', endDate: '2025-03-15', createdAt: '2024-03-15' },
+        { id: 4, name: 'Phạm Thu Dung', phone: '0934567890', email: 'dung.pham@email.com', gender: 'female', cardId: 'GYM004', packageId: 3, packageName: 'Gói 6 tháng', startDate: '2024-08-01', endDate: '2025-02-01', createdAt: '2024-08-01' },
+        { id: 5, name: 'Hoàng Văn Em', phone: '0945678901', email: 'em.hoang@email.com', gender: 'male', cardId: 'GYM005', packageId: 4, packageName: 'Gói 12 tháng', startDate: '2024-05-01', endDate: '2025-05-01', createdAt: '2024-05-01' },
+        { id: 6, name: 'Vũ Thị Phương', phone: '0956789012', email: 'phuong.vu@email.com', gender: 'female', cardId: 'GYM006', packageId: 3, packageName: 'Gói 6 tháng', startDate: '2024-10-01', endDate: '2025-04-01', createdAt: '2024-10-01' },
+        { id: 7, name: 'Đặng Quốc Giang', phone: '0967890123', email: 'giang.dang@email.com', gender: 'male', cardId: 'GYM007', packageId: 4, packageName: 'Gói 12 tháng', startDate: '2024-04-01', endDate: '2025-04-01', createdAt: '2024-04-01' },
+        { id: 8, name: 'Bùi Thị Hạnh', phone: '0978901234', email: 'hanh.bui@email.com', gender: 'female', cardId: 'GYM008', packageId: 2, packageName: 'Gói 3 tháng', startDate: '2024-11-01', endDate: '2025-02-01', createdAt: '2024-11-01' },
+        { id: 9, name: 'Ngô Văn Inh', phone: '0989012345', email: 'inh.ngo@email.com', gender: 'male', cardId: 'GYM009', packageId: 3, packageName: 'Gói 6 tháng', startDate: '2024-07-15', endDate: '2025-01-15', createdAt: '2024-07-15' },
+        { id: 10, name: 'Lý Thị Kim', phone: '0990123456', email: 'kim.ly@email.com', gender: 'female', cardId: 'GYM010', packageId: 4, packageName: 'Gói 12 tháng', startDate: '2024-02-01', endDate: '2025-02-01', createdAt: '2024-02-01' },
+        
+        // Hội viên sắp hết hạn (EXPIRING - trong 7 ngày tới)
+        { id: 11, name: 'Trịnh Văn Long', phone: '0901111111', email: 'long.trinh@email.com', gender: 'male', cardId: 'GYM011', packageId: 1, packageName: 'Gói 1 tháng', startDate: '2024-11-10', endDate: '2024-12-10', createdAt: '2024-11-10' },
+        { id: 12, name: 'Mai Thị Ngọc', phone: '0902222222', email: 'ngoc.mai@email.com', gender: 'female', cardId: 'GYM012', packageId: 2, packageName: 'Gói 3 tháng', startDate: '2024-09-12', endDate: '2024-12-12', createdAt: '2024-09-12' },
+        { id: 13, name: 'Cao Văn Oanh', phone: '0903333333', email: 'oanh.cao@email.com', gender: 'male', cardId: 'GYM013', packageId: 1, packageName: 'Gói 1 tháng', startDate: '2024-11-14', endDate: '2024-12-14', createdAt: '2024-11-14' },
+        
+        // Hội viên hết hạn (EXPIRED)
+        { id: 14, name: 'Đinh Thị Phúc', phone: '0904444444', email: 'phuc.dinh@email.com', gender: 'female', cardId: 'GYM014', packageId: 1, packageName: 'Gói 1 tháng', startDate: '2024-10-01', endDate: '2024-11-01', createdAt: '2024-10-01' },
+        { id: 15, name: 'Tạ Văn Quân', phone: '0905555555', email: 'quan.ta@email.com', gender: 'male', cardId: 'GYM015', packageId: 2, packageName: 'Gói 3 tháng', startDate: '2024-06-01', endDate: '2024-09-01', createdAt: '2024-06-01' },
+        { id: 16, name: 'Hồ Thị Rạng', phone: '0906666666', email: 'rang.ho@email.com', gender: 'female', cardId: 'GYM016', packageId: 1, packageName: 'Gói 1 tháng', startDate: '2024-10-15', endDate: '2024-11-15', createdAt: '2024-10-15' },
+        
+        // Thêm hội viên mới
+        { id: 17, name: 'Dương Văn Sơn', phone: '0907777777', email: 'son.duong@email.com', gender: 'male', cardId: 'GYM017', packageId: 4, packageName: 'Gói 12 tháng', startDate: '2024-11-01', endDate: '2025-11-01', createdAt: '2024-11-01' },
+        { id: 18, name: 'Phan Thị Tâm', phone: '0908888888', email: 'tam.phan@email.com', gender: 'female', cardId: 'GYM018', packageId: 3, packageName: 'Gói 6 tháng', startDate: '2024-11-15', endDate: '2025-05-15', createdAt: '2024-11-15' },
+        { id: 19, name: 'Võ Văn Uy', phone: '0909999999', email: 'uy.vo@email.com', gender: 'male', cardId: 'GYM019', packageId: 2, packageName: 'Gói 3 tháng', startDate: '2024-10-20', endDate: '2025-01-20', createdAt: '2024-10-20' },
+        { id: 20, name: 'Châu Thị Vân', phone: '0910000000', email: 'van.chau@email.com', gender: 'female', cardId: 'GYM020', packageId: 4, packageName: 'Gói 12 tháng', startDate: '2024-12-01', endDate: '2025-12-01', createdAt: '2024-12-01' }
     ];
     members = sampleMembers;
     saveMembers();
