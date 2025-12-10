@@ -42,7 +42,8 @@ namespace GymManagement.DbHelper
             AddParameters(cmd, parameters);
             
             conn.Open();
-            return cmd.ExecuteScalar()!;
+            var result = cmd.ExecuteScalar();
+            return result ?? DBNull.Value;
         }
 
         private void AddParameters(SqlCommand cmd, object[] parameters)
