@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The New Gym - Gym cho mọi người</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <!-- Header với banner chạy -->
+    <div class="top-banner">
+      <div class="banner-content">
+        <span>GYM CHO MỌI NGƯỜI</span>
+        <span>GYM CHO MỌI NGƯỜI</span>
+        <span>GYM CHO MỌI NGƯỜI</span>
+        <span>GYM CHO MỌI NGƯỜI</span>
+        <span>GYM CHO MỌI NGƯỜI</span>
+        <span>GYM CHO MỌI NGƯỜI</span>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container">
+        <div class="nav-logo">
+          <img
+            src="https://thenewgym.vn/wp-content/uploads/2025/09/cropped-cropped-LogoTNG_full-color.webp"
+            alt="The New Gym Logo"
+          />
+        </div>
+        <button class="mobile-toggle" id="mobileToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#pricing">Giá hội viên</a></li>
+          <li class="dropdown">
+            <a href="#locations">Tìm phòng tập</a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Hồ Chí Minh</a></li>
+              <li><a href="#">Đà Nẵng</a></li>
+              <li><a href="#">Cần Thơ</a></li>
+              <li><a href="#">Đồng Nai</a></li>
+            </ul>
+          </li>
+          <li><a href="#facilities">Cơ sở vật chất</a></li>
+          <li><a href="#blog">Kiến thức tập luyện</a></li>
+          <li class="dropdown">
+            <a href="#about">Tìm hiểu thêm</a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Về The New Gym</a></li>
+              <li><a href="#">Gói Thuê PT</a></li>
+              <li><a href="#">Lớp Tập Nhóm</a></li>
+              <li><a href="#">Liên Hệ</a></li>
+            </ul>
+          </li>
+        </ul>
+        <div class="nav-actions">
+          <button class="btn-search">🔍</button>
+          <a href="#join" class="btn-join">Tham gia</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Slider -->
+    <section class="hero-slider">
+      <div class="slider-container">
+        <div class="slide active">
+          <img
+            src="https://thenewgym.vn/wp-content/uploads/2025/10/THEM-BAN-THEM-VUI.WEB_.2.1.jpg"
+            alt="Thêm bạn thêm vui"
+          />
+        </div>
+        <div class="slide">
+          <img
+            src="https://thenewgym.vn/wp-content/uploads/2025/11/banner-ads-TNG-24112025.png"
+            alt="Banner 2"
+          />
+        </div>
+        <div class="slide">
+          <img
+            src="https://thenewgym.vn/wp-content/uploads/2025/11/ADS-21-TNG-1-1.jpg"
+            alt="Banner 3"
+          />
+        </div>
+      </div>
+      <button class="slider-prev" id="sliderPrev">❮</button>
+      <button class="slider-next" id="sliderNext">❯</button>
+      <div class="slider-dots" id="sliderDots"></div>
+    </section>
+
+    <!-- Location Selector -->
+    <section class="location-section">
+      <div class="container">
+        <h2>The New Gym hiện đang có 14+ chi nhánh trên toàn quốc</h2>
+        <div class="location-selector">
+          <select class="city-select">
+            <option value="">Chọn thành phố</option>
+            <option value="hcm">TP. Hồ Chí Minh</option>
+            <option value="dn">Đà Nẵng</option>
+            <option value="ct">Cần Thơ</option>
+            <option value="dongnai">Đồng Nai</option>
+          </select>
+          <button class="btn-primary">Tham gia</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section" id="pricing">
+      <div class="container">
+        <h2>HỘI VIÊN THE NEW GYM</h2>
+        <p class="section-subtitle">
+          The New Gym cung cấp cho Hội Viên gói tập Tất Cả Chi Nhánh và 1 Chi
+          Nhánh. Cả hai đều cho bạn tham gia tập luyện không giới hạn trong
+          không gian <strong>Không phán xét</strong>, nơi mọi người cảm thấy
+          luôn được chào đón và thuộc về từ khi bước vào.
+        </p>
+
+        <div class="pricing-cards">
+          <div class="pricing-card featured">
+            <div class="card-header">
+              <div class="card-duration">1 THÁNG</div>
+              <div class="card-tag">TẤT CẢ CHI NHÁNH</div>
+            </div>
+            <div class="price">399.000 ₫<span>/ Tháng</span></div>
+            <div class="price-divider"></div>
+            <p>
+              Tập luyện tại toàn hệ thống The New Gym trên toàn quốc, miễn phí
+              kiểm tra sức khỏe và sai lệch tư thế, và nhiều hơn nữa!
+            </p>
+            <div class="card-buttons">
+              <button class="btn-outline-light">Xem chi tiết</button>
+              <button class="btn-primary-light">Tham gia</button>
+            </div>
+          </div>
+
+          <div class="pricing-card">
+            <div class="card-header">
+              <div class="card-duration">1 THÁNG</div>
+              <div class="card-tag">1 CHI NHÁNH</div>
+            </div>
+            <div class="price price-dark">299.000 ₫<span>/ Tháng</span></div>
+            <div class="price-divider price-divider-dark"></div>
+            <p>
+              Gói hội viên cơ bản của The New Gym, bạn được tập luyện không giới
+              hạn tại câu lạc bộ đăng ký!
+            </p>
+            <div class="card-buttons">
+              <button class="btn-outline-dark">Xem chi tiết</button>
+              <button class="btn-primary-light">Tham gia</button>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-compare">SO SÁNH 2 GÓI</button>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+      <div class="container">
+        <div class="feature-block welcome-block">
+          <div class="feature-content">
+            <h3>CHÀO MỪNG BẠN ĐẾN VỚI THE NEW GYM</h3>
+            <p>
+              Chúng tôi tạo ra một môi trường nơi mà mọi người đều có thể cảm
+              thấy thoải mái tập luyện một mình hoặc cùng bạn bè của mình, bất
+              kể trình độ thể chất và hiểu biết về gym như thế nào mà không bao
+              giờ lo lắng về việc bị đánh giá.
+            </p>
+            <a href="#" class="feature-link">
+              <span class="arrow">→</span>
+              <span>Tìm hiểu thêm</span>
+            </a>
+          </div>
+          <div class="feature-image">
+            <img
+              src="https://thenewgym.vn/wp-content/uploads/2025/09/chao-mung-ban-den-the-new-gym-2-1.webp"
+              alt="Chào mừng"
+            />
+          </div>
+        </div>
+
+        <div class="feature-block guide-block">
+          <div class="feature-image">
+            <img
+              src="https://thenewgym.vn/wp-content/uploads/2025/09/huong-dan-tap-luyen-mien-phi-tai-the-new-gym-1.webp"
+              alt="Hướng dẫn"
+            />
+          </div>
+          <div class="feature-content">
+            <h3>HƯỚNG DẪN TẬP LUYỆN MIỄN PHÍ</h3>
+            <p>
+              The New Gym khuyến khích bạn nên tải App The New Gym sau đó truy
+              cập vào tab "Tập Luyện" ở đó có video hướng dẫn các bài cơ bản để
+              giúp mọi người dễ dàng hơn cho hành trình tập luyện của bản thân.
+              Trong việc sử dụng các thiết bị tập luyện, khu vực chức năng và
+              tận hưởng tất cả tiện ích của The New Gym đội ngũ luôn sẵn sàng
+              giúp đỡ các bạn với sự chào đón thân thiện và chuyên nghiệp.
+            </p>
+            <a href="#" class="feature-link">
+              <span class="arrow">→</span>
+              <span>Tìm hiểu thêm</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="feature-block friend-block">
+          <div class="feature-content">
+            <h3>THÊM BẠN THÊM VUI</h3>
+            <p>
+              Bạn của bạn là bạn của The New Gym. Thêm một người bạn tập luyện
+              sẽ tạo ra niềm vui và động lực không ngừng. Hội viên khi giới
+              thiệu bạn mới đăng ký gói tập ở tất cả chi nhánh, cả hai bạn sẽ
+              nhận được 2 tuần tập luyện miễn phí.
+            </p>
+            <a href="#" class="feature-link">
+              <span class="arrow">→</span>
+              <span>Giới thiệu bạn</span>
+            </a>
+          </div>
+          <div class="feature-image">
+            <img
+              src="https://thenewgym.vn/wp-content/uploads/2025/09/gioi-thieu-ban-be-cung-tap-tai-the-new-gym-1.webp"
+              alt="Giới thiệu bạn"
+            />
+          </div>
+        </div>
+
+        <div class="feature-block visit-block">
+          <div class="feature-image">
+            <img
+              src="https://thenewgym.vn/wp-content/uploads/2025/09/Tham-quan-he-thong-phong-tap-tai-the-new-gym-1.webp"
+              alt="Tham quan"
+            />
+          </div>
+          <div class="feature-content">
+            <h3>THAM QUAN PHÒNG TẬP MỞ CỬA 24/7</h3>
+            <p>
+              Dù bạn đang tìm kiếm điều gì ở một phòng gym, The New Gym đều có
+              lựa chọn phù hợp dành cho bạn. Cùng The New Gym tham quan không
+              gian thân thiện, chào đón phù hợp với tất cả mọi người.
+            </p>
+            <a href="#" class="feature-link">
+              <span class="arrow">→</span>
+              <span>Khám phá không gian</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section" id="locations">
+      <div class="container">
+        <div class="map-content-wrapper">
+          <div class="map-text-content">
+            <h2>HỆ THỐNG PHÒNG TẬP</h2>
+            <p>
+              The New Gym tin rằng mọi người, ở mọi nơi, đều nên được tiếp cận
+              với hoạt động thể chất và những lợi ích tuyệt vời về thể chất,
+              tinh thần và cảm xúc mà nó mang lại.
+            </p>
+            <p>
+              Hệ thống The New Gym hiện có hơn 15 phòng tập, tập trung ở các
+              thành phố lớn: TP. HCM, Đồng Nai, Cần Thơ, Đà Nẵng. Hãy tìm câu
+              lạc bộ gần bạn nhất để bắt đầu những trải nghiệm tuyệt vời tại The
+              New Gym!
+            </p>
+            <a href="#locations" class="find-gym-link">
+              <span class="arrow">→</span>
+              <span>Tìm phòng tập</span>
+            </a>
+          </div>
+          <div class="map-locations-card">
+            <img
+              src="https://thenewgym.vn/wp-content/uploads/2025/09/Dia-Chi-Moi-Fix-1-768x768.webp"
+              alt="Hệ thống phòng tập The New Gym"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- App Section -->
+    <section class="app-section">
+      <div class="container">
+        <div class="app-content">
+          <div class="app-text">
+            <h2>TẢI ỨNG DỤNG THE NEW GYM</h2>
+            <p>
+              Ứng dụng The New Gym cho bạn tất cả tiện ích bạn cần: ra/vào phòng
+              tập 24/7, quản lý gói tập, chọn lớp học miễn phí, theo dõi các
+              hoạt động của bạn và nhiều hơn thế nữa!
+            </p>
+            <p class="app-question">Bạn đã sẵn sàng chưa?</p>
+            <p class="app-callout">
+              Hãy cùng bước vào môi trường tập luyện không phán xét hôm nay!
+            </p>
+            <a href="#" class="app-download-link">
+              <span class="arrow">→</span>
+              <span>Tải ứng dụng ngay!</span>
+            </a>
+          </div>
+          <div class="app-image">
+            <img
+              src="https://thenewgym.vn/wp-content/uploads/2025/09/Tai-ung-dung-app-the-new-gym-1.webp"
+              alt="App"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-top">
+          <button class="back-to-top" id="backToTop">BACK TO TOP</button>
+        </div>
+
+        <div class="footer-content">
+          <div class="footer-col">
+            <img
+              src="https://thenewgym.vn/wp-content/uploads/2025/09/Logo_white-01.png"
+              alt="Logo"
+              class="footer-logo"
+            />
+            <button class="btn-app">TẢI APP NGAY</button>
+          </div>
+
+          <div class="footer-col">
+            <h4>Thông Tin</h4>
+            <ul>
+              <li><a href="#">Về Chúng Tôi</a></li>
+              <li><a href="#">Hệ Thống Phòng Tập</a></li>
+              <li><a href="#">Tin Tức</a></li>
+              <li><a href="#">Tuyển Dụng</a></li>
+              <li><a href="#">Liên Hệ</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Phòng Tập</h4>
+            <ul>
+              <li><a href="#">Hệ Thống Phòng Tập</a></li>
+              <li><a href="#">Giá Hội Viên</a></li>
+              <li><a href="#">Cơ Sở Vật Chất</a></li>
+              <li><a href="#">Ứng Dụng</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Chính sách</h4>
+            <ul>
+              <li><a href="#">Chính Sách Bảo Mật</a></li>
+              <li><a href="#">Điều Khoản</a></li>
+              <li><a href="#">Chăm Sóc Khách Hàng</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div class="social-links">
+            <a
+              href="https://www.facebook.com/thenewgymvietnam/"
+              class="social-icon facebook"
+              target="_blank"
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://www.instagram.com/thenewgymvietnam"
+              class="social-icon instagram"
+              target="_blank"
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://www.tiktok.com/@thenewgym"
+              class="social-icon tiktok"
+              target="_blank"
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://youtube.com/@thenewgymvn"
+              class="social-icon youtube"
+              target="_blank"
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
+                />
+              </svg>
+            </a>
+          </div>
+          <p>&copy; 2025 The New Gym.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Floating Buttons -->
+    <div class="floating-buttons">
+      <a href="tel:1900636920" class="float-btn phone" title="Gọi ngay">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"
+          />
+        </svg>
+      </a>
+      <a
+        href="https://zalo.me/thenewgym"
+        class="float-btn zalo"
+        target="_blank"
+        title="Chat Zalo"
+      >
+        <span>Z</span>
+      </a>
+      <a
+        href="https://m.me/147570552483660"
+        class="float-btn messenger"
+        target="_blank"
+        title="Chat Messenger"
+      >
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M12 2C6.477 2 2 6.145 2 11.243c0 2.912 1.446 5.51 3.707 7.206V22l3.407-1.87c.91.252 1.876.387 2.886.387 5.523 0 10-4.145 10-9.243C22 6.145 17.523 2 12 2zm.994 12.458l-2.564-2.736-5.004 2.736 5.506-5.84 2.626 2.736 4.942-2.736-5.506 5.84z"
+          />
+        </svg>
+      </a>
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
