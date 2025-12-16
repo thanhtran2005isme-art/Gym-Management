@@ -14,7 +14,7 @@ namespace GymManagement.API.Admin.Services
 
         public async Task<IEnumerable<ChucVuDto>> GetAllAsync()
         {
-            var dt = _db.ExecuteQuery("SELECT * FROM ChucVu");
+            var dt = _db.ExecuteQuery("SELECT MaChucVu, TenChucVu, MoTa FROM ChucVu ORDER BY MaChucVu");
             var list = new List<ChucVuDto>();
             foreach (System.Data.DataRow row in dt.Rows)
             {
