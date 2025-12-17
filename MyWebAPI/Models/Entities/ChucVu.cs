@@ -1,7 +1,9 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyWebAPI.Models.Entities
 {
+    [Table("ChucVu", Schema = "dbo")]
     public class ChucVu
     {
         [Key]

@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using MyWebAPI.Data;
+using MyWebAPI.Services.Implementations;
+using MyWebAPI.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,9 @@ builder.Services.AddDbContext<MyDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("MyDB"));
 });
+
+// Đăng ký Services
+builder.Services.AddScoped<IChucVuService, ChucVuService>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
