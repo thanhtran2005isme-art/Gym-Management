@@ -32,6 +32,9 @@ namespace GymManagement.API.Admin.Services
 
         public async Task<GoiTapDto> CreateAsync(GoiTapDto dto)
         {
+            if (dto.Gia <= 0) throw new ArgumentException("Giá phải lớn hơn 0");
+            if (dto.SoThang <= 0) throw new ArgumentException("Số tháng phải lớn hơn 0");
+            
             var sql = @"INSERT INTO GoiTap (TenGoiTap, SoThang, SoLanTapToiDa, Gia, MoTa, TrangThai) 
                         VALUES (@Ten, @SoThang, @SoLan, @Gia, @MoTa, @TrangThai); SELECT SCOPE_IDENTITY();";
             var id = _db.ExecuteScalar(sql,
