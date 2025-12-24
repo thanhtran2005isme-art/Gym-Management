@@ -51,3 +51,19 @@ CREATE TABLE NhanVien (
     CONSTRAINT FK_NhanVien_ChucVu FOREIGN KEY (MaChucVu) REFERENCES ChucVu(MaChucVu)
 );
 GO
+
+
+-- Insert dữ liệu mẫu
+INSERT INTO ChucVu (TenChucVu, MoTa) VALUES 
+(N'Quản lý', N'Quản lý phòng tập'),
+(N'Lễ tân', N'Tiếp đón khách hàng'),
+(N'Huấn luyện viên', N'Hướng dẫn tập luyện'),
+(N'Kế toán', N'Quản lý tài chính'),
+(N'Bảo vệ', N'Bảo vệ an ninh');
+
+INSERT INTO GoiTap (TenGoiTap, SoThang, Gia, MoTa) VALUES
+(N'Gói 1 tháng', 1, 500000, N'Gói tập 1 tháng cơ bản'),
+(N'Gói 3 tháng', 3, 1200000, N'Gói tập 3 tháng tiết kiệm'),
+(N'Gói 6 tháng', 6, 2000000, N'Gói tập 6 tháng ưu đãi'),
+(N'Gói 12 tháng', 12, 3500000, N'Gói tập 1 năm VIP');
+GO
