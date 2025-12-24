@@ -1,0 +1,53 @@
+CREATE DATABASE GymManagement;
+GO
+
+USE GymManagement;
+GO
+
+-- Bảng ChucVu
+CREATE TABLE ChucVu (
+    MaChucVu INT IDENTITY(1,1) PRIMARY KEY,
+    TenChucVu NVARCHAR(100) NOT NULL,
+    MoTa NVARCHAR(255) NULL
+);
+
+-- Bảng ThanhVien
+CREATE TABLE ThanhVien (
+    MaThanhVien INT IDENTITY(1,1) PRIMARY KEY,
+    MaThe NVARCHAR(20) NULL UNIQUE,
+    HoTen NVARCHAR(100) NOT NULL,
+    NgaySinh DATE NULL,
+    GioiTinh CHAR(1) NULL,
+    SoDienThoai NVARCHAR(20) NULL,
+    Email NVARCHAR(100) NULL,
+    DiaChi NVARCHAR(255) NULL,
+    NgayDangKy DATE NOT NULL DEFAULT CAST(GETDATE() AS DATE),
+    TrangThai TINYINT NOT NULL DEFAULT 1
+);
+
+-- Bảng GoiTap
+CREATE TABLE GoiTap (
+    MaGoiTap INT IDENTITY(1,1) PRIMARY KEY,
+    TenGoiTap NVARCHAR(100) NOT NULL,
+    SoThang INT NOT NULL,
+    SoLanTapToiDa INT NULL,
+    Gia DECIMAL(18,2) NOT NULL,
+    MoTa NVARCHAR(255) NULL,
+    TrangThai TINYINT NOT NULL DEFAULT 1
+);
+
+-- Bảng NhanVien
+CREATE TABLE NhanVien (
+    MaNhanVien INT IDENTITY(1,1) PRIMARY KEY,
+    HoTen NVARCHAR(100) NOT NULL,
+    NgaySinh DATE NULL,
+    GioiTinh CHAR(1) NULL,
+    SoDienThoai NVARCHAR(20) NULL,
+    Email NVARCHAR(100) NULL,
+    DiaChi NVARCHAR(255) NULL,
+    NgayVaoLam DATE NOT NULL DEFAULT CAST(GETDATE() AS DATE),
+    MaChucVu INT NULL,
+    TrangThai TINYINT NOT NULL DEFAULT 1,
+    CONSTRAINT FK_NhanVien_ChucVu FOREIGN KEY (MaChucVu) REFERENCES ChucVu(MaChucVu)
+);
+GO
