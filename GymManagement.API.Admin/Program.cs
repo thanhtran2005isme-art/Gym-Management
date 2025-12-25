@@ -5,7 +5,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new() { Title = "GymManagement Admin API", Version = "v1" });
+});
 
 // DbHelper
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
