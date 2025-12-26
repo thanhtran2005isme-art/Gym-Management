@@ -16,41 +16,52 @@ namespace GymManagement.API.Admin.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
-        {
-            var result = await _service.GetAllAsync();
-            return Ok(result);
-        }
+        public IActionResult GetAll() => Ok(_service.GetAll());
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public IActionResult GetById(int id)
         {
-            var result = await _service.GetByIdAsync(id);
-            if (result == null) return NotFound();
-            return Ok(result);
+            var result = _service.GetById(id);
+            return result == null ? NotFound() : Ok(result);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(NhanVienDto dto)
+        public IActionResult Create(NhanVienDto dto)
         {
-            var result = await _service.CreateAsync(dto);
+            var result = _service.Create(dto);
             return CreatedAtAction(nameof(GetById), new { id = result.MaNhanVien }, result);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, NhanVienDto dto)
+        public IActionResult Update(int id, NhanVienDto dto)
         {
-            var result = await _service.UpdateAsync(id, dto);
-            if (result == null) return NotFound();
-            return Ok(result);
+            var result = _service.Update(id, dto);
+            return result == null ? NotFound() : Ok(result);
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public IActionResult Delete(int id) => _service.Delete(id) ? NoContent() : NotFound();
+
+        [HttpGet("search")]
+        public IActionResult Search([FromQuery] string keyword)
         {
-            var result = await _service.DeleteAsync(id);
-            if (!result) return NotFound();
-            return NoContent();
+            if (string.IsNullOrWhiteSpace(keyword)) return BadRequest("Keyword is required");
+            return Ok(_service.Search(keyword));
+        }
+
+        [HttpGet("by-chucvu/{maChucVu}")]
+        public IActionResult GetByChucVu(int maChucVu) => Ok(_service.GetByChucVu(maChucVu));
+
+        [HttpGet("trainers")]
+        public IActionResult GetTrainers() => Ok(_service.GetTrainers());
+
+        [HttpGet("paged")]
+        public IActionResult GetPaged([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
+        {
+            if (page < 1) page = 1;
+            if (pageSize < 1 || pageSize > 100) pageSize = 10;
+            var (items, total) = _service.GetPaged(page, pageSize);
+            return Ok(new { Items = items, Total = total, Page = page, PageSize = pageSize });
         }
     }
 }

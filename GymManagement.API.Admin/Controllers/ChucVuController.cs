@@ -16,41 +16,30 @@ namespace GymManagement.API.Admin.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
-        {
-            var result = await _service.GetAllAsync();
-            return Ok(result);
-        }
+        public IActionResult GetAll() => Ok(_service.GetAll());
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public IActionResult GetById(int id)
         {
-            var result = await _service.GetByIdAsync(id);
-            if (result == null) return NotFound();
-            return Ok(result);
+            var result = _service.GetById(id);
+            return result == null ? NotFound() : Ok(result);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ChucVuDto dto)
+        public IActionResult Create(ChucVuDto dto)
         {
-            var result = await _service.CreateAsync(dto);
+            var result = _service.Create(dto);
             return CreatedAtAction(nameof(GetById), new { id = result.MaChucVu }, result);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, ChucVuDto dto)
+        public IActionResult Update(int id, ChucVuDto dto)
         {
-            var result = await _service.UpdateAsync(id, dto);
-            if (result == null) return NotFound();
-            return Ok(result);
+            var result = _service.Update(id, dto);
+            return result == null ? NotFound() : Ok(result);
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
-        {
-            var result = await _service.DeleteAsync(id);
-            if (!result) return NotFound();
-            return NoContent();
-        }
+        public IActionResult Delete(int id) => _service.Delete(id) ? NoContent() : NotFound();
     }
 }

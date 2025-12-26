@@ -16,41 +16,47 @@ namespace GymManagement.API.Admin.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
-        {
-            var result = await _service.GetAllAsync();
-            return Ok(result);
-        }
+        public IActionResult GetAll() => Ok(_service.GetAll());
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public IActionResult GetById(int id)
         {
-            var result = await _service.GetByIdAsync(id);
-            if (result == null) return NotFound();
-            return Ok(result);
+            var result = _service.GetById(id);
+            return result == null ? NotFound() : Ok(result);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(GoiTapDto dto)
+        public IActionResult Create(GoiTapDto dto)
         {
-            var result = await _service.CreateAsync(dto);
-            return CreatedAtAction(nameof(GetById), new { id = result.MaGoiTap }, result);
+            try
+            {
+                var result = _service.Create(dto);
+                return CreatedAtAction(nameof(GetById), new { id = result.MaGoiTap }, result);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, GoiTapDto dto)
+        public IActionResult Update(int id, GoiTapDto dto)
         {
-            var result = await _service.UpdateAsync(id, dto);
-            if (result == null) return NotFound();
-            return Ok(result);
+            var result = _service.Update(id, dto);
+            return result == null ? NotFound() : Ok(result);
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public IActionResult Delete(int id) => _service.Delete(id) ? NoContent() : NotFound();
+
+        [HttpGet("active")]
+        public IActionResult GetActive() => Ok(_service.GetActive());
+
+        [HttpGet("search")]
+        public IActionResult Search([FromQuery] string keyword)
         {
-            var result = await _service.DeleteAsync(id);
-            if (!result) return NotFound();
-            return NoContent();
+            if (string.IsNullOrWhiteSpace(keyword)) return BadRequest("Keyword is required");
+            return Ok(_service.Search(keyword));
         }
     }
 }
