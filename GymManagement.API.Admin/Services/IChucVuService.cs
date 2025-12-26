@@ -4,10 +4,10 @@ namespace GymManagement.API.Admin.Services
 {
     public interface IChucVuService
     {
-        Task<IEnumerable<ChucVuDto>> GetAllAsync();
-        Task<ChucVuDto?> GetByIdAsync(int id);
-        Task<ChucVuDto> CreateAsync(ChucVuDto dto);
-        Task<ChucVuDto?> UpdateAsync(int id, ChucVuDto dto);
-        Task<bool> DeleteAsync(int id);
+        List<ChucVuDto> GetAll();
+        ChucVuDto? GetById(int id);
+        ChucVuDto Create(ChucVuDto dto);
+        ChucVuDto? Update(int id, ChucVuDto dto);
+        bool Delete(int id);
     }
 }

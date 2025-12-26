@@ -4,10 +4,13 @@ namespace GymManagement.API.Admin.Services
 {
     public interface IThanhVienService
     {
-        Task<IEnumerable<ThanhVienDto>> GetAllAsync();
-        Task<ThanhVienDto?> GetByIdAsync(int id);
-        Task<ThanhVienDto> CreateAsync(ThanhVienDto dto);
-        Task<ThanhVienDto?> UpdateAsync(int id, ThanhVienDto dto);
-        Task<bool> DeleteAsync(int id);
+        List<ThanhVienDto> GetAll();
+        ThanhVienDto? GetById(int id);
+        ThanhVienDto Create(ThanhVienDto dto);
+        ThanhVienDto? Update(int id, ThanhVienDto dto);
+        bool Delete(int id);
+        List<ThanhVienDto> Search(string keyword);
+        List<ThanhVienDto> GetActive();
+        (List<ThanhVienDto> Items, int Total) GetPaged(int page, int pageSize);
     }
 }

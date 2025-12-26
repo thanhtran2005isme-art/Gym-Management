@@ -1,88 +1,38 @@
 using GymManagement.API.Admin.DTOs;
-using GymManagement.DbHelper;
+using GymManagement.API.Admin.Data;
 
 namespace GymManagement.API.Admin.Services
 {
     public class NhanVienService : INhanVienService
     {
-        private readonly IDbHelper _db;
+        private readonly INhanVienRepository _repo;
 
-        public NhanVienService(IDbHelper db)
+        public NhanVienService(INhanVienRepository repo)
         {
-            _db = db;
+            _repo = repo;
         }
 
-        public async Task<IEnumerable<NhanVienDto>> GetAllAsync()
-        {
-            var sql = @"SELECT nv.*, cv.TenChucVu FROM NhanVien nv 
-                        LEFT JOIN ChucVu cv ON nv.MaChucVu = cv.MaChucVu ORDER BY nv.MaNhanVien";
-            var dt = _db.ExecuteQuery(sql);
-            var list = new List<NhanVienDto>();
-            foreach (System.Data.DataRow row in dt.Rows)
-            {
-                list.Add(MapToDto(row));
-            }
-            return await Task.FromResult(list);
-        }
+        public List<NhanVienDto> GetAll() => _repo.GetAll();
+        public NhanVienDto? GetById(int id) => _repo.GetById(id);
 
-        public async Task<NhanVienDto?> GetByIdAsync(int id)
+        public NhanVienDto Create(NhanVienDto dto)
         {
-            var sql = @"SELECT nv.*, cv.TenChucVu FROM NhanVien nv 
-                        LEFT JOIN ChucVu cv ON nv.MaChucVu = cv.MaChucVu WHERE nv.MaNhanVien = @Id";
-            var dt = _db.ExecuteQuery(sql, "@Id", id);
-            if (dt.Rows.Count == 0) return null;
-            return await Task.FromResult(MapToDto(dt.Rows[0]));
-        }
-
-        public async Task<NhanVienDto> CreateAsync(NhanVienDto dto)
-        {
-            var sql = @"INSERT INTO NhanVien (HoTen, NgaySinh, GioiTinh, SoDienThoai, Email, DiaChi, MaChucVu, TrangThai) 
-                        VALUES (@HoTen, @NgaySinh, @GioiTinh, @SDT, @Email, @DiaChi, @MaChucVu, @TrangThai); 
-                        SELECT SCOPE_IDENTITY();";
-            var id = _db.ExecuteScalar(sql,
-                "@HoTen", dto.HoTen, "@NgaySinh", dto.NgaySinh, "@GioiTinh", dto.GioiTinh,
-                "@SDT", dto.SoDienThoai, "@Email", dto.Email, "@DiaChi", dto.DiaChi,
-                "@MaChucVu", dto.MaChucVu, "@TrangThai", dto.TrangThai);
-            dto.MaNhanVien = Convert.ToInt32(id);
-            return await Task.FromResult(dto);
-        }
-
-        public async Task<NhanVienDto?> UpdateAsync(int id, NhanVienDto dto)
-        {
-            var sql = @"UPDATE NhanVien SET HoTen=@HoTen, NgaySinh=@NgaySinh, GioiTinh=@GioiTinh, 
-                        SoDienThoai=@SDT, Email=@Email, DiaChi=@DiaChi, MaChucVu=@MaChucVu, TrangThai=@TrangThai 
-                        WHERE MaNhanVien=@Id";
-            var rows = _db.ExecuteNonQuery(sql,
-                "@HoTen", dto.HoTen, "@NgaySinh", dto.NgaySinh, "@GioiTinh", dto.GioiTinh,
-                "@SDT", dto.SoDienThoai, "@Email", dto.Email, "@DiaChi", dto.DiaChi,
-                "@MaChucVu", dto.MaChucVu, "@TrangThai", dto.TrangThai, "@Id", id);
-            if (rows == 0) return null;
+            var id = _repo.Create(dto);
             dto.MaNhanVien = id;
-            return await Task.FromResult(dto);
+            return dto;
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public NhanVienDto? Update(int id, NhanVienDto dto)
         {
-            var rows = _db.ExecuteNonQuery("DELETE FROM NhanVien WHERE MaNhanVien = @Id", "@Id", id);
-            return await Task.FromResult(rows > 0);
+            if (!_repo.Update(id, dto)) return null;
+            dto.MaNhanVien = id;
+            return dto;
         }
 
-        private NhanVienDto MapToDto(System.Data.DataRow row)
-        {
-            return new NhanVienDto
-            {
-                MaNhanVien = Convert.ToInt32(row["MaNhanVien"]),
-                HoTen = row["HoTen"].ToString()!,
-                NgaySinh = row["NgaySinh"] == DBNull.Value ? null : Convert.ToDateTime(row["NgaySinh"]),
-                GioiTinh = row["GioiTinh"]?.ToString(),
-                SoDienThoai = row["SoDienThoai"]?.ToString(),
-                Email = row["Email"]?.ToString(),
-                DiaChi = row["DiaChi"]?.ToString(),
-                NgayVaoLam = row["NgayVaoLam"] == DBNull.Value ? null : Convert.ToDateTime(row["NgayVaoLam"]),
-                MaChucVu = row["MaChucVu"] == DBNull.Value ? null : Convert.ToInt32(row["MaChucVu"]),
-                TenChucVu = row["TenChucVu"]?.ToString(),
-                TrangThai = Convert.ToByte(row["TrangThai"])
-            };
-        }
+        public bool Delete(int id) => _repo.Delete(id);
+        public List<NhanVienDto> Search(string keyword) => _repo.Search(keyword);
+        public List<NhanVienDto> GetByChucVu(int maChucVu) => _repo.GetByChucVu(maChucVu);
+        public List<NhanVienDto> GetTrainers() => _repo.GetTrainers();
+        public (List<NhanVienDto> Items, int Total) GetPaged(int page, int pageSize) => _repo.GetPaged(page, pageSize);
     }
 }

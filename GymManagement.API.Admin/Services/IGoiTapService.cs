@@ -4,10 +4,12 @@ namespace GymManagement.API.Admin.Services
 {
     public interface IGoiTapService
     {
-        Task<IEnumerable<GoiTapDto>> GetAllAsync();
-        Task<GoiTapDto?> GetByIdAsync(int id);
-        Task<GoiTapDto> CreateAsync(GoiTapDto dto);
-        Task<GoiTapDto?> UpdateAsync(int id, GoiTapDto dto);
-        Task<bool> DeleteAsync(int id);
+        List<GoiTapDto> GetAll();
+        GoiTapDto? GetById(int id);
+        GoiTapDto Create(GoiTapDto dto);
+        GoiTapDto? Update(int id, GoiTapDto dto);
+        bool Delete(int id);
+        List<GoiTapDto> GetActive();
+        List<GoiTapDto> Search(string keyword);
     }
 }

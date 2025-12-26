@@ -1,69 +1,34 @@
 using GymManagement.API.Admin.DTOs;
-using GymManagement.DbHelper;
+using GymManagement.API.Admin.Data;
 
 namespace GymManagement.API.Admin.Services
 {
     public class ChucVuService : IChucVuService
     {
-        private readonly IDbHelper _db;
+        private readonly IChucVuRepository _repo;
 
-        public ChucVuService(IDbHelper db)
+        public ChucVuService(IChucVuRepository repo)
         {
-            _db = db;
+            _repo = repo;
         }
 
-        public async Task<IEnumerable<ChucVuDto>> GetAllAsync()
-        {
-            var dt = _db.ExecuteQuery("SELECT MaChucVu, TenChucVu, MoTa FROM ChucVu ORDER BY MaChucVu");
-            var list = new List<ChucVuDto>();
-            foreach (System.Data.DataRow row in dt.Rows)
-            {
-                list.Add(new ChucVuDto
-                {
-                    MaChucVu = Convert.ToInt32(row["MaChucVu"]),
-                    TenChucVu = row["TenChucVu"].ToString()!,
-                    MoTa = row["MoTa"]?.ToString()
-                });
-            }
-            return await Task.FromResult(list);
-        }
+        public List<ChucVuDto> GetAll() => _repo.GetAll();
+        public ChucVuDto? GetById(int id) => _repo.GetById(id);
 
-        public async Task<ChucVuDto?> GetByIdAsync(int id)
+        public ChucVuDto Create(ChucVuDto dto)
         {
-            var dt = _db.ExecuteQuery("SELECT * FROM ChucVu WHERE MaChucVu = @Id", "@Id", id);
-            if (dt.Rows.Count == 0) return null;
-            var row = dt.Rows[0];
-            return await Task.FromResult(new ChucVuDto
-            {
-                MaChucVu = Convert.ToInt32(row["MaChucVu"]),
-                TenChucVu = row["TenChucVu"].ToString()!,
-                MoTa = row["MoTa"]?.ToString()
-            });
-        }
-
-        public async Task<ChucVuDto> CreateAsync(ChucVuDto dto)
-        {
-            var id = _db.ExecuteScalar(
-                "INSERT INTO ChucVu (TenChucVu, MoTa) VALUES (@Ten, @MoTa); SELECT SCOPE_IDENTITY();",
-                "@Ten", dto.TenChucVu, "@MoTa", dto.MoTa);
-            dto.MaChucVu = Convert.ToInt32(id);
-            return await Task.FromResult(dto);
-        }
-
-        public async Task<ChucVuDto?> UpdateAsync(int id, ChucVuDto dto)
-        {
-            var rows = _db.ExecuteNonQuery(
-                "UPDATE ChucVu SET TenChucVu = @Ten, MoTa = @MoTa WHERE MaChucVu = @Id",
-                "@Ten", dto.TenChucVu, "@MoTa", dto.MoTa, "@Id", id);
-            if (rows == 0) return null;
+            var id = _repo.Create(dto);
             dto.MaChucVu = id;
-            return await Task.FromResult(dto);
+            return dto;
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public ChucVuDto? Update(int id, ChucVuDto dto)
         {
-            var rows = _db.ExecuteNonQuery("DELETE FROM ChucVu WHERE MaChucVu = @Id", "@Id", id);
-            return await Task.FromResult(rows > 0);
+            if (!_repo.Update(id, dto)) return null;
+            dto.MaChucVu = id;
+            return dto;
         }
+
+        public bool Delete(int id) => _repo.Delete(id);
     }
 }
