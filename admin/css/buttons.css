@@ -1,0 +1,43 @@
+/* ===== Button Styles ===== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.btn-primary {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: white;
+}
+.btn-secondary {
+  background: #f1f5f9;
+  color: #1e293b;
+  border: 1px solid #e2e8f0;
+}
+.btn-success {
+  background: #10b981;
+  color: white;
+}
+.btn-danger {
+  background: #ef4444;
+  color: white;
+}
+.btn-warning {
+  background: #f59e0b;
+  color: white;
+}
+.btn-sm {
+  padding: 8px 14px;
+  font-size: 13px;
+}
+.btn-lg {
+  padding: 16px 32px;
+  font-size: 16px;
+}

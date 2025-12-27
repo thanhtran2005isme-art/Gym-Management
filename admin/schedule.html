@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lịch tập - FitZone Gym Management</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/schedule.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Sidebar -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <div class="logo">
+            <div class="logo-icon"><i class="fas fa-dumbbell"></i></div>
+            <div class="logo-text">
+              <span class="logo-name">FitZone</span>
+              <span class="logo-tagline">Gym Management</span>
+            </div>
+          </div>
+          <button
+            class="sidebar-collapse-btn"
+            id="sidebarCollapseBtn"
+            title="Thu gọn"
+          >
+            <i class="fas fa-chevron-left"></i>
+          </button>
+        </div>
+
+        <nav class="sidebar-nav">
+          <div class="nav-section">
+            <span class="nav-section-title">MENU CHÍNH</span>
+            <ul>
+              <li class="nav-item" data-page="dashboard">
+                <a href="index.html"
+                  ><i class="fas fa-th-large"></i><span>Dashboard</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="members">
+                <a href="members.html"
+                  ><i class="fas fa-users"></i><span>Hội viên</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="packages">
+                <a href="packages.html"
+                  ><i class="fas fa-box-open"></i><span>Gói tập</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="trainers">
+                <a href="trainers.html"
+                  ><i class="fas fa-user-ninja"></i
+                  ><span>Huấn luyện viên</span></a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="nav-section">
+            <span class="nav-section-title">HOẠT ĐỘNG</span>
+            <ul>
+              <li class="nav-item active" data-page="schedule">
+                <a href="schedule.html"
+                  ><i class="fas fa-calendar-alt"></i><span>Lịch tập</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="checkin">
+                <a href="checkin.html"
+                  ><i class="fas fa-qrcode"></i><span>Check-in</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="facilities">
+                <a href="facilities.html"
+                  ><i class="fas fa-dumbbell"></i><span>Thiết bị</span></a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="nav-section">
+            <span class="nav-section-title">TÀI CHÍNH</span>
+            <ul>
+              <li class="nav-item" data-page="invoices">
+                <a href="invoices.html"
+                  ><i class="fas fa-file-invoice-dollar"></i
+                  ><span>Hóa đơn</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="reports">
+                <a href="reports.html"
+                  ><i class="fas fa-chart-line"></i><span>Báo cáo</span></a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <div class="sidebar-footer">
+          <a href="../index.html" class="back-home-btn">
+            <i class="fas fa-home"></i>
+            <span>← Về trang chủ</span>
+          </a>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <header class="header">
+          <div class="header-left">
+            <button class="menu-toggle" id="menuToggle">
+              <i class="fas fa-bars"></i>
+            </button>
+            <div class="breadcrumb">
+              <span class="breadcrumb-item"><i class="fas fa-home"></i></span>
+              <span class="breadcrumb-separator">/</span>
+              <span class="breadcrumb-item active">Lịch tập</span>
+            </div>
+          </div>
+          <div class="header-center">
+            <div class="search-box">
+              <i class="fas fa-search"></i>
+              <input
+                type="text"
+                placeholder="Tìm kiếm lớp học, PT..."
+                id="searchInput"
+              />
+              <kbd>Ctrl+K</kbd>
+            </div>
+          </div>
+          <div class="header-right">
+            <button class="header-btn" id="themeToggle" title="Đổi giao diện">
+              <i class="fas fa-sun" id="themeIcon"></i>
+            </button>
+            <button class="header-btn" id="fullscreenBtn" title="Toàn màn hình">
+              <i class="fas fa-expand"></i>
+            </button>
+            <button class="header-btn notification-btn" title="Thông báo">
+              <i class="fas fa-bell"></i><span class="badge">3</span>
+            </button>
+            <div class="admin-dropdown">
+              <button
+                class="btn btn-primary btn-glow admin-btn"
+                onclick="toggleAdminDropdown()"
+              >
+                <img
+                  src="https://ui-avatars.com/api/?name=Admin&background=6366f1&color=fff&size=28"
+                  alt="Admin"
+                  class="admin-avatar"
+                />
+                <span>Admin</span>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+              <div class="admin-dropdown-menu" id="adminDropdownMenu">
+                <div class="dropdown-header">
+                  <img
+                    src="https://ui-avatars.com/api/?name=Admin&background=6366f1&color=fff"
+                    alt="Admin"
+                  />
+                  <div>
+                    <strong>Nguyễn Admin</strong>
+                    <span>Quản trị viên</span>
+                  </div>
+                </div>
+                <div class="dropdown-divider"></div>
+                <a href="settings.html" class="dropdown-item"
+                  ><i class="fas fa-cog"></i> Cài đặt</a
+                >
+                <div class="dropdown-divider"></div>
+                <a
+                  href="#"
+                  class="dropdown-item text-danger"
+                  onclick="confirmLogout()"
+                  ><i class="fas fa-sign-out-alt"></i> Đăng xuất</a
+                >
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <div class="content">
+          <!-- Page Header -->
+          <div class="page-header">
+            <div class="page-header-left">
+              <h1><i class="fas fa-calendar-alt"></i> Quản lý lịch tập</h1>
+              <p>Quản lý lịch học các lớp và buổi tập PT</p>
+            </div>
+            <div class="page-header-right">
+              <button
+                class="btn btn-primary"
+                onclick="openModal('addScheduleModal')"
+              >
+                <i class="fas fa-plus"></i>
+                <span>Thêm lịch tập</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Stats -->
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon blue">
+                <i class="fas fa-calendar-check"></i>
+              </div>
+              <div class="stat-info">
+                <p>Lớp học hôm nay</p>
+                <h3 id="todayClasses">0</h3>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon green"><i class="fas fa-users"></i></div>
+              <div class="stat-info">
+                <p>Học viên đăng ký</p>
+                <h3 id="totalRegistered">0</h3>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon orange">
+                <i class="fas fa-user-ninja"></i>
+              </div>
+              <div class="stat-info">
+                <p>PT hoạt động</p>
+                <h3 id="activePTs">8</h3>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon purple"><i class="fas fa-clock"></i></div>
+              <div class="stat-info">
+                <p>Giờ tập tuần này</p>
+                <h3 id="weeklyHours">0</h3>
+              </div>
+            </div>
+          </div>
+
+          <!-- Calendar Controls -->
+          <div class="calendar-controls">
+            <div class="calendar-nav">
+              <button class="btn btn-secondary" onclick="changeWeek(-1)">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <h2 id="currentWeekLabel">Tuần này</h2>
+              <button class="btn btn-secondary" onclick="changeWeek(1)">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+              <button class="btn btn-secondary" onclick="goToToday()">
+                Hôm nay
+              </button>
+            </div>
+            <div class="calendar-filters">
+              <select id="filterClass" onchange="filterSchedule()">
+                <option value="all">Tất cả lớp</option>
+                <option value="yoga">Yoga</option>
+                <option value="gym">Gym</option>
+                <option value="cardio">Cardio</option>
+                <option value="boxing">Boxing</option>
+                <option value="dance">Dance</option>
+                <option value="pt">PT 1-1</option>
+              </select>
+              <select id="filterTrainer" onchange="filterSchedule()">
+                <option value="all">Tất cả PT</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Calendar Grid -->
+          <div class="card calendar-card">
+            <div class="calendar-grid">
+              <div class="calendar-header">
+                <div class="time-column">Giờ</div>
+                <div class="day-column" data-day="0">CN</div>
+                <div class="day-column" data-day="1">T2</div>
+                <div class="day-column" data-day="2">T3</div>
+                <div class="day-column" data-day="3">T4</div>
+                <div class="day-column" data-day="4">T5</div>
+                <div class="day-column" data-day="5">T6</div>
+                <div class="day-column" data-day="6">T7</div>
+              </div>
+              <div class="calendar-body" id="calendarBody">
+                <!-- Generated by JS -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Today's Schedule -->
+          <div class="card today-schedule-card">
+            <div class="card-header">
+              <h2><i class="fas fa-list"></i> Lịch tập hôm nay</h2>
+            </div>
+            <div class="card-body">
+              <div class="schedule-list" id="todayScheduleList">
+                <!-- Generated by JS -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Add Schedule Modal -->
+    <div class="modal" id="addScheduleModal">
+      <div class="modal-overlay" onclick="closeModal('addScheduleModal')"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2><i class="fas fa-calendar-plus"></i> Thêm lịch tập mới</h2>
+          <button class="close-btn" onclick="closeModal('addScheduleModal')">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <form id="addScheduleForm" onsubmit="addSchedule(event)">
+          <div class="modal-body">
+            <div class="form-row">
+              <div class="form-group">
+                <label><i class="fas fa-dumbbell"></i> Loại lớp</label>
+                <select id="classType" required>
+                  <option value="">Chọn loại lớp</option>
+                  <option value="yoga">Yoga</option>
+                  <option value="gym">Gym</option>
+                  <option value="cardio">Cardio</option>
+                  <option value="boxing">Boxing</option>
+                  <option value="dance">Dance</option>
+                  <option value="pt">PT 1-1</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label><i class="fas fa-heading"></i> Tên lớp</label>
+                <input
+                  type="text"
+                  id="className"
+                  required
+                  placeholder="VD: Yoga buổi sáng"
+                />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label><i class="fas fa-user-ninja"></i> Huấn luyện viên</label>
+                <select id="trainerId" required>
+                  <option value="">Chọn PT</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label><i class="fas fa-map-marker-alt"></i> Phòng tập</label>
+                <select id="room" required>
+                  <option value="">Chọn phòng</option>
+                  <option value="room1">Phòng 1 - Yoga</option>
+                  <option value="room2">Phòng 2 - Gym</option>
+                  <option value="room3">Phòng 3 - Cardio</option>
+                  <option value="room4">Phòng 4 - Boxing</option>
+                  <option value="room5">Phòng 5 - Dance</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label><i class="fas fa-calendar"></i> Ngày</label>
+                <input type="date" id="scheduleDate" required />
+              </div>
+              <div class="form-group">
+                <label><i class="fas fa-redo"></i> Lặp lại</label>
+                <select id="repeatType">
+                  <option value="none">Không lặp</option>
+                  <option value="daily">Hàng ngày</option>
+                  <option value="weekly">Hàng tuần</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label><i class="fas fa-clock"></i> Giờ bắt đầu</label>
+                <input type="time" id="startTime" required />
+              </div>
+              <div class="form-group">
+                <label><i class="fas fa-clock"></i> Giờ kết thúc</label>
+                <input type="time" id="endTime" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label><i class="fas fa-users"></i> Số lượng tối đa</label>
+                <input
+                  type="number"
+                  id="maxParticipants"
+                  min="1"
+                  max="50"
+                  value="20"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label><i class="fas fa-palette"></i> Màu hiển thị</label>
+                <select id="classColor">
+                  <option value="blue">Xanh dương</option>
+                  <option value="green">Xanh lá</option>
+                  <option value="orange">Cam</option>
+                  <option value="purple">Tím</option>
+                  <option value="pink">Hồng</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-sticky-note"></i> Ghi chú</label>
+              <textarea
+                id="scheduleNote"
+                rows="2"
+                placeholder="Ghi chú thêm..."
+              ></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="closeModal('addScheduleModal')"
+            >
+              Hủy
+            </button>
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-save"></i> Lưu lịch
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- View/Edit Schedule Modal -->
+    <div class="modal" id="viewScheduleModal">
+      <div
+        class="modal-overlay"
+        onclick="closeModal('viewScheduleModal')"
+      ></div>
+      <div class="modal-content modal-sm">
+        <div class="modal-header">
+          <h2><i class="fas fa-calendar-day"></i> Chi tiết lịch tập</h2>
+          <button class="close-btn" onclick="closeModal('viewScheduleModal')">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="schedule-detail" id="scheduleDetail">
+            <!-- Generated by JS -->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            onclick="closeModal('viewScheduleModal')"
+          >
+            Đóng
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            onclick="deleteCurrentSchedule()"
+          >
+            <i class="fas fa-trash"></i> Xóa
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            onclick="editCurrentSchedule()"
+          >
+            <i class="fas fa-edit"></i> Sửa
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+      <i class="fas fa-check-circle"></i>
+      <span id="toastMessage">Thao tác thành công!</span>
+    </div>
+
+    <script src="js/schedule.js"></script>
+  </body>
+</html>

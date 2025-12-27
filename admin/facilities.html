@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thiết bị - FitZone Gym Management</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/facilities.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Sidebar -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <div class="logo">
+            <div class="logo-icon"><i class="fas fa-dumbbell"></i></div>
+            <div class="logo-text">
+              <span class="logo-name">FitZone</span>
+              <span class="logo-tagline">Gym Management</span>
+            </div>
+          </div>
+          <button
+            class="sidebar-collapse-btn"
+            id="sidebarCollapseBtn"
+            title="Thu gọn"
+          >
+            <i class="fas fa-chevron-left"></i>
+          </button>
+        </div>
+
+        <nav class="sidebar-nav">
+          <div class="nav-section">
+            <span class="nav-section-title">MENU CHÍNH</span>
+            <ul>
+              <li class="nav-item" data-page="dashboard">
+                <a href="index.html"
+                  ><i class="fas fa-th-large"></i><span>Dashboard</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="members">
+                <a href="members.html"
+                  ><i class="fas fa-users"></i><span>Hội viên</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="packages">
+                <a href="packages.html"
+                  ><i class="fas fa-box-open"></i><span>Gói tập</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="trainers">
+                <a href="trainers.html"
+                  ><i class="fas fa-user-ninja"></i
+                  ><span>Huấn luyện viên</span></a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="nav-section">
+            <span class="nav-section-title">HOẠT ĐỘNG</span>
+            <ul>
+              <li class="nav-item" data-page="schedule">
+                <a href="schedule.html"
+                  ><i class="fas fa-calendar-alt"></i><span>Lịch tập</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="checkin">
+                <a href="checkin.html"
+                  ><i class="fas fa-qrcode"></i><span>Check-in</span></a
+                >
+              </li>
+              <li class="nav-item active" data-page="facilities">
+                <a href="facilities.html"
+                  ><i class="fas fa-dumbbell"></i><span>Thiết bị</span></a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="nav-section">
+            <span class="nav-section-title">TÀI CHÍNH</span>
+            <ul>
+              <li class="nav-item" data-page="invoices">
+                <a href="invoices.html"
+                  ><i class="fas fa-file-invoice-dollar"></i
+                  ><span>Hóa đơn</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="reports">
+                <a href="reports.html"
+                  ><i class="fas fa-chart-line"></i><span>Báo cáo</span></a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <div class="sidebar-footer">
+          <a href="../index.html" class="back-home-btn">
+            <i class="fas fa-home"></i>
+            <span>← Về trang chủ</span>
+          </a>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <header class="header">
+          <div class="header-left">
+            <button class="menu-toggle" id="menuToggle">
+              <i class="fas fa-bars"></i>
+            </button>
+            <div class="breadcrumb">
+              <span class="breadcrumb-item"><i class="fas fa-home"></i></span>
+              <span class="breadcrumb-separator">/</span>
+              <span class="breadcrumb-item active">Thiết bị</span>
+            </div>
+          </div>
+          <div class="header-center">
+            <div class="search-box">
+              <i class="fas fa-search"></i>
+              <input
+                type="text"
+                placeholder="Tìm kiếm thiết bị..."
+                id="searchInput"
+              />
+              <kbd>Ctrl+K</kbd>
+            </div>
+          </div>
+          <div class="header-right">
+            <button class="header-btn" id="themeToggle" title="Đổi giao diện">
+              <i class="fas fa-sun" id="themeIcon"></i>
+            </button>
+            <button class="header-btn" id="fullscreenBtn" title="Toàn màn hình">
+              <i class="fas fa-expand"></i>
+            </button>
+            <button class="header-btn notification-btn" title="Thông báo">
+              <i class="fas fa-bell"></i><span class="badge">3</span>
+            </button>
+            <div class="admin-dropdown">
+              <button
+                class="btn btn-primary btn-glow admin-btn"
+                onclick="toggleAdminDropdown()"
+              >
+                <img
+                  src="https://ui-avatars.com/api/?name=Admin&background=6366f1&color=fff&size=28"
+                  alt="Admin"
+                  class="admin-avatar"
+                />
+                <span>Admin</span>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+              <div class="admin-dropdown-menu" id="adminDropdownMenu">
+                <div class="dropdown-header">
+                  <img
+                    src="https://ui-avatars.com/api/?name=Admin&background=6366f1&color=fff"
+                    alt="Admin"
+                  />
+                  <div>
+                    <strong>Nguyễn Admin</strong>
+                    <span>Quản trị viên</span>
+                  </div>
+                </div>
+                <div class="dropdown-divider"></div>
+                <a href="settings.html" class="dropdown-item"
+                  ><i class="fas fa-cog"></i> Cài đặt</a
+                >
+                <div class="dropdown-divider"></div>
+                <a
+                  href="#"
+                  class="dropdown-item text-danger"
+                  onclick="confirmLogout()"
+                  ><i class="fas fa-sign-out-alt"></i> Đăng xuất</a
+                >
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <div class="content">
+          <!-- Page Header -->
+          <div class="page-header">
+            <div class="page-header-left">
+              <h1><i class="fas fa-dumbbell"></i> Quản lý thiết bị</h1>
+              <p>Quản lý thiết bị và cơ sở vật chất phòng tập</p>
+            </div>
+            <div class="page-header-right">
+              <button
+                class="btn btn-primary"
+                onclick="openModal('addEquipmentModal')"
+              >
+                <i class="fas fa-plus"></i>
+                <span>Thêm thiết bị</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Stats -->
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon blue"><i class="fas fa-dumbbell"></i></div>
+              <div class="stat-info">
+                <p>Tổng thiết bị</p>
+                <h3 id="totalEquipment">0</h3>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon green">
+                <i class="fas fa-check-circle"></i>
+              </div>
+              <div class="stat-info">
+                <p>Hoạt động tốt</p>
+                <h3 id="activeEquipment">0</h3>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon orange"><i class="fas fa-tools"></i></div>
+              <div class="stat-info">
+                <p>Đang bảo trì</p>
+                <h3 id="maintenanceEquipment">0</h3>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon purple">
+                <i class="fas fa-door-open"></i>
+              </div>
+              <div class="stat-info">
+                <p>Số phòng</p>
+                <h3 id="totalRooms">5</h3>
+              </div>
+            </div>
+          </div>
+
+          <!-- Filter Tabs -->
+          <div class="filter-tabs">
+            <button
+              class="filter-tab active"
+              data-filter="all"
+              onclick="filterByCategory('all')"
+            >
+              <i class="fas fa-th-large"></i> Tất cả
+            </button>
+            <button
+              class="filter-tab"
+              data-filter="cardio"
+              onclick="filterByCategory('cardio')"
+            >
+              <i class="fas fa-heartbeat"></i> Cardio
+            </button>
+            <button
+              class="filter-tab"
+              data-filter="strength"
+              onclick="filterByCategory('strength')"
+            >
+              <i class="fas fa-dumbbell"></i> Strength
+            </button>
+            <button
+              class="filter-tab"
+              data-filter="free-weight"
+              onclick="filterByCategory('free-weight')"
+            >
+              <i class="fas fa-weight-hanging"></i> Free Weight
+            </button>
+            <button
+              class="filter-tab"
+              data-filter="accessories"
+              onclick="filterByCategory('accessories')"
+            >
+              <i class="fas fa-box"></i> Phụ kiện
+            </button>
+          </div>
+
+          <!-- Equipment Grid -->
+          <div class="equipment-grid" id="equipmentGrid">
+            <!-- Generated by JS -->
+          </div>
+
+          <!-- Rooms Section -->
+          <div class="card rooms-card">
+            <div class="card-header">
+              <h2><i class="fas fa-door-open"></i> Danh sách phòng tập</h2>
+            </div>
+            <div class="card-body">
+              <div class="rooms-grid" id="roomsGrid">
+                <!-- Generated by JS -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Add Equipment Modal -->
+    <div class="modal" id="addEquipmentModal">
+      <div
+        class="modal-overlay"
+        onclick="closeModal('addEquipmentModal')"
+      ></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2><i class="fas fa-plus-circle"></i> Thêm thiết bị mới</h2>
+          <button class="close-btn" onclick="closeModal('addEquipmentModal')">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <form id="addEquipmentForm" onsubmit="addEquipment(event)">
+          <div class="modal-body">
+            <div class="form-row">
+              <div class="form-group">
+                <label><i class="fas fa-tag"></i> Tên thiết bị</label>
+                <input
+                  type="text"
+                  id="equipmentName"
+                  required
+                  placeholder="VD: Máy chạy bộ"
+                />
+              </div>
+              <div class="form-group">
+                <label><i class="fas fa-barcode"></i> Mã thiết bị</label>
+                <input
+                  type="text"
+                  id="equipmentCode"
+                  required
+                  placeholder="VD: TRD-001"
+                />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label><i class="fas fa-layer-group"></i> Danh mục</label>
+                <select id="equipmentCategory" required>
+                  <option value="">Chọn danh mục</option>
+                  <option value="cardio">Cardio</option>
+                  <option value="strength">Strength</option>
+                  <option value="free-weight">Free Weight</option>
+                  <option value="accessories">Phụ kiện</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label><i class="fas fa-door-open"></i> Phòng</label>
+                <select id="equipmentRoom" required>
+                  <option value="">Chọn phòng</option>
+                  <option value="room1">Phòng 1 - Yoga</option>
+                  <option value="room2">Phòng 2 - Gym</option>
+                  <option value="room3">Phòng 3 - Cardio</option>
+                  <option value="room4">Phòng 4 - Boxing</option>
+                  <option value="room5">Phòng 5 - Dance</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label><i class="fas fa-industry"></i> Hãng sản xuất</label>
+                <input
+                  type="text"
+                  id="equipmentBrand"
+                  placeholder="VD: Life Fitness"
+                />
+              </div>
+              <div class="form-group">
+                <label><i class="fas fa-calendar"></i> Ngày mua</label>
+                <input type="date" id="purchaseDate" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label><i class="fas fa-money-bill"></i> Giá mua</label>
+                <input
+                  type="number"
+                  id="equipmentPrice"
+                  placeholder="VD: 50000000"
+                />
+              </div>
+              <div class="form-group">
+                <label><i class="fas fa-info-circle"></i> Trạng thái</label>
+                <select id="equipmentStatus">
+                  <option value="active">Hoạt động tốt</option>
+                  <option value="maintenance">Đang bảo trì</option>
+                  <option value="broken">Hỏng</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-sticky-note"></i> Ghi chú</label>
+              <textarea
+                id="equipmentNote"
+                rows="2"
+                placeholder="Ghi chú thêm..."
+              ></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="closeModal('addEquipmentModal')"
+            >
+              Hủy
+            </button>
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-save"></i> Lưu
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- View/Edit Equipment Modal -->
+    <div class="modal" id="viewEquipmentModal">
+      <div
+        class="modal-overlay"
+        onclick="closeModal('viewEquipmentModal')"
+      ></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2><i class="fas fa-info-circle"></i> Chi tiết thiết bị</h2>
+          <button class="close-btn" onclick="closeModal('viewEquipmentModal')">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="equipment-detail" id="equipmentDetail">
+            <!-- Generated by JS -->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            onclick="closeModal('viewEquipmentModal')"
+          >
+            Đóng
+          </button>
+          <button
+            type="button"
+            class="btn btn-warning"
+            onclick="setMaintenance()"
+          >
+            <i class="fas fa-tools"></i> Bảo trì
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            onclick="deleteCurrentEquipment()"
+          >
+            <i class="fas fa-trash"></i> Xóa
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+      <i class="fas fa-check-circle"></i>
+      <span id="toastMessage">Thao tác thành công!</span>
+    </div>
+
+    <script src="js/facilities.js"></script>
+  </body>
+</html>
