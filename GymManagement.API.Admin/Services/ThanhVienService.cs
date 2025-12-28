@@ -1,95 +1,106 @@
-using Microsoft.Data.SqlClient;
-using GymManagement.Shared.DTOs;
+using System.Data;
+using GymManagement.DbHelper;
+using GymManagement.API.Admin.DTOs;
 
 namespace GymManagement.API.Admin.Services
 {
     public class ThanhVienService : IThanhVienService
     {
-        private readonly string _connectionString;
+        private readonly IDbHelper _db;
 
-        public ThanhVienService(string connectionString)
+        public ThanhVienService(IDbHelper db)
         {
-            _connectionString = connectionString;
+            _db = db;
         }
 
         public async Task<IEnumerable<ThanhVienDto>> GetAllAsync()
         {
-            var list = new List<ThanhVienDto>();
-            using var conn = new SqlConnection(_connectionString);
-            using var cmd = new SqlCommand(
-                "SELECT MaThanhVien, HoTen, SoDienThoai, Email, NgaySinh, GioiTinh, DiaChi, NgayDangKy, TrangThai FROM ThanhVien", conn);
-
-            await conn.OpenAsync();
-            using var reader = await cmd.ExecuteReaderAsync();
-
-            while (await reader.ReadAsync())
+            var dt = await _db.ExecuteQueryAsync(
+                "SELECT MaThanhVien, MaThe, HoTen, NgaySinh, GioiTinh, SoDienThoai, Email, DiaChi, NgayDangKy, TrangThai FROM ThanhVien");
+            
+            return dt.AsEnumerable().Select(row => new ThanhVienDto
             {
-                list.Add(MapToDto(reader));
-            }
-            return list;
+                MaThanhVien = row.Field<int>("MaThanhVien"),
+                MaThe = row.Field<string?>("MaThe"),
+                HoTen = row.Field<string>("HoTen")!,
+                NgaySinh = row.Field<DateTime?>("NgaySinh"),
+                GioiTinh = row.Field<string?>("GioiTinh"),
+                SoDienThoai = row.Field<string?>("SoDienThoai"),
+                Email = row.Field<string?>("Email"),
+                DiaChi = row.Field<string?>("DiaChi"),
+                NgayDangKy = row.Field<DateTime>("NgayDangKy"),
+                TrangThai = row.Field<byte>("TrangThai")
+            });
         }
 
         public async Task<ThanhVienDto?> GetByIdAsync(int id)
         {
-            using var conn = new SqlConnection(_connectionString);
-            using var cmd = new SqlCommand(
-                "SELECT MaThanhVien, HoTen, SoDienThoai, Email, NgaySinh, GioiTinh, DiaChi, NgayDangKy, TrangThai FROM ThanhVien WHERE MaThanhVien = @Id", conn);
-            cmd.Parameters.AddWithValue("@Id", id);
+            var dt = await _db.ExecuteQueryAsync(
+                "SELECT MaThanhVien, MaThe, HoTen, NgaySinh, GioiTinh, SoDienThoai, Email, DiaChi, NgayDangKy, TrangThai FROM ThanhVien WHERE MaThanhVien = @Id",
+                new Dictionary<string, object> { { "@Id", id } });
+            
+            var row = dt.AsEnumerable().FirstOrDefault();
+            if (row == null) return null;
 
-            await conn.OpenAsync();
-            using var reader = await cmd.ExecuteReaderAsync();
-
-            if (await reader.ReadAsync())
+            return new ThanhVienDto
             {
-                return MapToDto(reader);
-            }
-            return null;
+                MaThanhVien = row.Field<int>("MaThanhVien"),
+                MaThe = row.Field<string?>("MaThe"),
+                HoTen = row.Field<string>("HoTen")!,
+                NgaySinh = row.Field<DateTime?>("NgaySinh"),
+                GioiTinh = row.Field<string?>("GioiTinh"),
+                SoDienThoai = row.Field<string?>("SoDienThoai"),
+                Email = row.Field<string?>("Email"),
+                DiaChi = row.Field<string?>("DiaChi"),
+                NgayDangKy = row.Field<DateTime>("NgayDangKy"),
+                TrangThai = row.Field<byte>("TrangThai")
+            };
         }
 
         public async Task<ThanhVienDto> CreateAsync(ThanhVienDto dto)
         {
-            using var conn = new SqlConnection(_connectionString);
-            using var cmd = new SqlCommand(
-                @"INSERT INTO ThanhVien (HoTen, SoDienThoai, Email, NgaySinh, GioiTinh, DiaChi, NgayDangKy, TrangThai) 
+            var id = await _db.ExecuteScalarAsync(
+                @"INSERT INTO ThanhVien (MaThe, HoTen, NgaySinh, GioiTinh, SoDienThoai, Email, DiaChi, NgayDangKy, TrangThai) 
                   OUTPUT INSERTED.MaThanhVien 
-                  VALUES (@HoTen, @SoDienThoai, @Email, @NgaySinh, @GioiTinh, @DiaChi, @NgayDangKy, @TrangThai)", conn);
-
-            cmd.Parameters.AddWithValue("@HoTen", dto.HoTen);
-            cmd.Parameters.AddWithValue("@SoDienThoai", (object?)dto.SoDienThoai ?? DBNull.Value);
-            cmd.Parameters.AddWithValue("@Email", (object?)dto.Email ?? DBNull.Value);
-            cmd.Parameters.AddWithValue("@NgaySinh", (object?)dto.NgaySinh ?? DBNull.Value);
-            cmd.Parameters.AddWithValue("@GioiTinh", (object?)dto.GioiTinh ?? DBNull.Value);
-            cmd.Parameters.AddWithValue("@DiaChi", (object?)dto.DiaChi ?? DBNull.Value);
-            cmd.Parameters.AddWithValue("@NgayDangKy", DateTime.Now);
-            cmd.Parameters.AddWithValue("@TrangThai", true);
-
-            await conn.OpenAsync();
-            dto.MaThanhVien = (int)await cmd.ExecuteScalarAsync();
+                  VALUES (@MaThe, @HoTen, @NgaySinh, @GioiTinh, @SoDienThoai, @Email, @DiaChi, @NgayDangKy, @TrangThai)",
+                new Dictionary<string, object>
+                {
+                    { "@MaThe", dto.MaThe! },
+                    { "@HoTen", dto.HoTen },
+                    { "@NgaySinh", dto.NgaySinh! },
+                    { "@GioiTinh", dto.GioiTinh! },
+                    { "@SoDienThoai", dto.SoDienThoai! },
+                    { "@Email", dto.Email! },
+                    { "@DiaChi", dto.DiaChi! },
+                    { "@NgayDangKy", DateTime.Now },
+                    { "@TrangThai", (byte)1 }
+                });
+            
+            dto.MaThanhVien = (int)id!;
             dto.NgayDangKy = DateTime.Now;
-            dto.TrangThai = true;
+            dto.TrangThai = 1;
             return dto;
         }
 
         public async Task<ThanhVienDto?> UpdateAsync(int id, ThanhVienDto dto)
         {
-            using var conn = new SqlConnection(_connectionString);
-            using var cmd = new SqlCommand(
-                @"UPDATE ThanhVien SET HoTen = @HoTen, SoDienThoai = @SoDienThoai, Email = @Email, 
-                  NgaySinh = @NgaySinh, GioiTinh = @GioiTinh, DiaChi = @DiaChi, TrangThai = @TrangThai 
-                  WHERE MaThanhVien = @Id", conn);
-
-            cmd.Parameters.AddWithValue("@Id", id);
-            cmd.Parameters.AddWithValue("@HoTen", dto.HoTen);
-            cmd.Parameters.AddWithValue("@SoDienThoai", (object?)dto.SoDienThoai ?? DBNull.Value);
-            cmd.Parameters.AddWithValue("@Email", (object?)dto.Email ?? DBNull.Value);
-            cmd.Parameters.AddWithValue("@NgaySinh", (object?)dto.NgaySinh ?? DBNull.Value);
-            cmd.Parameters.AddWithValue("@GioiTinh", (object?)dto.GioiTinh ?? DBNull.Value);
-            cmd.Parameters.AddWithValue("@DiaChi", (object?)dto.DiaChi ?? DBNull.Value);
-            cmd.Parameters.AddWithValue("@TrangThai", dto.TrangThai);
-
-            await conn.OpenAsync();
-            var rows = await cmd.ExecuteNonQueryAsync();
-
+            var rows = await _db.ExecuteNonQueryAsync(
+                @"UPDATE ThanhVien SET MaThe = @MaThe, HoTen = @HoTen, NgaySinh = @NgaySinh, GioiTinh = @GioiTinh, 
+                  SoDienThoai = @SoDienThoai, Email = @Email, DiaChi = @DiaChi, TrangThai = @TrangThai 
+                  WHERE MaThanhVien = @Id",
+                new Dictionary<string, object>
+                {
+                    { "@Id", id },
+                    { "@MaThe", dto.MaThe! },
+                    { "@HoTen", dto.HoTen },
+                    { "@NgaySinh", dto.NgaySinh! },
+                    { "@GioiTinh", dto.GioiTinh! },
+                    { "@SoDienThoai", dto.SoDienThoai! },
+                    { "@Email", dto.Email! },
+                    { "@DiaChi", dto.DiaChi! },
+                    { "@TrangThai", dto.TrangThai }
+                });
+            
             if (rows == 0) return null;
             dto.MaThanhVien = id;
             return dto;
@@ -97,29 +108,10 @@ namespace GymManagement.API.Admin.Services
 
         public async Task<bool> DeleteAsync(int id)
         {
-            using var conn = new SqlConnection(_connectionString);
-            using var cmd = new SqlCommand("DELETE FROM ThanhVien WHERE MaThanhVien = @Id", conn);
-            cmd.Parameters.AddWithValue("@Id", id);
-
-            await conn.OpenAsync();
-            var rows = await cmd.ExecuteNonQueryAsync();
+            var rows = await _db.ExecuteNonQueryAsync(
+                "DELETE FROM ThanhVien WHERE MaThanhVien = @Id",
+                new Dictionary<string, object> { { "@Id", id } });
             return rows > 0;
-        }
-
-        private static ThanhVienDto MapToDto(SqlDataReader reader)
-        {
-            return new ThanhVienDto
-            {
-                MaThanhVien = reader.GetInt32(0),
-                HoTen = reader.GetString(1),
-                SoDienThoai = reader.IsDBNull(2) ? null : reader.GetString(2),
-                Email = reader.IsDBNull(3) ? null : reader.GetString(3),
-                NgaySinh = reader.IsDBNull(4) ? null : reader.GetDateTime(4),
-                GioiTinh = reader.IsDBNull(5) ? null : reader.GetString(5),
-                DiaChi = reader.IsDBNull(6) ? null : reader.GetString(6),
-                NgayDangKy = reader.GetDateTime(7),
-                TrangThai = reader.GetBoolean(8)
-            };
         }
     }
 }

@@ -1,87 +1,69 @@
-using Microsoft.Data.SqlClient;
-using GymManagement.Shared.DTOs;
-using GymManagement.Shared.Entities;
+using System.Data;
+using GymManagement.DbHelper;
+using GymManagement.API.Admin.DTOs;
 
 namespace GymManagement.API.Admin.Services
 {
     public class ChucVuService : IChucVuService
     {
-        private readonly string _connectionString;
+        private readonly IDbHelper _db;
 
-        public ChucVuService(string connectionString)
+        public ChucVuService(IDbHelper db)
         {
-            _connectionString = connectionString;
+            _db = db;
         }
 
         public async Task<IEnumerable<ChucVuDto>> GetAllAsync()
         {
-            var list = new List<ChucVuDto>();
-            using var conn = new SqlConnection(_connectionString);
-            using var cmd = new SqlCommand("SELECT MaChucVu, TenChucVu, MoTa FROM ChucVu", conn);
-            
-            await conn.OpenAsync();
-            using var reader = await cmd.ExecuteReaderAsync();
-            
-            while (await reader.ReadAsync())
+            var dt = await _db.ExecuteQueryAsync("SELECT MaChucVu, TenChucVu, MoTa FROM ChucVu");
+            return dt.AsEnumerable().Select(row => new ChucVuDto
             {
-                list.Add(new ChucVuDto
-                {
-                    MaChucVu = reader.GetInt32(0),
-                    TenChucVu = reader.GetString(1),
-                    MoTa = reader.IsDBNull(2) ? null : reader.GetString(2)
-                });
-            }
-            return list;
+                MaChucVu = row.Field<int>("MaChucVu"),
+                TenChucVu = row.Field<string>("TenChucVu")!,
+                MoTa = row.Field<string?>("MoTa")
+            });
         }
 
         public async Task<ChucVuDto?> GetByIdAsync(int id)
         {
-            using var conn = new SqlConnection(_connectionString);
-            using var cmd = new SqlCommand("SELECT MaChucVu, TenChucVu, MoTa FROM ChucVu WHERE MaChucVu = @Id", conn);
-            cmd.Parameters.AddWithValue("@Id", id);
+            var dt = await _db.ExecuteQueryAsync(
+                "SELECT MaChucVu, TenChucVu, MoTa FROM ChucVu WHERE MaChucVu = @Id",
+                new Dictionary<string, object> { { "@Id", id } });
             
-            await conn.OpenAsync();
-            using var reader = await cmd.ExecuteReaderAsync();
-            
-            if (await reader.ReadAsync())
+            var row = dt.AsEnumerable().FirstOrDefault();
+            if (row == null) return null;
+
+            return new ChucVuDto
             {
-                return new ChucVuDto
-                {
-                    MaChucVu = reader.GetInt32(0),
-                    TenChucVu = reader.GetString(1),
-                    MoTa = reader.IsDBNull(2) ? null : reader.GetString(2)
-                };
-            }
-            return null;
+                MaChucVu = row.Field<int>("MaChucVu"),
+                TenChucVu = row.Field<string>("TenChucVu")!,
+                MoTa = row.Field<string?>("MoTa")
+            };
         }
 
         public async Task<ChucVuDto> CreateAsync(ChucVuDto dto)
         {
-            using var conn = new SqlConnection(_connectionString);
-            using var cmd = new SqlCommand(
-                "INSERT INTO ChucVu (TenChucVu, MoTa) OUTPUT INSERTED.MaChucVu VALUES (@TenChucVu, @MoTa)", conn);
-            
-            cmd.Parameters.AddWithValue("@TenChucVu", dto.TenChucVu);
-            cmd.Parameters.AddWithValue("@MoTa", (object?)dto.MoTa ?? DBNull.Value);
-            
-            await conn.OpenAsync();
-            dto.MaChucVu = (int)await cmd.ExecuteScalarAsync();
+            var id = await _db.ExecuteScalarAsync(
+                "INSERT INTO ChucVu (TenChucVu, MoTa) OUTPUT INSERTED.MaChucVu VALUES (@TenChucVu, @MoTa)",
+                new Dictionary<string, object>
+                {
+                    { "@TenChucVu", dto.TenChucVu },
+                    { "@MoTa", dto.MoTa! }
+                });
+            dto.MaChucVu = (int)id!;
             return dto;
         }
 
         public async Task<ChucVuDto?> UpdateAsync(int id, ChucVuDto dto)
         {
-            using var conn = new SqlConnection(_connectionString);
-            using var cmd = new SqlCommand(
-                "UPDATE ChucVu SET TenChucVu = @TenChucVu, MoTa = @MoTa WHERE MaChucVu = @Id", conn);
-            
-            cmd.Parameters.AddWithValue("@Id", id);
-            cmd.Parameters.AddWithValue("@TenChucVu", dto.TenChucVu);
-            cmd.Parameters.AddWithValue("@MoTa", (object?)dto.MoTa ?? DBNull.Value);
-            
-            await conn.OpenAsync();
-            var rows = await cmd.ExecuteNonQueryAsync();
-            
+            var rows = await _db.ExecuteNonQueryAsync(
+                "UPDATE ChucVu SET TenChucVu = @TenChucVu, MoTa = @MoTa WHERE MaChucVu = @Id",
+                new Dictionary<string, object>
+                {
+                    { "@Id", id },
+                    { "@TenChucVu", dto.TenChucVu },
+                    { "@MoTa", dto.MoTa! }
+                });
             if (rows == 0) return null;
             dto.MaChucVu = id;
             return dto;
@@ -89,12 +71,9 @@ namespace GymManagement.API.Admin.Services
 
         public async Task<bool> DeleteAsync(int id)
         {
-            using var conn = new SqlConnection(_connectionString);
-            using var cmd = new SqlCommand("DELETE FROM ChucVu WHERE MaChucVu = @Id", conn);
-            cmd.Parameters.AddWithValue("@Id", id);
-            
-            await conn.OpenAsync();
-            var rows = await cmd.ExecuteNonQueryAsync();
+            var rows = await _db.ExecuteNonQueryAsync(
+                "DELETE FROM ChucVu WHERE MaChucVu = @Id",
+                new Dictionary<string, object> { { "@Id", id } });
             return rows > 0;
         }
     }

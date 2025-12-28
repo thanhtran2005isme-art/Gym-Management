@@ -1,4 +1,4 @@
-using GymManagement.Shared.DTOs;
+using GymManagement.API.Admin.DTOs;
 
 namespace GymManagement.API.Admin.Services
 {

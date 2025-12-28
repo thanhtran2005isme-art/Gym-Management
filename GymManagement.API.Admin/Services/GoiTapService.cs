@@ -1,90 +1,88 @@
-using Microsoft.Data.SqlClient;
-using GymManagement.Shared.DTOs;
+using System.Data;
+using GymManagement.DbHelper;
+using GymManagement.API.Admin.DTOs;
 
 namespace GymManagement.API.Admin.Services
 {
     public class GoiTapService : IGoiTapService
     {
-        private readonly string _connectionString;
+        private readonly IDbHelper _db;
 
-        public GoiTapService(string connectionString)
+        public GoiTapService(IDbHelper db)
         {
-            _connectionString = connectionString;
+            _db = db;
         }
 
         public async Task<IEnumerable<GoiTapDto>> GetAllAsync()
         {
-            var list = new List<GoiTapDto>();
-            using var conn = new SqlConnection(_connectionString);
-            using var cmd = new SqlCommand(
-                "SELECT MaGoiTap, TenGoiTap, SoThang, SoLanTapToiDa, Gia, MoTa, TrangThai FROM GoiTap", conn);
-
-            await conn.OpenAsync();
-            using var reader = await cmd.ExecuteReaderAsync();
-
-            while (await reader.ReadAsync())
+            var dt = await _db.ExecuteQueryAsync(
+                "SELECT MaGoiTap, TenGoiTap, SoThang, SoLanTapToiDa, Gia, MoTa, TrangThai FROM GoiTap");
+            return dt.AsEnumerable().Select(row => new GoiTapDto
             {
-                list.Add(MapToDto(reader));
-            }
-            return list;
+                MaGoiTap = row.Field<int>("MaGoiTap"),
+                TenGoiTap = row.Field<string>("TenGoiTap")!,
+                SoThang = row.Field<int>("SoThang"),
+                SoLanTapToiDa = row.Field<int?>("SoLanTapToiDa"),
+                Gia = row.Field<decimal>("Gia"),
+                MoTa = row.Field<string?>("MoTa"),
+                TrangThai = row.Field<byte>("TrangThai")
+            });
         }
 
         public async Task<GoiTapDto?> GetByIdAsync(int id)
         {
-            using var conn = new SqlConnection(_connectionString);
-            using var cmd = new SqlCommand(
-                "SELECT MaGoiTap, TenGoiTap, SoThang, SoLanTapToiDa, Gia, MoTa, TrangThai FROM GoiTap WHERE MaGoiTap = @Id", conn);
-            cmd.Parameters.AddWithValue("@Id", id);
+            var dt = await _db.ExecuteQueryAsync(
+                "SELECT MaGoiTap, TenGoiTap, SoThang, SoLanTapToiDa, Gia, MoTa, TrangThai FROM GoiTap WHERE MaGoiTap = @Id",
+                new Dictionary<string, object> { { "@Id", id } });
+            
+            var row = dt.AsEnumerable().FirstOrDefault();
+            if (row == null) return null;
 
-            await conn.OpenAsync();
-            using var reader = await cmd.ExecuteReaderAsync();
-
-            if (await reader.ReadAsync())
+            return new GoiTapDto
             {
-                return MapToDto(reader);
-            }
-            return null;
+                MaGoiTap = row.Field<int>("MaGoiTap"),
+                TenGoiTap = row.Field<string>("TenGoiTap")!,
+                SoThang = row.Field<int>("SoThang"),
+                SoLanTapToiDa = row.Field<int?>("SoLanTapToiDa"),
+                Gia = row.Field<decimal>("Gia"),
+                MoTa = row.Field<string?>("MoTa"),
+                TrangThai = row.Field<byte>("TrangThai")
+            };
         }
 
         public async Task<GoiTapDto> CreateAsync(GoiTapDto dto)
         {
-            using var conn = new SqlConnection(_connectionString);
-            using var cmd = new SqlCommand(
+            var id = await _db.ExecuteScalarAsync(
                 @"INSERT INTO GoiTap (TenGoiTap, SoThang, SoLanTapToiDa, Gia, MoTa, TrangThai) 
-                  OUTPUT INSERTED.MaGoiTap 
-                  VALUES (@TenGoiTap, @SoThang, @SoLanTapToiDa, @Gia, @MoTa, @TrangThai)", conn);
-
-            cmd.Parameters.AddWithValue("@TenGoiTap", dto.TenGoiTap);
-            cmd.Parameters.AddWithValue("@SoThang", dto.SoThang);
-            cmd.Parameters.AddWithValue("@SoLanTapToiDa", (object?)dto.SoLanTapToiDa ?? DBNull.Value);
-            cmd.Parameters.AddWithValue("@Gia", dto.Gia);
-            cmd.Parameters.AddWithValue("@MoTa", (object?)dto.MoTa ?? DBNull.Value);
-            cmd.Parameters.AddWithValue("@TrangThai", dto.TrangThai);
-
-            await conn.OpenAsync();
-            dto.MaGoiTap = (int)await cmd.ExecuteScalarAsync();
+                  OUTPUT INSERTED.MaGoiTap VALUES (@TenGoiTap, @SoThang, @SoLanTapToiDa, @Gia, @MoTa, @TrangThai)",
+                new Dictionary<string, object>
+                {
+                    { "@TenGoiTap", dto.TenGoiTap },
+                    { "@SoThang", dto.SoThang },
+                    { "@SoLanTapToiDa", dto.SoLanTapToiDa! },
+                    { "@Gia", dto.Gia },
+                    { "@MoTa", dto.MoTa! },
+                    { "@TrangThai", dto.TrangThai }
+                });
+            dto.MaGoiTap = (int)id!;
             return dto;
         }
 
         public async Task<GoiTapDto?> UpdateAsync(int id, GoiTapDto dto)
         {
-            using var conn = new SqlConnection(_connectionString);
-            using var cmd = new SqlCommand(
+            var rows = await _db.ExecuteNonQueryAsync(
                 @"UPDATE GoiTap SET TenGoiTap = @TenGoiTap, SoThang = @SoThang, SoLanTapToiDa = @SoLanTapToiDa, 
-                  Gia = @Gia, MoTa = @MoTa, TrangThai = @TrangThai 
-                  WHERE MaGoiTap = @Id", conn);
-
-            cmd.Parameters.AddWithValue("@Id", id);
-            cmd.Parameters.AddWithValue("@TenGoiTap", dto.TenGoiTap);
-            cmd.Parameters.AddWithValue("@SoThang", dto.SoThang);
-            cmd.Parameters.AddWithValue("@SoLanTapToiDa", (object?)dto.SoLanTapToiDa ?? DBNull.Value);
-            cmd.Parameters.AddWithValue("@Gia", dto.Gia);
-            cmd.Parameters.AddWithValue("@MoTa", (object?)dto.MoTa ?? DBNull.Value);
-            cmd.Parameters.AddWithValue("@TrangThai", dto.TrangThai);
-
-            await conn.OpenAsync();
-            var rows = await cmd.ExecuteNonQueryAsync();
-
+                  Gia = @Gia, MoTa = @MoTa, TrangThai = @TrangThai WHERE MaGoiTap = @Id",
+                new Dictionary<string, object>
+                {
+                    { "@Id", id },
+                    { "@TenGoiTap", dto.TenGoiTap },
+                    { "@SoThang", dto.SoThang },
+                    { "@SoLanTapToiDa", dto.SoLanTapToiDa! },
+                    { "@Gia", dto.Gia },
+                    { "@MoTa", dto.MoTa! },
+                    { "@TrangThai", dto.TrangThai }
+                });
             if (rows == 0) return null;
             dto.MaGoiTap = id;
             return dto;
@@ -92,27 +90,10 @@ namespace GymManagement.API.Admin.Services
 
         public async Task<bool> DeleteAsync(int id)
         {
-            using var conn = new SqlConnection(_connectionString);
-            using var cmd = new SqlCommand("DELETE FROM GoiTap WHERE MaGoiTap = @Id", conn);
-            cmd.Parameters.AddWithValue("@Id", id);
-
-            await conn.OpenAsync();
-            var rows = await cmd.ExecuteNonQueryAsync();
+            var rows = await _db.ExecuteNonQueryAsync(
+                "DELETE FROM GoiTap WHERE MaGoiTap = @Id",
+                new Dictionary<string, object> { { "@Id", id } });
             return rows > 0;
-        }
-
-        private static GoiTapDto MapToDto(SqlDataReader reader)
-        {
-            return new GoiTapDto
-            {
-                MaGoiTap = reader.GetInt32(0),
-                TenGoiTap = reader.GetString(1),
-                SoThang = reader.GetInt32(2),
-                SoLanTapToiDa = reader.IsDBNull(3) ? null : reader.GetInt32(3),
-                Gia = reader.GetDecimal(4),
-                MoTa = reader.IsDBNull(5) ? null : reader.GetString(5),
-                TrangThai = reader.GetByte(6)
-            };
         }
     }
 }
