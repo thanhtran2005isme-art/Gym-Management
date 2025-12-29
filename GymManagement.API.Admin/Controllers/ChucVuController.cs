@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
-using GymManagement.Shared.DTOs;
 using GymManagement.API.Admin.Services;
+using GymManagement.API.Admin.DTOs;
 
 namespace GymManagement.API.Admin.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class ChucVuController : ControllerBase
     {
         private readonly IChucVuService _service;
@@ -16,14 +16,14 @@ namespace GymManagement.API.Admin.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ChucVuDto>>> GetAll()
+        public async Task<IActionResult> GetAll()
         {
             var result = await _service.GetAllAsync();
             return Ok(result);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ChucVuDto>> GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
             var result = await _service.GetByIdAsync(id);
             if (result == null) return NotFound();
@@ -31,14 +31,14 @@ namespace GymManagement.API.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ChucVuDto>> Create(ChucVuDto dto)
+        public async Task<IActionResult> Create(ChucVuDto dto)
         {
             var result = await _service.CreateAsync(dto);
             return CreatedAtAction(nameof(GetById), new { id = result.MaChucVu }, result);
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<ChucVuDto>> Update(int id, ChucVuDto dto)
+        public async Task<IActionResult> Update(int id, ChucVuDto dto)
         {
             var result = await _service.UpdateAsync(id, dto);
             if (result == null) return NotFound();
@@ -48,8 +48,8 @@ namespace GymManagement.API.Admin.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var success = await _service.DeleteAsync(id);
-            if (!success) return NotFound();
+            var result = await _service.DeleteAsync(id);
+            if (!result) return NotFound();
             return NoContent();
         }
     }
