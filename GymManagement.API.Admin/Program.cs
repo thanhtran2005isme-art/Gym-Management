@@ -21,6 +21,7 @@ builder.Services.AddScoped<IThanhVienRepository, ThanhVienRepository>();
 builder.Services.AddScoped<IGoiTapRepository, GoiTapRepository>();
 builder.Services.AddScoped<INhanVienRepository, NhanVienRepository>();
 builder.Services.AddScoped<IDangKyGoiTapRepository, DangKyGoiTapRepository>();
+builder.Services.AddScoped<IGoiPTRepository, GoiPTRepository>();
 
 // Services
 builder.Services.AddScoped<IChucVuService, ChucVuService>();
@@ -28,6 +29,7 @@ builder.Services.AddScoped<IThanhVienService, ThanhVienService>();
 builder.Services.AddScoped<IGoiTapService, GoiTapService>();
 builder.Services.AddScoped<INhanVienService, NhanVienService>();
 builder.Services.AddScoped<IDangKyGoiTapService, DangKyGoiTapService>();
+builder.Services.AddScoped<IGoiPTService, GoiPTService>();
 
 var app = builder.Build();
 
