@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GymManagement.Shared\GymManagement.Shared.csproj" />
+    <ProjectReference Include="..\GymManagement.DbHelper\GymManagement.DbHelper.csproj" />
   </ItemGroup>
 
 </Project>
