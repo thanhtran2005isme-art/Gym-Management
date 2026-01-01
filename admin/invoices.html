@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hóa đơn - FitZone Gym Management</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/invoices.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Sidebar -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <div class="logo">
+            <div class="logo-icon"><i class="fas fa-dumbbell"></i></div>
+            <div class="logo-text">
+              <span class="logo-name">FitZone</span>
+              <span class="logo-tagline">Gym Management</span>
+            </div>
+          </div>
+          <button
+            class="sidebar-collapse-btn"
+            id="sidebarCollapseBtn"
+            title="Thu gọn"
+          >
+            <i class="fas fa-chevron-left"></i>
+          </button>
+        </div>
+
+        <nav class="sidebar-nav">
+          <div class="nav-section">
+            <span class="nav-section-title">MENU CHÍNH</span>
+            <ul>
+              <li class="nav-item" data-page="dashboard">
+                <a href="index.html"
+                  ><i class="fas fa-th-large"></i><span>Dashboard</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="members">
+                <a href="members.html"
+                  ><i class="fas fa-users"></i><span>Hội viên</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="packages">
+                <a href="packages.html"
+                  ><i class="fas fa-box-open"></i><span>Gói tập</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="trainers">
+                <a href="trainers.html"
+                  ><i class="fas fa-user-ninja"></i
+                  ><span>Huấn luyện viên</span></a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="nav-section">
+            <span class="nav-section-title">HOẠT ĐỘNG</span>
+            <ul>
+              <li class="nav-item" data-page="schedule">
+                <a href="schedule.html"
+                  ><i class="fas fa-calendar-alt"></i><span>Lịch tập</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="checkin">
+                <a href="checkin.html"
+                  ><i class="fas fa-qrcode"></i><span>Check-in</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="facilities">
+                <a href="facilities.html"
+                  ><i class="fas fa-dumbbell"></i><span>Thiết bị</span></a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="nav-section">
+            <span class="nav-section-title">TÀI CHÍNH</span>
+            <ul>
+              <li class="nav-item active" data-page="invoices">
+                <a href="invoices.html"
+                  ><i class="fas fa-file-invoice-dollar"></i
+                  ><span>Hóa đơn</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="reports">
+                <a href="reports.html"
+                  ><i class="fas fa-chart-line"></i><span>Báo cáo</span></a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <div class="sidebar-footer">
+          <a href="../index.html" class="back-home-btn">
+            <i class="fas fa-home"></i>
+            <span>← Về trang chủ</span>
+          </a>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <header class="header">
+          <div class="header-left">
+            <button class="menu-toggle" id="menuToggle">
+              <i class="fas fa-bars"></i>
+            </button>
+            <div class="breadcrumb">
+              <span class="breadcrumb-item"><i class="fas fa-home"></i></span>
+              <span class="breadcrumb-separator">/</span>
+              <span class="breadcrumb-item active">Hóa đơn</span>
+            </div>
+          </div>
+          <div class="header-center">
+            <div class="search-box">
+              <i class="fas fa-search"></i>
+              <input
+                type="text"
+                placeholder="Tìm kiếm hóa đơn..."
+                id="searchInput"
+              />
+              <kbd>Ctrl+K</kbd>
+            </div>
+          </div>
+          <div class="header-right">
+            <button class="header-btn" id="themeToggle" title="Đổi giao diện">
+              <i class="fas fa-sun" id="themeIcon"></i>
+            </button>
+            <button class="header-btn" id="fullscreenBtn" title="Toàn màn hình">
+              <i class="fas fa-expand"></i>
+            </button>
+            <button class="header-btn notification-btn" title="Thông báo">
+              <i class="fas fa-bell"></i><span class="badge">3</span>
+            </button>
+            <div class="admin-dropdown">
+              <button
+                class="btn btn-primary btn-glow admin-btn"
+                onclick="toggleAdminDropdown()"
+              >
+                <img
+                  src="https://ui-avatars.com/api/?name=Admin&background=6366f1&color=fff&size=28"
+                  alt="Admin"
+                  class="admin-avatar"
+                />
+                <span>Admin</span>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+              <div class="admin-dropdown-menu" id="adminDropdownMenu">
+                <div class="dropdown-header">
+                  <img
+                    src="https://ui-avatars.com/api/?name=Admin&background=6366f1&color=fff"
+                    alt="Admin"
+                  />
+                  <div>
+                    <strong>Nguyễn Admin</strong>
+                    <span>Quản trị viên</span>
+                  </div>
+                </div>
+                <div class="dropdown-divider"></div>
+                <a href="settings.html" class="dropdown-item"
+                  ><i class="fas fa-cog"></i> Cài đặt</a
+                >
+                <div class="dropdown-divider"></div>
+                <a
+                  href="#"
+                  class="dropdown-item text-danger"
+                  onclick="confirmLogout()"
+                  ><i class="fas fa-sign-out-alt"></i> Đăng xuất</a
+                >
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <div class="content">
+          <!-- Page Header -->
+          <div class="page-header">
+            <div class="page-header-left">
+              <h1>
+                <i class="fas fa-file-invoice-dollar"></i> Quản lý hóa đơn
+              </h1>
+              <p>Quản lý hóa đơn và thanh toán của hội viên</p>
+            </div>
+            <div class="page-header-right">
+              <button class="btn btn-secondary" onclick="exportInvoices()">
+                <i class="fas fa-download"></i>
+                <span>Xuất Excel</span>
+              </button>
+              <button
+                class="btn btn-primary"
+                onclick="openModal('addInvoiceModal')"
+              >
+                <i class="fas fa-plus"></i>
+                <span>Tạo hóa đơn</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Stats -->
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon blue">
+                <i class="fas fa-file-invoice"></i>
+              </div>
+              <div class="stat-info">
+                <p>Tổng hóa đơn</p>
+                <h3 id="totalInvoices">0</h3>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon green">
+                <i class="fas fa-check-circle"></i>
+              </div>
+              <div class="stat-info">
+                <p>Đã thanh toán</p>
+                <h3 id="paidInvoices">0</h3>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon orange"><i class="fas fa-clock"></i></div>
+              <div class="stat-info">
+                <p>Chờ thanh toán</p>
+                <h3 id="pendingInvoices">0</h3>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon purple">
+                <i class="fas fa-money-bill-wave"></i>
+              </div>
+              <div class="stat-info">
+                <p>Doanh thu tháng</p>
+                <h3 id="monthlyRevenue">0</h3>
+              </div>
+            </div>
+          </div>
+
+          <!-- Filters -->
+          <div class="filters-bar">
+            <div class="filter-group">
+              <select id="filterStatus" onchange="filterInvoices()">
+                <option value="all">Tất cả trạng thái</option>
+                <option value="paid">Đã thanh toán</option>
+                <option value="pending">Chờ thanh toán</option>
+                <option value="cancelled">Đã hủy</option>
+              </select>
+              <select id="filterType" onchange="filterInvoices()">
+                <option value="all">Tất cả loại</option>
+                <option value="membership">Gói tập</option>
+                <option value="pt">PT</option>
+                <option value="product">Sản phẩm</option>
+                <option value="other">Khác</option>
+              </select>
+              <input
+                type="month"
+                id="filterMonth"
+                onchange="filterInvoices()"
+              />
+            </div>
+          </div>
+
+          <!-- Invoices Table -->
+          <div class="card invoices-card">
+            <div class="card-body">
+              <div class="table-container">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Mã HĐ</th>
+                      <th>Khách hàng</th>
+                      <th>Loại</th>
+                      <th>Mô tả</th>
+                      <th>Số tiền</th>
+                      <th>Ngày tạo</th>
+                      <th>Trạng thái</th>
+                      <th>Thao tác</th>
+                    </tr>
+                  </thead>
+                  <tbody id="invoicesTableBody">
+                    <!-- Generated by JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Add Invoice Modal -->
+    <div class="modal" id="addInvoiceModal">
+      <div class="modal-overlay" onclick="closeModal('addInvoiceModal')"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2><i class="fas fa-plus-circle"></i> Tạo hóa đơn mới</h2>
+          <button class="close-btn" onclick="closeModal('addInvoiceModal')">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <form id="addInvoiceForm" onsubmit="addInvoice(event)">
+          <div class="modal-body">
+            <div class="form-row">
+              <div class="form-group">
+                <label><i class="fas fa-user"></i> Khách hàng</label>
+                <select id="invoiceCustomer" required>
+                  <option value="">Chọn khách hàng</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label><i class="fas fa-tag"></i> Loại hóa đơn</label>
+                <select
+                  id="invoiceType"
+                  required
+                  onchange="updateInvoiceItems()"
+                >
+                  <option value="">Chọn loại</option>
+                  <option value="membership">Gói tập</option>
+                  <option value="pt">PT</option>
+                  <option value="product">Sản phẩm</option>
+                  <option value="other">Khác</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label><i class="fas fa-box"></i> Sản phẩm/Dịch vụ</label>
+                <select id="invoiceItem" required onchange="updateAmount()">
+                  <option value="">Chọn sản phẩm</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label><i class="fas fa-sort-numeric-up"></i> Số lượng</label>
+                <input
+                  type="number"
+                  id="invoiceQuantity"
+                  value="1"
+                  min="1"
+                  onchange="updateAmount()"
+                />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label><i class="fas fa-money-bill"></i> Đơn giá</label>
+                <input type="text" id="invoiceUnitPrice" readonly />
+              </div>
+              <div class="form-group">
+                <label><i class="fas fa-calculator"></i> Thành tiền</label>
+                <input type="text" id="invoiceAmount" readonly />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label><i class="fas fa-percent"></i> Giảm giá (%)</label>
+                <input
+                  type="number"
+                  id="invoiceDiscount"
+                  value="0"
+                  min="0"
+                  max="100"
+                  onchange="updateAmount()"
+                />
+              </div>
+              <div class="form-group">
+                <label
+                  ><i class="fas fa-money-check"></i> Tổng thanh toán</label
+                >
+                <input
+                  type="text"
+                  id="invoiceTotal"
+                  readonly
+                  class="total-input"
+                />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label><i class="fas fa-credit-card"></i> Phương thức</label>
+                <select id="paymentMethod">
+                  <option value="cash">Tiền mặt</option>
+                  <option value="transfer">Chuyển khoản</option>
+                  <option value="card">Thẻ</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label><i class="fas fa-info-circle"></i> Trạng thái</label>
+                <select id="invoiceStatus">
+                  <option value="paid">Đã thanh toán</option>
+                  <option value="pending">Chờ thanh toán</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-sticky-note"></i> Ghi chú</label>
+              <textarea
+                id="invoiceNote"
+                rows="2"
+                placeholder="Ghi chú thêm..."
+              ></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="closeModal('addInvoiceModal')"
+            >
+              Hủy
+            </button>
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-save"></i> Tạo hóa đơn
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- View Invoice Modal -->
+    <div class="modal" id="viewInvoiceModal">
+      <div class="modal-overlay" onclick="closeModal('viewInvoiceModal')"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2><i class="fas fa-file-invoice"></i> Chi tiết hóa đơn</h2>
+          <button class="close-btn" onclick="closeModal('viewInvoiceModal')">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="invoice-preview" id="invoicePreview">
+            <!-- Generated by JS -->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            onclick="closeModal('viewInvoiceModal')"
+          >
+            Đóng
+          </button>
+          <button type="button" class="btn btn-info" onclick="printInvoice()">
+            <i class="fas fa-print"></i> In hóa đơn
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+      <i class="fas fa-check-circle"></i>
+      <span id="toastMessage">Thao tác thành công!</span>
+    </div>
+
+    <script src="js/invoices.js"></script>
+  </body>
+</html>
