@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cài đặt - FitZone Gym Management</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/settings.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Sidebar -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <div class="logo">
+            <div class="logo-icon"><i class="fas fa-dumbbell"></i></div>
+            <div class="logo-text">
+              <span class="logo-name">FitZone</span>
+              <span class="logo-tagline">Gym Management</span>
+            </div>
+          </div>
+          <button
+            class="sidebar-collapse-btn"
+            id="sidebarCollapseBtn"
+            title="Thu gọn"
+          >
+            <i class="fas fa-chevron-left"></i>
+          </button>
+        </div>
+
+        <nav class="sidebar-nav">
+          <div class="nav-section">
+            <span class="nav-section-title">MENU CHÍNH</span>
+            <ul>
+              <li class="nav-item" data-page="dashboard">
+                <a href="index.html"
+                  ><i class="fas fa-th-large"></i><span>Dashboard</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="members">
+                <a href="members.html"
+                  ><i class="fas fa-users"></i><span>Hội viên</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="packages">
+                <a href="packages.html"
+                  ><i class="fas fa-box-open"></i><span>Gói tập</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="trainers">
+                <a href="trainers.html"
+                  ><i class="fas fa-user-ninja"></i
+                  ><span>Huấn luyện viên</span></a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="nav-section">
+            <span class="nav-section-title">HOẠT ĐỘNG</span>
+            <ul>
+              <li class="nav-item" data-page="schedule">
+                <a href="schedule.html"
+                  ><i class="fas fa-calendar-alt"></i><span>Lịch tập</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="checkin">
+                <a href="checkin.html"
+                  ><i class="fas fa-qrcode"></i><span>Check-in</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="facilities">
+                <a href="facilities.html"
+                  ><i class="fas fa-dumbbell"></i><span>Thiết bị</span></a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="nav-section">
+            <span class="nav-section-title">TÀI CHÍNH</span>
+            <ul>
+              <li class="nav-item" data-page="invoices">
+                <a href="invoices.html"
+                  ><i class="fas fa-file-invoice-dollar"></i
+                  ><span>Hóa đơn</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="reports">
+                <a href="reports.html"
+                  ><i class="fas fa-chart-line"></i><span>Báo cáo</span></a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <div class="sidebar-footer">
+          <a href="../index.html" class="back-home-btn">
+            <i class="fas fa-home"></i>
+            <span>← Về trang chủ</span>
+          </a>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <header class="header">
+          <div class="header-left">
+            <button class="menu-toggle" id="menuToggle">
+              <i class="fas fa-bars"></i>
+            </button>
+            <div class="breadcrumb">
+              <span class="breadcrumb-item"><i class="fas fa-home"></i></span>
+              <span class="breadcrumb-separator">/</span>
+              <span class="breadcrumb-item active">Cài đặt</span>
+            </div>
+          </div>
+          <div class="header-center">
+            <div class="search-box">
+              <i class="fas fa-search"></i>
+              <input type="text" placeholder="Tìm kiếm..." id="searchInput" />
+              <kbd>Ctrl+K</kbd>
+            </div>
+          </div>
+          <div class="header-right">
+            <button class="header-btn" id="themeToggle" title="Đổi giao diện">
+              <i class="fas fa-sun" id="themeIcon"></i>
+            </button>
+            <button class="header-btn" id="fullscreenBtn" title="Toàn màn hình">
+              <i class="fas fa-expand"></i>
+            </button>
+            <button class="header-btn notification-btn" title="Thông báo">
+              <i class="fas fa-bell"></i><span class="badge">3</span>
+            </button>
+            <div class="admin-dropdown">
+              <button
+                class="btn btn-primary btn-glow admin-btn"
+                onclick="toggleAdminDropdown()"
+              >
+                <img
+                  src="https://ui-avatars.com/api/?name=Admin&background=6366f1&color=fff&size=28"
+                  alt="Admin"
+                  class="admin-avatar"
+                />
+                <span>Admin</span>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+              <div class="admin-dropdown-menu" id="adminDropdownMenu">
+                <div class="dropdown-header">
+                  <img
+                    src="https://ui-avatars.com/api/?name=Admin&background=6366f1&color=fff"
+                    alt="Admin"
+                  />
+                  <div>
+                    <strong>Nguyễn Admin</strong>
+                    <span>Quản trị viên</span>
+                  </div>
+                </div>
+                <div class="dropdown-divider"></div>
+                <a href="settings.html" class="dropdown-item"
+                  ><i class="fas fa-cog"></i> Cài đặt</a
+                >
+                <div class="dropdown-divider"></div>
+                <a
+                  href="#"
+                  class="dropdown-item text-danger"
+                  onclick="confirmLogout()"
+                  ><i class="fas fa-sign-out-alt"></i> Đăng xuất</a
+                >
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <div class="content">
+          <!-- Page Header -->
+          <div class="page-header">
+            <div class="page-header-left">
+              <h1><i class="fas fa-cog"></i> Cài đặt hệ thống</h1>
+              <p>Quản lý cài đặt và tùy chỉnh hệ thống</p>
+            </div>
+          </div>
+
+          <!-- Settings Grid -->
+          <div class="settings-grid">
+            <!-- General Settings -->
+            <div class="card settings-card">
+              <div class="card-header">
+                <h2><i class="fas fa-sliders-h"></i> Cài đặt chung</h2>
+              </div>
+              <div class="card-body">
+                <div class="setting-item">
+                  <div class="setting-info">
+                    <h4>Tên phòng tập</h4>
+                    <p>Tên hiển thị trên hệ thống</p>
+                  </div>
+                  <div class="setting-control">
+                    <input type="text" id="gymName" value="FitZone Gym" />
+                  </div>
+                </div>
+                <div class="setting-item">
+                  <div class="setting-info">
+                    <h4>Số điện thoại</h4>
+                    <p>Số liên hệ của phòng tập</p>
+                  </div>
+                  <div class="setting-control">
+                    <input type="tel" id="gymPhone" value="0123 456 789" />
+                  </div>
+                </div>
+                <div class="setting-item">
+                  <div class="setting-info">
+                    <h4>Email</h4>
+                    <p>Email liên hệ</p>
+                  </div>
+                  <div class="setting-control">
+                    <input
+                      type="email"
+                      id="gymEmail"
+                      value="contact@fitzone.vn"
+                    />
+                  </div>
+                </div>
+                <div class="setting-item">
+                  <div class="setting-info">
+                    <h4>Địa chỉ</h4>
+                    <p>Địa chỉ phòng tập</p>
+                  </div>
+                  <div class="setting-control">
+                    <input
+                      type="text"
+                      id="gymAddress"
+                      value="123 Đường ABC, Quận XYZ, TP.HCM"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Display Settings -->
+            <div class="card settings-card">
+              <div class="card-header">
+                <h2><i class="fas fa-palette"></i> Giao diện</h2>
+              </div>
+              <div class="card-body">
+                <div class="setting-item">
+                  <div class="setting-info">
+                    <h4>Chế độ tối</h4>
+                    <p>Bật/tắt giao diện tối</p>
+                  </div>
+                  <div class="setting-control">
+                    <label class="toggle-switch">
+                      <input
+                        type="checkbox"
+                        id="darkModeToggle"
+                        onchange="toggleDarkMode()"
+                      />
+                      <span class="toggle-slider"></span>
+                    </label>
+                  </div>
+                </div>
+                <div class="setting-item">
+                  <div class="setting-info">
+                    <h4>Thu gọn sidebar</h4>
+                    <p>Mặc định thu gọn menu bên</p>
+                  </div>
+                  <div class="setting-control">
+                    <label class="toggle-switch">
+                      <input
+                        type="checkbox"
+                        id="sidebarCollapsedToggle"
+                        onchange="toggleSidebarDefault()"
+                      />
+                      <span class="toggle-slider"></span>
+                    </label>
+                  </div>
+                </div>
+                <div class="setting-item">
+                  <div class="setting-info">
+                    <h4>Ngôn ngữ</h4>
+                    <p>Ngôn ngữ hiển thị</p>
+                  </div>
+                  <div class="setting-control">
+                    <select id="language">
+                      <option value="vi" selected>Tiếng Việt</option>
+                      <option value="en">English</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Notification Settings -->
+            <div class="card settings-card">
+              <div class="card-header">
+                <h2><i class="fas fa-bell"></i> Thông báo</h2>
+              </div>
+              <div class="card-body">
+                <div class="setting-item">
+                  <div class="setting-info">
+                    <h4>Thông báo hết hạn</h4>
+                    <p>Nhắc nhở khi hội viên sắp hết hạn</p>
+                  </div>
+                  <div class="setting-control">
+                    <label class="toggle-switch">
+                      <input type="checkbox" id="expiryNotification" checked />
+                      <span class="toggle-slider"></span>
+                    </label>
+                  </div>
+                </div>
+                <div class="setting-item">
+                  <div class="setting-info">
+                    <h4>Số ngày nhắc trước</h4>
+                    <p>Nhắc trước khi hết hạn bao nhiêu ngày</p>
+                  </div>
+                  <div class="setting-control">
+                    <select id="reminderDays">
+                      <option value="3">3 ngày</option>
+                      <option value="5">5 ngày</option>
+                      <option value="7" selected>7 ngày</option>
+                      <option value="14">14 ngày</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="setting-item">
+                  <div class="setting-info">
+                    <h4>Thông báo check-in</h4>
+                    <p>Âm thanh khi check-in thành công</p>
+                  </div>
+                  <div class="setting-control">
+                    <label class="toggle-switch">
+                      <input type="checkbox" id="checkinSound" checked />
+                      <span class="toggle-slider"></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Business Settings -->
+            <div class="card settings-card">
+              <div class="card-header">
+                <h2><i class="fas fa-clock"></i> Giờ hoạt động</h2>
+              </div>
+              <div class="card-body">
+                <div class="setting-item">
+                  <div class="setting-info">
+                    <h4>Giờ mở cửa</h4>
+                    <p>Thời gian bắt đầu hoạt động</p>
+                  </div>
+                  <div class="setting-control">
+                    <input type="time" id="openTime" value="06:00" />
+                  </div>
+                </div>
+                <div class="setting-item">
+                  <div class="setting-info">
+                    <h4>Giờ đóng cửa</h4>
+                    <p>Thời gian kết thúc hoạt động</p>
+                  </div>
+                  <div class="setting-control">
+                    <input type="time" id="closeTime" value="22:00" />
+                  </div>
+                </div>
+                <div class="setting-item">
+                  <div class="setting-info">
+                    <h4>Ngày nghỉ</h4>
+                    <p>Các ngày không hoạt động</p>
+                  </div>
+                  <div class="setting-control">
+                    <select id="closedDays">
+                      <option value="none" selected>Không có</option>
+                      <option value="sunday">Chủ nhật</option>
+                      <option value="saturday">Thứ 7</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Data Management -->
+            <div class="card settings-card">
+              <div class="card-header">
+                <h2><i class="fas fa-database"></i> Quản lý dữ liệu</h2>
+              </div>
+              <div class="card-body">
+                <div class="setting-item">
+                  <div class="setting-info">
+                    <h4>Xuất dữ liệu</h4>
+                    <p>Tải xuống toàn bộ dữ liệu hệ thống</p>
+                  </div>
+                  <div class="setting-control">
+                    <button
+                      class="btn btn-secondary btn-sm"
+                      onclick="exportData()"
+                    >
+                      <i class="fas fa-download"></i> Xuất
+                    </button>
+                  </div>
+                </div>
+                <div class="setting-item">
+                  <div class="setting-info">
+                    <h4>Nhập dữ liệu</h4>
+                    <p>Khôi phục dữ liệu từ file backup</p>
+                  </div>
+                  <div class="setting-control">
+                    <button
+                      class="btn btn-secondary btn-sm"
+                      onclick="importData()"
+                    >
+                      <i class="fas fa-upload"></i> Nhập
+                    </button>
+                  </div>
+                </div>
+                <div class="setting-item">
+                  <div class="setting-info">
+                    <h4>Xóa dữ liệu</h4>
+                    <p>Xóa toàn bộ dữ liệu (không thể hoàn tác)</p>
+                  </div>
+                  <div class="setting-control">
+                    <button
+                      class="btn btn-danger btn-sm"
+                      onclick="clearAllData()"
+                    >
+                      <i class="fas fa-trash"></i> Xóa
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- About -->
+            <div class="card settings-card">
+              <div class="card-header">
+                <h2><i class="fas fa-info-circle"></i> Thông tin</h2>
+              </div>
+              <div class="card-body">
+                <div class="about-info">
+                  <div class="about-logo">
+                    <div class="logo-icon"><i class="fas fa-dumbbell"></i></div>
+                    <div>
+                      <h3>FitZone Gym Management</h3>
+                      <p>Phiên bản 1.0.0</p>
+                    </div>
+                  </div>
+                  <div class="about-details">
+                    <p>
+                      <i class="fas fa-code"></i> Phát triển bởi: FitZone Team
+                    </p>
+                    <p>
+                      <i class="fas fa-calendar"></i> Cập nhật: Tháng 12, 2024
+                    </p>
+                    <p>
+                      <i class="fas fa-envelope"></i> Hỗ trợ: support@fitzone.vn
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Save Button -->
+          <div class="settings-actions">
+            <button class="btn btn-secondary" onclick="resetSettings()">
+              <i class="fas fa-undo"></i> Đặt lại mặc định
+            </button>
+            <button class="btn btn-primary" onclick="saveSettings()">
+              <i class="fas fa-save"></i> Lưu cài đặt
+            </button>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+      <i class="fas fa-check-circle"></i>
+      <span id="toastMessage">Thao tác thành công!</span>
+    </div>
+
+    <script src="js/settings.js"></script>
+  </body>
+</html>
