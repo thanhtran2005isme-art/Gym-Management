@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản lý Gói tập - FitZone Gym</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/packages.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Sidebar -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <div class="logo">
+            <div class="logo-icon"><i class="fas fa-dumbbell"></i></div>
+            <div class="logo-text">
+              <span class="logo-name">FitZone</span>
+              <span class="logo-tagline">Gym Management</span>
+            </div>
+          </div>
+          <button
+            class="sidebar-collapse-btn"
+            id="sidebarCollapseBtn"
+            title="Thu gọn"
+          >
+            <i class="fas fa-chevron-left"></i>
+          </button>
+        </div>
+
+        <nav class="sidebar-nav">
+          <div class="nav-section">
+            <span class="nav-section-title">MENU CHÍNH</span>
+            <ul>
+              <li class="nav-item" data-page="dashboard">
+                <a href="index.html"
+                  ><i class="fas fa-th-large"></i><span>Dashboard</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="members">
+                <a href="members.html"
+                  ><i class="fas fa-users"></i><span>Hội viên</span></a
+                >
+              </li>
+              <li class="nav-item active" data-page="packages">
+                <a href="packages.html"
+                  ><i class="fas fa-box-open"></i><span>Gói tập</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="trainers">
+                <a href="trainers.html"
+                  ><i class="fas fa-user-ninja"></i
+                  ><span>Huấn luyện viên</span></a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="nav-section">
+            <span class="nav-section-title">HOẠT ĐỘNG</span>
+            <ul>
+              <li class="nav-item" data-page="schedule">
+                <a href="schedule.html"
+                  ><i class="fas fa-calendar-alt"></i><span>Lịch tập</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="checkin">
+                <a href="checkin.html"
+                  ><i class="fas fa-qrcode"></i><span>Check-in</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="facilities">
+                <a href="facilities.html"
+                  ><i class="fas fa-dumbbell"></i><span>Thiết bị</span></a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="nav-section">
+            <span class="nav-section-title">TÀI CHÍNH</span>
+            <ul>
+              <li class="nav-item" data-page="invoices">
+                <a href="invoices.html"
+                  ><i class="fas fa-file-invoice-dollar"></i
+                  ><span>Hóa đơn</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="reports">
+                <a href="reports.html"
+                  ><i class="fas fa-chart-line"></i><span>Báo cáo</span></a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <div class="sidebar-footer">
+          <a href="../index.html" class="back-home-btn">
+            <i class="fas fa-home"></i>
+            <span>← Về trang chủ</span>
+          </a>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <header class="header">
+          <div class="header-left">
+            <button class="menu-toggle" id="menuToggle">
+              <i class="fas fa-bars"></i>
+            </button>
+            <div class="breadcrumb">
+              <a href="index.html" class="breadcrumb-item"
+                ><i class="fas fa-home"></i
+              ></a>
+              <span class="breadcrumb-separator">/</span>
+              <span class="breadcrumb-item active">Gói tập</span>
+            </div>
+          </div>
+          <div class="header-right">
+            <button class="header-btn" id="themeToggle" title="Đổi giao diện">
+              <i class="fas fa-sun" id="themeIcon"></i>
+            </button>
+            <button class="header-btn" id="fullscreenBtn" title="Toàn màn hình">
+              <i class="fas fa-expand"></i>
+            </button>
+            <button class="header-btn notification-btn" title="Thông báo">
+              <i class="fas fa-bell"></i><span class="badge">3</span>
+            </button>
+            <div class="admin-dropdown">
+              <button
+                class="btn btn-primary btn-glow admin-btn"
+                onclick="toggleAdminDropdown()"
+              >
+                <img
+                  src="https://ui-avatars.com/api/?name=Admin&background=6366f1&color=fff&size=28"
+                  alt="Admin"
+                  class="admin-avatar"
+                />
+                <span>Admin</span>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+              <div class="admin-dropdown-menu" id="adminDropdownMenu">
+                <div class="dropdown-header">
+                  <img
+                    src="https://ui-avatars.com/api/?name=Admin&background=6366f1&color=fff"
+                    alt="Admin"
+                  />
+                  <div>
+                    <strong>Nguyễn Admin</strong>
+                    <span>Quản trị viên</span>
+                  </div>
+                </div>
+                <div class="dropdown-divider"></div>
+                <a href="settings.html" class="dropdown-item"
+                  ><i class="fas fa-cog"></i> Cài đặt</a
+                >
+                <div class="dropdown-divider"></div>
+                <a
+                  href="#"
+                  class="dropdown-item text-danger"
+                  onclick="confirmLogout()"
+                  ><i class="fas fa-sign-out-alt"></i> Đăng xuất</a
+                >
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <div class="content">
+          <!-- Page Header -->
+          <div class="page-header">
+            <div class="page-title">
+              <h1><i class="fas fa-box-open"></i> Quản lý Gói tập</h1>
+              <p>Quản lý các gói tập gym trong hệ thống</p>
+            </div>
+            <div class="page-actions">
+              <button
+                class="btn btn-primary"
+                onclick="openModal('addPackageModal')"
+              >
+                <i class="fas fa-plus"></i> Thêm gói tập
+              </button>
+            </div>
+          </div>
+
+          <!-- Stats Summary -->
+          <div class="stats-summary">
+            <div class="summary-item">
+              <span class="summary-value" id="totalPackages">0</span>
+              <span class="summary-label">Tổng gói tập</span>
+            </div>
+            <div class="summary-item active">
+              <span class="summary-value" id="activePackages">0</span>
+              <span class="summary-label">Đang hoạt động</span>
+            </div>
+            <div class="summary-item warning">
+              <span class="summary-value" id="totalRevenue">0</span>
+              <span class="summary-label">Doanh thu (triệu)</span>
+            </div>
+            <div class="summary-item info">
+              <span class="summary-value" id="totalMembers">0</span>
+              <span class="summary-label">Hội viên đăng ký</span>
+            </div>
+          </div>
+
+          <!-- Packages Grid -->
+          <div class="packages-grid" id="packagesGrid">
+            <!-- Packages will be rendered here -->
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Add Package Modal -->
+    <div class="modal" id="addPackageModal">
+      <div class="modal-overlay" onclick="closeModal('addPackageModal')"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2><i class="fas fa-plus-circle"></i> Thêm gói tập mới</h2>
+          <button class="close-btn" onclick="closeModal('addPackageModal')">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <form id="addPackageForm" onsubmit="addPackage(event)">
+          <div class="modal-body">
+            <div class="form-group">
+              <label><i class="fas fa-tag"></i> Tên gói tập</label>
+              <input
+                type="text"
+                id="packageName"
+                required
+                placeholder="VD: Gói Premium 6 tháng"
+              />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label><i class="fas fa-clock"></i> Thời hạn (ngày)</label>
+                <input
+                  type="number"
+                  id="packageDuration"
+                  required
+                  min="1"
+                  placeholder="VD: 30, 90, 180..."
+                />
+              </div>
+              <div class="form-group">
+                <label><i class="fas fa-money-bill"></i> Giá (VNĐ)</label>
+                <input
+                  type="number"
+                  id="packagePrice"
+                  required
+                  min="0"
+                  placeholder="VD: 500000"
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-align-left"></i> Mô tả</label>
+              <textarea
+                id="packageDescription"
+                rows="3"
+                placeholder="Mô tả chi tiết gói tập..."
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <label
+                ><i class="fas fa-list-check"></i> Quyền lợi (mỗi dòng 1 quyền
+                lợi)</label
+              >
+              <textarea
+                id="packageFeatures"
+                rows="4"
+                placeholder="Tập không giới hạn&#10;Phòng xông hơi&#10;Tủ đồ cá nhân"
+              ></textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label><i class="fas fa-palette"></i> Màu sắc</label>
+                <select id="packageColor">
+                  <option value="blue">Xanh dương</option>
+                  <option value="green">Xanh lá</option>
+                  <option value="purple">Tím</option>
+                  <option value="orange">Cam</option>
+                  <option value="red">Đỏ</option>
+                  <option value="gold">Vàng Gold</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label><i class="fas fa-toggle-on"></i> Trạng thái</label>
+                <select id="packageStatus">
+                  <option value="active">Hoạt động</option>
+                  <option value="inactive">Tạm ngưng</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="closeModal('addPackageModal')"
+            >
+              Hủy
+            </button>
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-save"></i> Lưu gói tập
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Edit Package Modal -->
+    <div class="modal" id="editPackageModal">
+      <div class="modal-overlay" onclick="closeModal('editPackageModal')"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2><i class="fas fa-edit"></i> Chỉnh sửa gói tập</h2>
+          <button class="close-btn" onclick="closeModal('editPackageModal')">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <form id="editPackageForm" onsubmit="updatePackage(event)">
+          <input type="hidden" id="editPackageId" />
+          <div class="modal-body">
+            <div class="form-group">
+              <label><i class="fas fa-tag"></i> Tên gói tập</label>
+              <input type="text" id="editPackageName" required />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label><i class="fas fa-clock"></i> Thời hạn (ngày)</label>
+                <input
+                  type="number"
+                  id="editPackageDuration"
+                  required
+                  min="1"
+                />
+              </div>
+              <div class="form-group">
+                <label><i class="fas fa-money-bill"></i> Giá (VNĐ)</label>
+                <input type="number" id="editPackagePrice" required min="0" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-align-left"></i> Mô tả</label>
+              <textarea id="editPackageDescription" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-list-check"></i> Quyền lợi</label>
+              <textarea id="editPackageFeatures" rows="4"></textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label><i class="fas fa-palette"></i> Màu sắc</label>
+                <select id="editPackageColor">
+                  <option value="blue">Xanh dương</option>
+                  <option value="green">Xanh lá</option>
+                  <option value="purple">Tím</option>
+                  <option value="orange">Cam</option>
+                  <option value="red">Đỏ</option>
+                  <option value="gold">Vàng Gold</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label><i class="fas fa-toggle-on"></i> Trạng thái</label>
+                <select id="editPackageStatus">
+                  <option value="active">Hoạt động</option>
+                  <option value="inactive">Tạm ngưng</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="closeModal('editPackageModal')"
+            >
+              Hủy
+            </button>
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-save"></i> Cập nhật
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+      <i class="fas fa-check-circle"></i><span id="toastMessage"></span>
+    </div>
+
+    <script src="js/packages.js"></script>
+  </body>
+</html>
