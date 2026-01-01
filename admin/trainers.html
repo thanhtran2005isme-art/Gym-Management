@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản lý Huấn luyện viên - FitZone Gym</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/trainers.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Sidebar -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <div class="logo">
+            <div class="logo-icon"><i class="fas fa-dumbbell"></i></div>
+            <div class="logo-text">
+              <span class="logo-name">FitZone</span>
+              <span class="logo-tagline">Gym Management</span>
+            </div>
+          </div>
+          <button
+            class="sidebar-collapse-btn"
+            id="sidebarCollapseBtn"
+            title="Thu gọn"
+          >
+            <i class="fas fa-chevron-left"></i>
+          </button>
+        </div>
+
+        <nav class="sidebar-nav">
+          <div class="nav-section">
+            <span class="nav-section-title">MENU CHÍNH</span>
+            <ul>
+              <li class="nav-item" data-page="dashboard">
+                <a href="index.html"
+                  ><i class="fas fa-th-large"></i><span>Dashboard</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="members">
+                <a href="members.html"
+                  ><i class="fas fa-users"></i><span>Hội viên</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="packages">
+                <a href="packages.html"
+                  ><i class="fas fa-box-open"></i><span>Gói tập</span></a
+                >
+              </li>
+              <li class="nav-item active" data-page="trainers">
+                <a href="trainers.html"
+                  ><i class="fas fa-user-ninja"></i
+                  ><span>Huấn luyện viên</span></a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="nav-section">
+            <span class="nav-section-title">HOẠT ĐỘNG</span>
+            <ul>
+              <li class="nav-item" data-page="schedule">
+                <a href="schedule.html"
+                  ><i class="fas fa-calendar-alt"></i><span>Lịch tập</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="checkin">
+                <a href="checkin.html"
+                  ><i class="fas fa-qrcode"></i><span>Check-in</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="facilities">
+                <a href="facilities.html"
+                  ><i class="fas fa-dumbbell"></i><span>Thiết bị</span></a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="nav-section">
+            <span class="nav-section-title">TÀI CHÍNH</span>
+            <ul>
+              <li class="nav-item" data-page="invoices">
+                <a href="invoices.html"
+                  ><i class="fas fa-file-invoice-dollar"></i
+                  ><span>Hóa đơn</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="reports">
+                <a href="reports.html"
+                  ><i class="fas fa-chart-line"></i><span>Báo cáo</span></a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <div class="sidebar-footer">
+          <a href="../index.html" class="back-home-btn">
+            <i class="fas fa-home"></i>
+            <span>← Về trang chủ</span>
+          </a>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <header class="header">
+          <div class="header-left">
+            <button class="menu-toggle" id="menuToggle">
+              <i class="fas fa-bars"></i>
+            </button>
+            <div class="breadcrumb">
+              <a href="index.html" class="breadcrumb-item"
+                ><i class="fas fa-home"></i
+              ></a>
+              <span class="breadcrumb-separator">/</span>
+              <span class="breadcrumb-item active">Huấn luyện viên</span>
+            </div>
+          </div>
+          <div class="header-center">
+            <div class="search-box">
+              <i class="fas fa-search"></i>
+              <input
+                type="text"
+                id="searchInput"
+                placeholder="Tìm kiếm PT..."
+              />
+            </div>
+          </div>
+          <div class="header-right">
+            <button class="header-btn" id="themeToggle" title="Đổi giao diện">
+              <i class="fas fa-sun" id="themeIcon"></i>
+            </button>
+            <button class="header-btn" id="fullscreenBtn" title="Toàn màn hình">
+              <i class="fas fa-expand"></i>
+            </button>
+            <button class="header-btn notification-btn" title="Thông báo">
+              <i class="fas fa-bell"></i><span class="badge">3</span>
+            </button>
+            <div class="admin-dropdown">
+              <button
+                class="btn btn-primary btn-glow admin-btn"
+                onclick="toggleAdminDropdown()"
+              >
+                <img
+                  src="https://ui-avatars.com/api/?name=Admin&background=6366f1&color=fff&size=28"
+                  alt="Admin"
+                  class="admin-avatar"
+                />
+                <span>Admin</span>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+              <div class="admin-dropdown-menu" id="adminDropdownMenu">
+                <div class="dropdown-header">
+                  <img
+                    src="https://ui-avatars.com/api/?name=Admin&background=6366f1&color=fff"
+                    alt="Admin"
+                  />
+                  <div>
+                    <strong>Nguyễn Admin</strong><span>Quản trị viên</span>
+                  </div>
+                </div>
+                <div class="dropdown-divider"></div>
+                <a href="settings.html" class="dropdown-item"
+                  ><i class="fas fa-cog"></i> Cài đặt</a
+                >
+                <div class="dropdown-divider"></div>
+                <a
+                  href="#"
+                  class="dropdown-item text-danger"
+                  onclick="confirmLogout()"
+                  ><i class="fas fa-sign-out-alt"></i> Đăng xuất</a
+                >
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <div class="content">
+          <!-- Page Header -->
+          <div class="page-header">
+            <div class="page-title">
+              <h1><i class="fas fa-user-ninja"></i> Quản lý Huấn luyện viên</h1>
+              <p>Danh sách PT trong hệ thống</p>
+            </div>
+            <div class="page-actions">
+              <button
+                class="btn btn-primary"
+                onclick="openModal('addTrainerModal')"
+              >
+                <i class="fas fa-plus"></i> Thêm PT
+              </button>
+            </div>
+          </div>
+
+          <!-- Stats Summary -->
+          <div class="stats-summary">
+            <div class="summary-item">
+              <span class="summary-value" id="totalTrainers">0</span>
+              <span class="summary-label">Tổng PT</span>
+            </div>
+            <div class="summary-item active">
+              <span class="summary-value" id="activeTrainers">0</span>
+              <span class="summary-label">Đang làm việc</span>
+            </div>
+            <div class="summary-item warning">
+              <span class="summary-value" id="totalClients">0</span>
+              <span class="summary-label">Học viên</span>
+            </div>
+            <div class="summary-item info">
+              <span class="summary-value" id="avgRating">0</span>
+              <span class="summary-label">Đánh giá TB</span>
+            </div>
+          </div>
+
+          <!-- Filter -->
+          <div class="filter-bar">
+            <select id="filterSpecialty" onchange="filterTrainers()">
+              <option value="all">Tất cả chuyên môn</option>
+              <option value="fitness">Fitness</option>
+              <option value="yoga">Yoga</option>
+              <option value="boxing">Boxing</option>
+              <option value="cardio">Cardio</option>
+              <option value="strength">Strength Training</option>
+            </select>
+            <select id="filterStatus" onchange="filterTrainers()">
+              <option value="all">Tất cả trạng thái</option>
+              <option value="active">Đang làm việc</option>
+              <option value="inactive">Nghỉ phép</option>
+            </select>
+          </div>
+
+          <!-- Trainers Grid -->
+          <div class="trainers-grid" id="trainersGrid"></div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Add Trainer Modal -->
+    <div class="modal" id="addTrainerModal">
+      <div class="modal-overlay" onclick="closeModal('addTrainerModal')"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2><i class="fas fa-user-plus"></i> Thêm Huấn luyện viên</h2>
+          <button class="close-btn" onclick="closeModal('addTrainerModal')">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <form id="addTrainerForm" onsubmit="addTrainer(event)">
+          <div class="modal-body">
+            <div class="form-row">
+              <div class="form-group">
+                <label><i class="fas fa-user"></i> Họ và tên</label>
+                <input
+                  type="text"
+                  id="trainerName"
+                  required
+                  placeholder="Nhập họ tên"
+                />
+              </div>
+              <div class="form-group">
+                <label><i class="fas fa-phone"></i> Số điện thoại</label>
+                <input
+                  type="tel"
+                  id="trainerPhone"
+                  required
+                  placeholder="Nhập số điện thoại"
+                />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label><i class="fas fa-envelope"></i> Email</label>
+                <input
+                  type="email"
+                  id="trainerEmail"
+                  required
+                  placeholder="Nhập email"
+                />
+              </div>
+              <div class="form-group">
+                <label><i class="fas fa-venus-mars"></i> Giới tính</label>
+                <select id="trainerGender" required>
+                  <option value="">Chọn giới tính</option>
+                  <option value="male">Nam</option>
+                  <option value="female">Nữ</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label><i class="fas fa-dumbbell"></i> Chuyên môn</label>
+                <select id="trainerSpecialty" required>
+                  <option value="">Chọn chuyên môn</option>
+                  <option value="fitness">Fitness</option>
+                  <option value="yoga">Yoga</option>
+                  <option value="boxing">Boxing</option>
+                  <option value="cardio">Cardio</option>
+                  <option value="strength">Strength Training</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label
+                  ><i class="fas fa-certificate"></i> Kinh nghiệm (năm)</label
+                >
+                <input
+                  type="number"
+                  id="trainerExperience"
+                  required
+                  min="0"
+                  placeholder="VD: 3"
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-align-left"></i> Giới thiệu</label>
+              <textarea
+                id="trainerBio"
+                rows="3"
+                placeholder="Mô tả ngắn về PT..."
+              ></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="closeModal('addTrainerModal')"
+            >
+              Hủy
+            </button>
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-save"></i> Lưu
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Edit Trainer Modal -->
+    <div class="modal" id="editTrainerModal">
+      <div class="modal-overlay" onclick="closeModal('editTrainerModal')"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2><i class="fas fa-edit"></i> Chỉnh sửa PT</h2>
+          <button class="close-btn" onclick="closeModal('editTrainerModal')">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <form id="editTrainerForm" onsubmit="updateTrainer(event)">
+          <input type="hidden" id="editTrainerId" />
+          <div class="modal-body">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Họ và tên</label>
+                <input type="text" id="editTrainerName" required />
+              </div>
+              <div class="form-group">
+                <label>Số điện thoại</label>
+                <input type="tel" id="editTrainerPhone" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="editTrainerEmail" required />
+              </div>
+              <div class="form-group">
+                <label>Chuyên môn</label>
+                <select id="editTrainerSpecialty" required>
+                  <option value="fitness">Fitness</option>
+                  <option value="yoga">Yoga</option>
+                  <option value="boxing">Boxing</option>
+                  <option value="cardio">Cardio</option>
+                  <option value="strength">Strength Training</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Kinh nghiệm (năm)</label>
+                <input
+                  type="number"
+                  id="editTrainerExperience"
+                  required
+                  min="0"
+                />
+              </div>
+              <div class="form-group">
+                <label>Trạng thái</label>
+                <select id="editTrainerStatus">
+                  <option value="active">Đang làm việc</option>
+                  <option value="inactive">Nghỉ phép</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Giới thiệu</label>
+              <textarea id="editTrainerBio" rows="3"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="closeModal('editTrainerModal')"
+            >
+              Hủy
+            </button>
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-save"></i> Cập nhật
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+      <i class="fas fa-check-circle"></i><span id="toastMessage"></span>
+    </div>
+
+    <script src="js/trainers.js"></script>
+  </body>
+</html>
