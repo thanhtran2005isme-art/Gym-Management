@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Báo cáo - FitZone Gym Management</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/reports.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Sidebar -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <div class="logo">
+            <div class="logo-icon"><i class="fas fa-dumbbell"></i></div>
+            <div class="logo-text">
+              <span class="logo-name">FitZone</span>
+              <span class="logo-tagline">Gym Management</span>
+            </div>
+          </div>
+          <button
+            class="sidebar-collapse-btn"
+            id="sidebarCollapseBtn"
+            title="Thu gọn"
+          >
+            <i class="fas fa-chevron-left"></i>
+          </button>
+        </div>
+
+        <nav class="sidebar-nav">
+          <div class="nav-section">
+            <span class="nav-section-title">MENU CHÍNH</span>
+            <ul>
+              <li class="nav-item" data-page="dashboard">
+                <a href="index.html"
+                  ><i class="fas fa-th-large"></i><span>Dashboard</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="members">
+                <a href="members.html"
+                  ><i class="fas fa-users"></i><span>Hội viên</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="packages">
+                <a href="packages.html"
+                  ><i class="fas fa-box-open"></i><span>Gói tập</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="trainers">
+                <a href="trainers.html"
+                  ><i class="fas fa-user-ninja"></i
+                  ><span>Huấn luyện viên</span></a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="nav-section">
+            <span class="nav-section-title">HOẠT ĐỘNG</span>
+            <ul>
+              <li class="nav-item" data-page="schedule">
+                <a href="schedule.html"
+                  ><i class="fas fa-calendar-alt"></i><span>Lịch tập</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="checkin">
+                <a href="checkin.html"
+                  ><i class="fas fa-qrcode"></i><span>Check-in</span></a
+                >
+              </li>
+              <li class="nav-item" data-page="facilities">
+                <a href="facilities.html"
+                  ><i class="fas fa-dumbbell"></i><span>Thiết bị</span></a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="nav-section">
+            <span class="nav-section-title">TÀI CHÍNH</span>
+            <ul>
+              <li class="nav-item" data-page="invoices">
+                <a href="invoices.html"
+                  ><i class="fas fa-file-invoice-dollar"></i
+                  ><span>Hóa đơn</span></a
+                >
+              </li>
+              <li class="nav-item active" data-page="reports">
+                <a href="reports.html"
+                  ><i class="fas fa-chart-line"></i><span>Báo cáo</span></a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <div class="sidebar-footer">
+          <a href="../index.html" class="back-home-btn">
+            <i class="fas fa-home"></i>
+            <span>← Về trang chủ</span>
+          </a>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <header class="header">
+          <div class="header-left">
+            <button class="menu-toggle" id="menuToggle">
+              <i class="fas fa-bars"></i>
+            </button>
+            <div class="breadcrumb">
+              <span class="breadcrumb-item"><i class="fas fa-home"></i></span>
+              <span class="breadcrumb-separator">/</span>
+              <span class="breadcrumb-item active">Báo cáo</span>
+            </div>
+          </div>
+          <div class="header-center">
+            <div class="search-box">
+              <i class="fas fa-search"></i>
+              <input type="text" placeholder="Tìm kiếm..." id="searchInput" />
+              <kbd>Ctrl+K</kbd>
+            </div>
+          </div>
+          <div class="header-right">
+            <button class="header-btn" id="themeToggle" title="Đổi giao diện">
+              <i class="fas fa-sun" id="themeIcon"></i>
+            </button>
+            <button class="header-btn" id="fullscreenBtn" title="Toàn màn hình">
+              <i class="fas fa-expand"></i>
+            </button>
+            <button class="header-btn notification-btn" title="Thông báo">
+              <i class="fas fa-bell"></i><span class="badge">3</span>
+            </button>
+            <div class="admin-dropdown">
+              <button
+                class="btn btn-primary btn-glow admin-btn"
+                onclick="toggleAdminDropdown()"
+              >
+                <img
+                  src="https://ui-avatars.com/api/?name=Admin&background=6366f1&color=fff&size=28"
+                  alt="Admin"
+                  class="admin-avatar"
+                />
+                <span>Admin</span>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+              <div class="admin-dropdown-menu" id="adminDropdownMenu">
+                <div class="dropdown-header">
+                  <img
+                    src="https://ui-avatars.com/api/?name=Admin&background=6366f1&color=fff"
+                    alt="Admin"
+                  />
+                  <div>
+                    <strong>Nguyễn Admin</strong>
+                    <span>Quản trị viên</span>
+                  </div>
+                </div>
+                <div class="dropdown-divider"></div>
+                <a href="settings.html" class="dropdown-item"
+                  ><i class="fas fa-cog"></i> Cài đặt</a
+                >
+                <div class="dropdown-divider"></div>
+                <a
+                  href="#"
+                  class="dropdown-item text-danger"
+                  onclick="confirmLogout()"
+                  ><i class="fas fa-sign-out-alt"></i> Đăng xuất</a
+                >
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <div class="content">
+          <!-- Page Header -->
+          <div class="page-header">
+            <div class="page-header-left">
+              <h1><i class="fas fa-chart-line"></i> Báo cáo & Thống kê</h1>
+              <p>Tổng quan hoạt động kinh doanh của phòng tập</p>
+            </div>
+            <div class="page-header-right">
+              <select id="reportPeriod" onchange="updateReports()">
+                <option value="week">7 ngày qua</option>
+                <option value="month" selected>Tháng này</option>
+                <option value="quarter">Quý này</option>
+                <option value="year">Năm nay</option>
+              </select>
+              <button class="btn btn-secondary" onclick="exportReport()">
+                <i class="fas fa-download"></i>
+                <span>Xuất báo cáo</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Overview Stats -->
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon green">
+                <i class="fas fa-money-bill-wave"></i>
+              </div>
+              <div class="stat-info">
+                <p>Tổng doanh thu</p>
+                <h3 id="totalRevenue">0</h3>
+              </div>
+              <div class="stat-trend up" id="revenueTrend">
+                <i class="fas fa-arrow-up"></i> <span>0%</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon blue"><i class="fas fa-user-plus"></i></div>
+              <div class="stat-info">
+                <p>Hội viên mới</p>
+                <h3 id="newMembers">0</h3>
+              </div>
+              <div class="stat-trend up" id="memberTrend">
+                <i class="fas fa-arrow-up"></i> <span>0%</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon orange">
+                <i class="fas fa-sign-in-alt"></i>
+              </div>
+              <div class="stat-info">
+                <p>Lượt check-in</p>
+                <h3 id="totalCheckins">0</h3>
+              </div>
+              <div class="stat-trend up" id="checkinTrend">
+                <i class="fas fa-arrow-up"></i> <span>0%</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon purple">
+                <i class="fas fa-file-invoice"></i>
+              </div>
+              <div class="stat-info">
+                <p>Hóa đơn</p>
+                <h3 id="totalInvoices">0</h3>
+              </div>
+              <div class="stat-trend up" id="invoiceTrend">
+                <i class="fas fa-arrow-up"></i> <span>0%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Charts Row -->
+          <div class="charts-grid">
+            <!-- Revenue Chart -->
+            <div class="card chart-card">
+              <div class="card-header">
+                <h2><i class="fas fa-chart-area"></i> Biểu đồ doanh thu</h2>
+              </div>
+              <div class="card-body">
+                <div class="chart-container" id="revenueChart">
+                  <div class="chart-bars" id="revenueBars"></div>
+                  <div class="chart-labels" id="revenueLabels"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Members Chart -->
+            <div class="card chart-card">
+              <div class="card-header">
+                <h2><i class="fas fa-chart-pie"></i> Phân bố hội viên</h2>
+              </div>
+              <div class="card-body">
+                <div class="pie-chart-container">
+                  <div class="pie-chart" id="membersPieChart"></div>
+                  <div class="pie-legend" id="membersLegend"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Details Row -->
+          <div class="details-grid">
+            <!-- Top Packages -->
+            <div class="card">
+              <div class="card-header">
+                <h2><i class="fas fa-trophy"></i> Gói tập bán chạy</h2>
+              </div>
+              <div class="card-body">
+                <div class="ranking-list" id="topPackages"></div>
+              </div>
+            </div>
+
+            <!-- Recent Transactions -->
+            <div class="card">
+              <div class="card-header">
+                <h2><i class="fas fa-exchange-alt"></i> Giao dịch gần đây</h2>
+              </div>
+              <div class="card-body">
+                <div class="transaction-list" id="recentTransactions"></div>
+              </div>
+            </div>
+
+            <!-- Check-in Stats -->
+            <div class="card">
+              <div class="card-header">
+                <h2><i class="fas fa-clock"></i> Giờ cao điểm</h2>
+              </div>
+              <div class="card-body">
+                <div class="peak-hours" id="peakHours"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Summary Cards -->
+          <div class="summary-grid">
+            <div class="summary-card">
+              <div class="summary-icon"><i class="fas fa-users"></i></div>
+              <div class="summary-content">
+                <h4>Tổng hội viên</h4>
+                <p id="summaryTotalMembers">0 người</p>
+              </div>
+            </div>
+            <div class="summary-card">
+              <div class="summary-icon"><i class="fas fa-user-check"></i></div>
+              <div class="summary-content">
+                <h4>Hội viên hoạt động</h4>
+                <p id="summaryActiveMembers">0 người</p>
+              </div>
+            </div>
+            <div class="summary-card">
+              <div class="summary-icon"><i class="fas fa-user-clock"></i></div>
+              <div class="summary-content">
+                <h4>Sắp hết hạn</h4>
+                <p id="summaryExpiringMembers">0 người</p>
+              </div>
+            </div>
+            <div class="summary-card">
+              <div class="summary-icon"><i class="fas fa-percentage"></i></div>
+              <div class="summary-content">
+                <h4>Tỷ lệ gia hạn</h4>
+                <p id="summaryRenewalRate">0%</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+      <i class="fas fa-check-circle"></i>
+      <span id="toastMessage">Thao tác thành công!</span>
+    </div>
+
+    <script src="js/reports.js"></script>
+  </body>
+</html>
