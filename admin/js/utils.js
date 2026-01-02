@@ -82,3 +82,11 @@ function deepClone(obj) {
 function isEmpty(obj) {
   return Object.keys(obj).length === 0;
 }
+
+// Sort array by key
+function sortByKey(arr, key, order = "asc") {
+  return arr.sort((a, b) => {
+    if (order === "asc") return a[key] > b[key] ? 1 : -1;
+    return a[key] < b[key] ? 1 : -1;
+  });
+}
