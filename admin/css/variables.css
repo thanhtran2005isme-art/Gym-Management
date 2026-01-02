@@ -16,3 +16,13 @@
   --info-color: #3b82f6;
   --info-hover: #2563eb;
 }
+
+/* Spacing Variables */
+:root {
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+}
