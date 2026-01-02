@@ -56,3 +56,19 @@ function isValidPhone(phone) {
   const regex = /^(0|\+84)[3|5|7|8|9][0-9]{8}$/;
   return regex.test(phone);
 }
+
+// Get relative time (e.g., "2 hours ago")
+function getRelativeTime(dateStr) {
+  const date = new Date(dateStr);
+  const now = new Date();
+  const diff = now - date;
+  const minutes = Math.floor(diff / 60000);
+  const hours = Math.floor(diff / 3600000);
+  const days = Math.floor(diff / 86400000);
+
+  if (minutes < 1) return "Vừa xong";
+  if (minutes < 60) return minutes + " phút trước";
+  if (hours < 24) return hours + " giờ trước";
+  if (days < 30) return days + " ngày trước";
+  return formatDate(dateStr);
+}
