@@ -44,3 +44,15 @@ function truncate(str, length = 50) {
   if (!str || str.length <= length) return str;
   return str.substring(0, length) + "...";
 }
+
+// Check if email is valid
+function isValidEmail(email) {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(email);
+}
+
+// Check if phone number is valid (Vietnam)
+function isValidPhone(phone) {
+  const regex = /^(0|\+84)[3|5|7|8|9][0-9]{8}$/;
+  return regex.test(phone);
+}
