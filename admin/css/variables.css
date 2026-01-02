@@ -54,3 +54,10 @@
   --font-2xl: 24px;
   --font-3xl: 30px;
 }
+
+/* Transition Variables */
+:root {
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
