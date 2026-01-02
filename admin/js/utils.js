@@ -32,3 +32,15 @@ function debounce(func, wait) {
     timeout = setTimeout(later, wait);
   };
 }
+
+// Capitalize first letter
+function capitalize(str) {
+  if (!str) return "";
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+// Truncate text with ellipsis
+function truncate(str, length = 50) {
+  if (!str || str.length <= length) return str;
+  return str.substring(0, length) + "...";
+}
