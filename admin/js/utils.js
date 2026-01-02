@@ -72,3 +72,13 @@ function getRelativeTime(dateStr) {
   if (days < 30) return days + " ngày trước";
   return formatDate(dateStr);
 }
+
+// Deep clone object
+function deepClone(obj) {
+  return JSON.parse(JSON.stringify(obj));
+}
+
+// Check if object is empty
+function isEmpty(obj) {
+  return Object.keys(obj).length === 0;
+}
