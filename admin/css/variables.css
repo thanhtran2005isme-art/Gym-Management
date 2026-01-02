@@ -1,9 +1,18 @@
 /* ===== CSS Variables ===== */
 :root {
+  /* Primary Colors */
   --primary-color: #6366f1;
+  --primary-hover: #4f46e5;
   --secondary-color: #8b5cf6;
+  --secondary-hover: #7c3aed;
+
+  /* Status Colors */
   --success-color: #10b981;
+  --success-hover: #059669;
   --warning-color: #f59e0b;
+  --warning-hover: #d97706;
   --danger-color: #ef4444;
+  --danger-hover: #dc2626;
   --info-color: #3b82f6;
+  --info-hover: #2563eb;
 }
