@@ -90,3 +90,11 @@ function sortByKey(arr, key, order = "asc") {
     return a[key] < b[key] ? 1 : -1;
   });
 }
+
+// Filter array by search term
+function filterBySearch(arr, searchTerm, keys) {
+  const term = searchTerm.toLowerCase();
+  return arr.filter((item) =>
+    keys.some((key) => item[key]?.toLowerCase().includes(term))
+  );
+}
