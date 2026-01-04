@@ -11,9 +11,12 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddSingleton<IDbHelper>(new SqlServerHelper(connectionString!));
 
 // Đăng ký Services
-builder.Services.AddScoped<DatLichPTService>();
-builder.Services.AddScoped<LopHocNhomService>();
-builder.Services.AddScoped<ThongTinCaNhanService>();
+builder.Services.AddScoped<ProfileService>();
+builder.Services.AddScoped<PackageService>();
+builder.Services.AddScoped<PTSessionService>();
+builder.Services.AddScoped<CheckinService>();
+builder.Services.AddScoped<InvoiceService>();
+builder.Services.AddScoped<NotificationService>();
 
 var app = builder.Build();
 

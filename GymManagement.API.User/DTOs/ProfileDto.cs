@@ -1,7 +1,7 @@
 namespace GymManagement.API.User.DTOs;
 
-// Response DTO - Thông tin cá nhân thành viên
-public class ThongTinCaNhanDto
+// Response - Thông tin cá nhân
+public class ProfileDto
 {
     public int MaThanhVien { get; set; }
     public string? MaThe { get; set; }
@@ -13,11 +13,10 @@ public class ThongTinCaNhanDto
     public string? DiaChi { get; set; }
     public DateTime NgayDangKy { get; set; }
     public int TrangThai { get; set; }
-    public string? GhiChu { get; set; }
 }
 
-// Request DTO - Cập nhật thông tin cá nhân
-public class CapNhatThongTinRequestDto
+// Request - Cập nhật thông tin
+public class UpdateProfileDto
 {
     public string? HoTen { get; set; }
     public DateTime? NgaySinh { get; set; }
@@ -27,10 +26,10 @@ public class CapNhatThongTinRequestDto
     public string? DiaChi { get; set; }
 }
 
-// Request DTO - Đổi mật khẩu
-public class DoiMatKhauRequestDto
+// Request - Đổi mật khẩu
+public class ChangePasswordDto
 {
     public string MatKhauCu { get; set; } = string.Empty;
     public string MatKhauMoi { get; set; } = string.Empty;
-    public string XacNhanMatKhauMoi { get; set; } = string.Empty;
+    public string XacNhanMatKhau { get; set; } = string.Empty;
 }
