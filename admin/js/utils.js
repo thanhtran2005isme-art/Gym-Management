@@ -98,3 +98,9 @@ function filterBySearch(arr, searchTerm, keys) {
     keys.some((key) => item[key]?.toLowerCase().includes(term))
   );
 }
+
+// Calculate percentage
+function calcPercentage(value, total) {
+  if (total === 0) return 0;
+  return Math.round((value / total) * 100);
+}
