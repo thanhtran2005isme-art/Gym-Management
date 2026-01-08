@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tìm Phòng Tập - The New Gym</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/timphongtap.css" />
+  </head>
+  <body>
+    <!-- Header với banner chạy -->
+    <div class="top-banner">
+      <div class="banner-content">
+        <span>GYM CHO MỌI NGƯỜI</span>
+        <span>GYM CHO MỌI NGƯỜI</span>
+        <span>GYM CHO MỌI NGƯỜI</span>
+        <span>GYM CHO MỌI NGƯỜI</span>
+        <span>GYM CHO MỌI NGƯỜI</span>
+        <span>GYM CHO MỌI NGƯỜI</span>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container">
+        <div class="nav-logo">
+          <a href="index.html">
+            <img
+              src="/logoo.jpg"
+              alt="The New Gym Logo"
+            />
+          </a>
+        </div>
+        <button class="mobile-toggle" id="mobileToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="giahoivien.html">Giá hội viên</a></li>
+          <li class="dropdown">
+            <a href="timphongtap.html" class="active">Tìm phòng tập</a>
+            <ul class="dropdown-menu">
+              <li><a href="hcm.html">Hồ Chí Minh</a></li>
+              <li><a href="danang.html">Đà Nẵng</a></li>
+              <li><a href="cantho.html">Cần Thơ</a></li>
+              <li><a href="dongnai.html">Đồng Nai</a></li>
+            </ul>
+          </li>
+          <li><a href="cosovatchat.html">Cơ sở vật chất</a></li>
+          <li><a href="kienthuctapluyen.html">Kiến thức tập luyện</a></li>
+          <li class="dropdown">
+            <a href="#">Tìm hiểu thêm</a>
+            <ul class="dropdown-menu">
+              <li><a href="timhieu.html">Về The New Gym</a></li>
+              <li><a href="pt.html">Gói Thuê PT</a></li>
+              <li><a href="groupfitness.html">Lớp Tập Nhóm</a></li>
+              <li><a href="lienhe.html">Liên Hệ</a></li>
+            </ul>
+          </li>
+        </ul>
+        <div class="nav-actions">
+          <button class="btn-search">🔍</button>
+          <a href="giahoivien.html" class="btn-join">Tham gia</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="location-hero">
+      <div class="container">
+        <h1>TÌM PHÒNG TẬP GẦN BẠN</h1>
+        <p>14+ chi nhánh trên toàn quốc - Mở cửa 24/7</p>
+        
+        <!-- Search Box -->
+        <div class="search-box">
+          <div class="search-input">
+            <span class="search-icon">📍</span>
+            <input type="text" placeholder="Nhập địa chỉ hoặc quận/huyện..." id="searchInput" />
+          </div>
+          <select class="city-filter" id="cityFilter">
+            <option value="">Tất cả thành phố</option>
+            <option value="hcm">TP. Hồ Chí Minh</option>
+            <option value="danang">Đà Nẵng</option>
+            <option value="cantho">Cần Thơ</option>
+            <option value="dongnai">Đồng Nai</option>
+          </select>
+          <button class="btn-search-location">Tìm kiếm</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-number">14+</span>
+            <span class="stat-label">Chi nhánh</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">4</span>
+            <span class="stat-label">Thành phố</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">24/7</span>
+            <span class="stat-label">Mở cửa</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">50K+</span>
+            <span class="stat-label">Hội viên</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Locations Grid -->
+    <section class="locations-section">
+      <div class="container">
+        
+        <!-- TP. Hồ Chí Minh -->
+        <div class="city-group" id="hcm">
+          <h2 class="city-title">
+            <span class="city-icon">🏙️</span>
+            TP. Hồ Chí Minh
+            <span class="branch-count">8 chi nhánh</span>
+          </h2>
+          
+          <div class="locations-grid">
+            <div class="location-card">
+              <div class="location-image">
+                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600" alt="The New Gym Gò Vấp" />
+                <span class="location-badge">HOT</span>
+              </div>
+              <div class="location-info">
+                <h3>The New Gym Gò Vấp</h3>
+                <p class="location-address">📍 123 Nguyễn Oanh, P.17, Q. Gò Vấp</p>
+                <div class="location-features">
+                  <span>🕐 24/7</span>
+                  <span>🚗 Có bãi xe</span>
+                  <span>❄️ Máy lạnh</span>
+                </div>
+                <div class="location-actions">
+                  <a href="tel:1900636920" class="btn-call">📞 Gọi ngay</a>
+                  <a href="#" class="btn-direction">🗺️ Chỉ đường</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="location-card">
+              <div class="location-image">
+                <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600" alt="The New Gym Tân Bình" />
+              </div>
+              <div class="location-info">
+                <h3>The New Gym Tân Bình</h3>
+                <p class="location-address">📍 456 Cộng Hòa, P.13, Q. Tân Bình</p>
+                <div class="location-features">
+                  <span>🕐 24/7</span>
+                  <span>🚗 Có bãi xe</span>
+                  <span>❄️ Máy lạnh</span>
+                </div>
+                <div class="location-actions">
+                  <a href="tel:1900636920" class="btn-call">📞 Gọi ngay</a>
+                  <a href="#" class="btn-direction">🗺️ Chỉ đường</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="location-card">
+              <div class="location-image">
+                <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=600" alt="The New Gym Bình Thạnh" />
+                <span class="location-badge new">MỚI</span>
+              </div>
+              <div class="location-info">
+                <h3>The New Gym Bình Thạnh</h3>
+                <p class="location-address">📍 789 Điện Biên Phủ, P.25, Q. Bình Thạnh</p>
+                <div class="location-features">
+                  <span>🕐 24/7</span>
+                  <span>🚗 Có bãi xe</span>
+                  <span>❄️ Máy lạnh</span>
+                </div>
+                <div class="location-actions">
+                  <a href="tel:1900636920" class="btn-call">📞 Gọi ngay</a>
+                  <a href="#" class="btn-direction">🗺️ Chỉ đường</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="location-card">
+              <div class="location-image">
+                <img src="https://images.unsplash.com/photo-1558611848-73f7eb4001a1?w=600" alt="The New Gym Quận 7" />
+              </div>
+              <div class="location-info">
+                <h3>The New Gym Quận 7</h3>
+                <p class="location-address">📍 321 Nguyễn Thị Thập, P. Tân Phú, Q.7</p>
+                <div class="location-features">
+                  <span>🕐 24/7</span>
+                  <span>🚗 Có bãi xe</span>
+                  <span>❄️ Máy lạnh</span>
+                </div>
+                <div class="location-actions">
+                  <a href="tel:1900636920" class="btn-call">📞 Gọi ngay</a>
+                  <a href="#" class="btn-direction">🗺️ Chỉ đường</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Đà Nẵng -->
+        <div class="city-group" id="danang">
+          <h2 class="city-title">
+            <span class="city-icon">🏖️</span>
+            Đà Nẵng
+            <span class="branch-count">3 chi nhánh</span>
+          </h2>
+          
+          <div class="locations-grid">
+            <div class="location-card">
+              <div class="location-image">
+                <img src="https://images.unsplash.com/photo-1593079831268-3381b0db4a77?w=600" alt="The New Gym Hải Châu" />
+              </div>
+              <div class="location-info">
+                <h3>The New Gym Hải Châu</h3>
+                <p class="location-address">📍 123 Nguyễn Văn Linh, Q. Hải Châu</p>
+                <div class="location-features">
+                  <span>🕐 24/7</span>
+                  <span>🚗 Có bãi xe</span>
+                  <span>❄️ Máy lạnh</span>
+                </div>
+                <div class="location-actions">
+                  <a href="tel:1900636920" class="btn-call">📞 Gọi ngay</a>
+                  <a href="#" class="btn-direction">🗺️ Chỉ đường</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="location-card">
+              <div class="location-image">
+                <img src="https://images.unsplash.com/photo-1570829460005-c840387bb1ca?w=600" alt="The New Gym Thanh Khê" />
+              </div>
+              <div class="location-info">
+                <h3>The New Gym Thanh Khê</h3>
+                <p class="location-address">📍 456 Điện Biên Phủ, Q. Thanh Khê</p>
+                <div class="location-features">
+                  <span>🕐 24/7</span>
+                  <span>🚗 Có bãi xe</span>
+                  <span>❄️ Máy lạnh</span>
+                </div>
+                <div class="location-actions">
+                  <a href="tel:1900636920" class="btn-call">📞 Gọi ngay</a>
+                  <a href="#" class="btn-direction">🗺️ Chỉ đường</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cần Thơ -->
+        <div class="city-group" id="cantho">
+          <h2 class="city-title">
+            <span class="city-icon">🌾</span>
+            Cần Thơ
+            <span class="branch-count">2 chi nhánh</span>
+          </h2>
+          
+          <div class="locations-grid">
+            <div class="location-card">
+              <div class="location-image">
+                <img src="https://images.unsplash.com/photo-1576678927484-cc907957088c?w=600" alt="The New Gym Ninh Kiều" />
+              </div>
+              <div class="location-info">
+                <h3>The New Gym Ninh Kiều</h3>
+                <p class="location-address">📍 123 Đường 30/4, Q. Ninh Kiều</p>
+                <div class="location-features">
+                  <span>🕐 24/7</span>
+                  <span>🚗 Có bãi xe</span>
+                  <span>❄️ Máy lạnh</span>
+                </div>
+                <div class="location-actions">
+                  <a href="tel:1900636920" class="btn-call">📞 Gọi ngay</a>
+                  <a href="#" class="btn-direction">🗺️ Chỉ đường</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Đồng Nai -->
+        <div class="city-group" id="dongnai">
+          <h2 class="city-title">
+            <span class="city-icon">🏭</span>
+            Đồng Nai
+            <span class="branch-count">1 chi nhánh</span>
+          </h2>
+          
+          <div class="locations-grid">
+            <div class="location-card">
+              <div class="location-image">
+                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600" alt="The New Gym Biên Hòa" />
+                <span class="location-badge new">MỚI</span>
+              </div>
+              <div class="location-info">
+                <h3>The New Gym Biên Hòa</h3>
+                <p class="location-address">📍 456 Phạm Văn Thuận, TP. Biên Hòa</p>
+                <div class="location-features">
+                  <span>🕐 24/7</span>
+                  <span>🚗 Có bãi xe</span>
+                  <span>❄️ Máy lạnh</span>
+                </div>
+                <div class="location-actions">
+                  <a href="tel:1900636920" class="btn-call">📞 Gọi ngay</a>
+                  <a href="#" class="btn-direction">🗺️ Chỉ đường</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <h2>CHƯA TÌM THẤY CHI NHÁNH PHÙ HỢP?</h2>
+        <p>Liên hệ với chúng tôi để được tư vấn chi nhánh gần bạn nhất!</p>
+        <div class="cta-buttons">
+          <a href="tel:1900636920" class="btn-cta phone">📞 1900 636 920</a>
+          <a href="https://zalo.me/thenewgym" class="btn-cta zalo">💬 Chat Zalo</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-top">
+          <button class="back-to-top" id="backToTop">BACK TO TOP</button>
+        </div>
+
+        <div class="footer-content">
+          <div class="footer-col">
+            <img src="https://thenewgym.vn/wp-content/uploads/2025/09/Logo_white-01.png" alt="Logo" class="footer-logo" />
+            <button class="btn-app">TẢI APP NGAY</button>
+          </div>
+
+          <div class="footer-col">
+            <h4>Thông Tin</h4>
+            <ul>
+              <li><a href="#">Về Chúng Tôi</a></li>
+              <li><a href="#">Hệ Thống Phòng Tập</a></li>
+              <li><a href="#">Tin Tức</a></li>
+              <li><a href="#">Tuyển Dụng</a></li>
+              <li><a href="#">Liên Hệ</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Phòng Tập</h4>
+            <ul>
+              <li><a href="timphongtap.html">Hệ Thống Phòng Tập</a></li>
+              <li><a href="giahoivien.html">Giá Hội Viên</a></li>
+              <li><a href="#">Cơ Sở Vật Chất</a></li>
+              <li><a href="#">Ứng Dụng</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Chính sách</h4>
+            <ul>
+              <li><a href="#">Chính Sách Bảo Mật</a></li>
+              <li><a href="#">Điều Khoản</a></li>
+              <li><a href="#">Chăm Sóc Khách Hàng</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2025 The New Gym.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Floating Buttons -->
+    <div class="floating-buttons">
+      <a href="tel:1900636920" class="float-btn phone" title="Gọi ngay">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+        </svg>
+      </a>
+      <a href="https://zalo.me/thenewgym" class="float-btn zalo" target="_blank" title="Chat Zalo">
+        <span>Z</span>
+      </a>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/timphongtap.js"></script>
+  </body>
+</html>

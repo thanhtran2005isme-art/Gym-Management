@@ -1,0 +1,446 @@
+/* ====================================
+   FIND GYM PAGE - MODERN DESIGN
+   ==================================== */
+
+/* Hero Section */
+.location-hero {
+    background: linear-gradient(-45deg, #1e3a5f, #e60000, #2d5a7a, #cc0000);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: var(--white);
+    padding: 100px 0;
+    text-align: center;
+    position: relative;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.location-hero h1 {
+    font-size: 52px;
+    font-weight: 900;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+}
+
+.location-hero > .container > p {
+    font-size: 20px;
+    opacity: 0.95;
+    margin-bottom: 40px;
+}
+
+/* Search Box */
+.search-box {
+    display: flex;
+    gap: 15px;
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--white);
+    padding: 15px;
+    border-radius: 60px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.search-input {
+    flex: 1;
+    min-width: 250px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 20px;
+}
+
+.search-icon {
+    font-size: 24px;
+}
+
+.search-input input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 15px 0;
+    color: #333;
+}
+
+.city-filter {
+    padding: 15px 25px;
+    border: 2px solid #eee;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    background: #f8f9fa;
+    min-width: 180px;
+}
+
+.city-filter:focus {
+    outline: none;
+    border-color: var(--primary-red);
+}
+
+.btn-search-location {
+    background: linear-gradient(135deg, #e60000, #cc0000);
+    color: var(--white);
+    border: none;
+    padding: 15px 40px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-search-location:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(230, 0, 0, 0.4);
+}
+
+/* Stats Section */
+.stats-section {
+    background: #1e3a5f;
+    padding: 50px 0;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    text-align: center;
+}
+
+.stat-item {
+    color: var(--white);
+}
+
+.stat-number {
+    display: block;
+    font-size: 48px;
+    font-weight: 900;
+    background: linear-gradient(135deg, #6BB6FF, #4da6ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+}
+
+.stat-label {
+    font-size: 16px;
+    opacity: 0.8;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Locations Section */
+.locations-section {
+    padding: 80px 0;
+    background: linear-gradient(180deg, #f8fafc 0%, #e8f4f8 100%);
+}
+
+.city-group {
+    margin-bottom: 60px;
+}
+
+.city-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 35px;
+    padding-bottom: 20px;
+    border-bottom: 3px solid #e60000;
+}
+
+.city-icon {
+    font-size: 40px;
+}
+
+.branch-count {
+    margin-left: auto;
+    font-size: 14px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #e60000, #ff4444);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+}
+
+/* Location Cards */
+.locations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.location-card {
+    background: var(--white);
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.location-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 25px 70px rgba(0,0,0,0.15);
+}
+
+.location-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.location-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.location-card:hover .location-image img {
+    transform: scale(1.1);
+}
+
+.location-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: linear-gradient(135deg, #e60000, #ff4444);
+    color: white;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    box-shadow: 0 5px 15px rgba(230, 0, 0, 0.4);
+}
+
+.location-badge.new {
+    background: linear-gradient(135deg, #4CAF50, #8BC34A);
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+}
+
+.location-info {
+    padding: 25px;
+}
+
+.location-info h3 {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    color: #1e3a5f;
+}
+
+.location-address {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.location-features {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.location-features span {
+    background: #f0f4f8;
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #555;
+}
+
+.location-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.btn-call, .btn-direction {
+    flex: 1;
+    padding: 12px 15px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.btn-call {
+    background: linear-gradient(135deg, #e60000, #cc0000);
+    color: white;
+}
+
+.btn-call:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(230, 0, 0, 0.4);
+}
+
+.btn-direction {
+    background: #f0f4f8;
+    color: #1e3a5f;
+    border: 2px solid #1e3a5f;
+}
+
+.btn-direction:hover {
+    background: #1e3a5f;
+    color: white;
+}
+
+
+/* CTA Section */
+.cta-section {
+    padding: 100px 0;
+    background: linear-gradient(-45deg, #1e3a5f, #e60000, #2d5a7a, #cc0000);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: var(--white);
+    text-align: center;
+}
+
+.cta-section h2 {
+    font-size: 42px;
+    font-weight: 900;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+}
+
+.cta-section p {
+    font-size: 18px;
+    margin-bottom: 40px;
+    opacity: 0.95;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.btn-cta {
+    padding: 20px 45px;
+    border-radius: 50px;
+    font-size: 17px;
+    font-weight: 800;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-cta.phone {
+    background: var(--white);
+    color: #1e3a5f;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.btn-cta.phone:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+}
+
+.btn-cta.zalo {
+    background: #0068FF;
+    color: var(--white);
+    box-shadow: 0 10px 30px rgba(0, 104, 255, 0.4);
+}
+
+.btn-cta.zalo:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(0, 104, 255, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .location-hero h1 {
+        font-size: 38px;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stat-number {
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 768px) {
+    .location-hero {
+        padding: 70px 0;
+    }
+
+    .location-hero h1 {
+        font-size: 28px;
+    }
+
+    .search-box {
+        flex-direction: column;
+        border-radius: 25px;
+        padding: 20px;
+    }
+
+    .search-input {
+        min-width: 100%;
+    }
+
+    .city-filter, .btn-search-location {
+        width: 100%;
+    }
+
+    .city-title {
+        flex-wrap: wrap;
+        font-size: 24px;
+    }
+
+    .branch-count {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    .locations-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cta-section h2 {
+        font-size: 28px;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn-cta {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .stat-number {
+        font-size: 32px;
+    }
+
+    .stat-label {
+        font-size: 12px;
+    }
+}
