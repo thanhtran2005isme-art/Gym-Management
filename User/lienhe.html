@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Liên Hệ - The New Gym</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/timhieuthem.css" />
+  </head>
+  <body>
+    <div class="top-banner">
+      <div class="banner-content">
+        <span>GYM CHO MỌI NGƯỜI</span>
+        <span>GYM CHO MỌI NGƯỜI</span>
+        <span>GYM CHO MỌI NGƯỜI</span>
+      </div>
+    </div>
+
+    <nav class="navbar">
+      <div class="container">
+        <div class="nav-logo">
+          <a href="index.html">
+            <img src="/logoo.jpg" alt="Logo" />
+          </a>
+        </div>
+        <button class="mobile-toggle" id="mobileToggle">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="giahoivien.html">Giá hội viên</a></li>
+          <li class="dropdown">
+            <a href="timphongtap.html">Tìm phòng tập</a>
+            <ul class="dropdown-menu">
+              <li><a href="hcm.html">Hồ Chí Minh</a></li>
+              <li><a href="danang.html">Đà Nẵng</a></li>
+              <li><a href="cantho.html">Cần Thơ</a></li>
+              <li><a href="dongnai.html">Đồng Nai</a></li>
+            </ul>
+          </li>
+          <li><a href="cosovatchat.html">Cơ sở vật chất</a></li>
+          <li><a href="kienthuctapluyen.html">Kiến thức tập luyện</a></li>
+          <li class="dropdown">
+            <a href="#" class="active">Tìm hiểu thêm</a>
+            <ul class="dropdown-menu">
+              <li><a href="timhieu.html">Về The New Gym</a></li>
+              <li><a href="pt.html">Gói Thuê PT</a></li>
+              <li><a href="groupfitness.html">Lớp Tập Nhóm</a></li>
+              <li><a href="lienhe.html" class="active">Liên Hệ</a></li>
+            </ul>
+          </li>
+        </ul>
+        <div class="nav-actions">
+          <a href="giahoivien.html" class="btn-join">Tham gia</a>
+        </div>
+      </div>
+    </nav>
+
+
+    <!-- Hero Section -->
+    <section class="contact-hero">
+      <div class="hero-overlay"></div>
+      <div class="container">
+        <h1>LIÊN HỆ VỚI CHÚNG TÔI</h1>
+        <p>Chúng tôi luôn sẵn sàng hỗ trợ bạn</p>
+      </div>
+    </section>
+
+    <!-- Contact Info -->
+    <section class="contact-info-section">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-card">
+            <div class="contact-icon">📞</div>
+            <h3>Hotline</h3>
+            <p><a href="tel:1900636920">1900 636 920</a></p>
+            <span>Hỗ trợ 24/7</span>
+          </div>
+          <div class="contact-card">
+            <div class="contact-icon">📧</div>
+            <h3>Email</h3>
+            <p><a href="mailto:info@thenewgym.vn">info@thenewgym.vn</a></p>
+            <span>Phản hồi trong 24h</span>
+          </div>
+          <div class="contact-card">
+            <div class="contact-icon">💬</div>
+            <h3>Zalo</h3>
+            <p><a href="https://zalo.me/thenewgym" target="_blank">The New Gym</a></p>
+            <span>Chat trực tiếp</span>
+          </div>
+          <div class="contact-card">
+            <div class="contact-icon">📍</div>
+            <h3>Văn phòng</h3>
+            <p>123 Nguyễn Văn Linh, Q.7, TP.HCM</p>
+            <span>8:00 - 22:00</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="contact-form-section">
+      <div class="container">
+        <div class="form-wrapper">
+          <div class="form-info">
+            <h2>GỬI TIN NHẮN CHO CHÚNG TÔI</h2>
+            <p>Điền thông tin bên dưới, chúng tôi sẽ liên hệ lại trong thời gian sớm nhất.</p>
+            <div class="social-links">
+              <a href="https://facebook.com/thenewgym" target="_blank" class="social-btn facebook">Facebook</a>
+              <a href="https://instagram.com/thenewgym" target="_blank" class="social-btn instagram">Instagram</a>
+              <a href="https://tiktok.com/@thenewgym" target="_blank" class="social-btn tiktok">TikTok</a>
+            </div>
+          </div>
+          <form class="contact-form" id="contactForm">
+            <div class="form-group">
+              <label>Họ và tên *</label>
+              <input type="text" name="name" required placeholder="Nhập họ và tên" />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Số điện thoại *</label>
+                <input type="tel" name="phone" required placeholder="0xxx xxx xxx" />
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" placeholder="email@example.com" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Chi nhánh quan tâm</label>
+              <select name="branch">
+                <option value="">Chọn chi nhánh</option>
+                <option value="govap">Gò Vấp</option>
+                <option value="tanbinh">Tân Bình</option>
+                <option value="binhthanh">Bình Thạnh</option>
+                <option value="quan7">Quận 7</option>
+                <option value="thuduc">Thủ Đức</option>
+                <option value="danang">Đà Nẵng</option>
+                <option value="cantho">Cần Thơ</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Nội dung *</label>
+              <textarea name="message" rows="5" required placeholder="Nhập nội dung tin nhắn..."></textarea>
+            </div>
+            <button type="submit" class="btn-submit">GỬI TIN NHẮN</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+      <div class="container">
+        <h2 class="section-title">CÂU HỎI THƯỜNG GẶP</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Làm sao để đăng ký hội viên?</span>
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+              <p>Bạn có thể đăng ký trực tiếp tại chi nhánh gần nhất hoặc liên hệ hotline 1900 636 920 để được tư vấn.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Phòng tập có mở cửa 24/7 không?</span>
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+              <p>Có, tất cả chi nhánh The New Gym đều mở cửa 24/7 để phục vụ hội viên.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Tôi có thể tạm dừng gói tập không?</span>
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+              <p>Có, bạn có thể tạm dừng gói tập tối đa 30 ngày/năm với gói từ 6 tháng trở lên.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-bottom">
+          <p>&copy; 2025 The New Gym.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+      // FAQ Toggle
+      document.querySelectorAll('.faq-question').forEach(q => {
+        q.addEventListener('click', () => {
+          q.parentElement.classList.toggle('active');
+        });
+      });
+      
+      // Form submit
+      document.getElementById('contactForm')?.addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Cảm ơn bạn đã liên hệ! Chúng tôi sẽ phản hồi sớm nhất.');
+        this.reset();
+      });
+    </script>
+  </body>
+</html>
