@@ -1,0 +1,251 @@
+### ========================================
+### TEST API TRAINER (Port 7003)
+### Base URL: http://localhost:7003/api
+### ========================================
+
+### ========================================
+### 1. QUẢN LÝ HỢP ĐỒNG PT (HopDongPT)
+### ========================================
+
+### a) Xem danh sách hợp đồng PT của mình
+GET http://localhost:7003/api/HopDongPT/my-contracts
+Accept: application/json
+
+###
+
+### b) Xem chi tiết hợp đồng PT
+GET http://localhost:7003/api/HopDongPT/1
+Accept: application/json
+
+###
+
+### c) Xem hợp đồng đang hoạt động
+GET http://localhost:7003/api/HopDongPT/active
+Accept: application/json
+
+###
+
+### d) Xem hợp đồng của học viên cụ thể
+GET http://localhost:7003/api/HopDongPT/by-member/1
+Accept: application/json
+
+###
+
+### e) Xem hợp đồng sắp hết hạn (trong 30 ngày)
+GET http://localhost:7003/api/HopDongPT/expiring?days=30
+Accept: application/json
+
+###
+
+### ========================================
+### 2. QUẢN LÝ BUỔI TẬP PT (BuoiTapPT)
+### ========================================
+
+### a) Xem lịch dạy của PT
+GET http://localhost:7003/api/BuoiTapPT/my-schedule
+Accept: application/json
+
+###
+
+### b) Xem lịch theo ngày
+GET http://localhost:7003/api/BuoiTapPT/by-date?date=2026-01-10
+Accept: application/json
+
+###
+
+### c) Xem buổi tập sắp tới
+GET http://localhost:7003/api/BuoiTapPT/upcoming
+Accept: application/json
+
+###
+
+### d) Xem chi tiết buổi tập
+GET http://localhost:7003/api/BuoiTapPT/1
+Accept: application/json
+
+###
+
+### e) Tạo buổi tập mới
+POST http://localhost:7003/api/BuoiTapPT
+Content-Type: application/json
+
+{
+    "lichDayId": 1,
+    "hocVienId": 1,
+    "ngayTap": "2026-01-10",
+    "gioBatDau": "08:00:00",
+    "gioKetThuc": "09:00:00",
+    "diaDiem": "Phòng tập A",
+    "noiDungBuoiTap": "Tập ngực và vai",
+    "baiTap": "Bench Press, Shoulder Press",
+    "soSet": 4,
+    "soRep": 12,
+    "canNangSuDung": 50
+}
+
+###
+
+### f) Cập nhật buổi tập
+PUT http://localhost:7003/api/BuoiTapPT/1
+Content-Type: application/json
+
+{
+    "trangThai": "DangTap",
+    "noiDungBuoiTap": "Tập ngực, vai và tay sau",
+    "baiTap": "Bench Press, Shoulder Press, Tricep Dips",
+    "soSet": 5,
+    "soRep": 10
+}
+
+###
+
+### g) Hủy buổi tập
+DELETE http://localhost:7003/api/BuoiTapPT/1
+
+###
+
+### h) Đánh dấu hoàn thành buổi tập
+PUT http://localhost:7003/api/BuoiTapPT/1/complete
+Accept: application/json
+
+###
+
+### i) Xem lịch sử buổi tập
+GET http://localhost:7003/api/BuoiTapPT/history?from=2026-01-01&to=2026-01-31
+Accept: application/json
+
+###
+
+### ========================================
+### 3. QUẢN LÝ HỌC VIÊN
+### ========================================
+
+### a) Danh sách học viên đang tập với PT
+GET http://localhost:7003/api/Trainer/my-members
+Accept: application/json
+
+###
+
+### b) Chi tiết học viên
+GET http://localhost:7003/api/Trainer/my-members/1
+Accept: application/json
+
+###
+
+### c) Xem hợp đồng của học viên
+GET http://localhost:7003/api/Trainer/my-members/1/contracts
+Accept: application/json
+
+###
+
+### d) Xem lịch sử buổi tập của học viên
+GET http://localhost:7003/api/Trainer/my-members/1/sessions
+Accept: application/json
+
+###
+
+### e) Học viên đang có hợp đồng active
+GET http://localhost:7003/api/Trainer/my-members/active
+Accept: application/json
+
+###
+
+### ========================================
+### 4. GÓI PT (GoiPT)
+### ========================================
+
+### a) Xem danh sách gói PT
+GET http://localhost:7003/api/GoiPT
+Accept: application/json
+
+###
+
+### b) Xem chi tiết gói PT
+GET http://localhost:7003/api/GoiPT/1
+Accept: application/json
+
+###
+
+### c) Xem gói PT đang hoạt động
+GET http://localhost:7003/api/GoiPT/active
+Accept: application/json
+
+###
+
+### ========================================
+### 5. THÔNG TIN CÁ NHÂN PT
+### ========================================
+
+### a) Xem thông tin cá nhân PT
+GET http://localhost:7003/api/Trainer/profile
+Accept: application/json
+
+###
+
+### b) Cập nhật thông tin PT
+PUT http://localhost:7003/api/Trainer/profile
+Content-Type: application/json
+
+{
+    "hoTen": "Nguyễn Văn A - Updated",
+    "soDienThoai": "0912345679",
+    "diaChi": "456 Đường XYZ, Quận 2, TP.HCM",
+    "chuyenMon": "Gym, Yoga, Cardio, Boxing",
+    "moTa": "PT chuyên nghiệp với 6 năm kinh nghiệm"
+}
+
+###
+
+### c) Xem chuyên môn
+GET http://localhost:7003/api/Trainer/specialization
+Accept: application/json
+
+###
+
+### ========================================
+### 6. THỐNG KÊ & BÁO CÁO
+### ========================================
+
+### a) Thống kê tổng quan
+GET http://localhost:7003/api/Trainer/statistics
+Accept: application/json
+
+###
+
+### b) Doanh thu/hoa hồng
+GET http://localhost:7003/api/Trainer/revenue?month=1&year=2026
+Accept: application/json
+
+###
+
+### c) Tổng hợp buổi tập
+GET http://localhost:7003/api/Trainer/sessions-summary?from=2026-01-01&to=2026-01-31
+Accept: application/json
+
+###
+
+### d) Tỷ lệ tham gia của học viên
+GET http://localhost:7003/api/Trainer/attendance-rate
+Accept: application/json
+
+###
+
+### ========================================
+### 7. THÔNG BÁO (ThongBao)
+### ========================================
+
+### a) Xem thông báo của PT
+GET http://localhost:7003/api/ThongBao/my-notifications
+Accept: application/json
+
+###
+
+### b) Đánh dấu đã đọc
+PUT http://localhost:7003/api/ThongBao/1/mark-read
+Accept: application/json
+
+###
+
+### c) Số thông báo chưa đọc
+GET http://localhost:7003/api/ThongBao/unread-count
+Accept: application/json
