@@ -1,0 +1,386 @@
+/* ====================================
+   PRICING PAGE STYLES
+   ==================================== */
+
+/* Hero Section */
+.pricing-hero {
+    background: linear-gradient(135deg, #1e3a5f 0%, #2d5a7a 100%);
+    color: var(--white);
+    padding: 80px 0;
+    text-align: center;
+}
+
+.pricing-hero h1 {
+    font-size: 48px;
+    font-weight: 800;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+
+.pricing-hero p {
+    font-size: 20px;
+    opacity: 0.9;
+}
+
+/* Pricing Plans */
+.pricing-plans {
+    padding: 80px 0;
+    background: #E8F4F8;
+}
+
+.plans-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.plan-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 40px;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    transition: var(--transition);
+}
+
+.plan-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+}
+
+.plan-card.featured {
+    background: linear-gradient(135deg, #1e3a5f 0%, #2d5a7a 100%);
+    color: var(--white);
+}
+
+.plan-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #4CAF50;
+    color: var(--white);
+    padding: 8px 25px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.plan-badge.premium {
+    background: var(--primary-red);
+}
+
+.plan-name {
+    font-size: 28px;
+    font-weight: 800;
+    margin: 20px 0 10px;
+    text-align: center;
+}
+
+.plan-desc {
+    text-align: center;
+    margin-bottom: 30px;
+    opacity: 0.8;
+}
+
+.plan-options {
+    margin-bottom: 30px;
+}
+
+.plan-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    background: rgba(0,0,0,0.05);
+    flex-wrap: wrap;
+}
+
+.plan-card.featured .plan-option {
+    background: rgba(255,255,255,0.1);
+}
+
+.plan-option.highlight {
+    background: rgba(107, 182, 255, 0.3);
+    border: 2px solid #6BB6FF;
+}
+
+.plan-option .duration {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.plan-option .price {
+    font-weight: 800;
+    font-size: 20px;
+    color: #4CAF50;
+}
+
+.plan-card.featured .plan-option .price {
+    color: #6BB6FF;
+}
+
+.plan-option .save {
+    width: 100%;
+    font-size: 12px;
+    color: #4CAF50;
+    margin-top: 5px;
+    text-align: right;
+}
+
+.plan-features {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.plan-features li {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    font-size: 15px;
+}
+
+.plan-card.featured .plan-features li {
+    border-bottom-color: rgba(255,255,255,0.2);
+}
+
+.btn-register {
+    width: 100%;
+    background: var(--primary-red);
+    color: var(--white);
+    border: none;
+    padding: 18px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-register:hover {
+    background: var(--dark-red);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(230, 0, 0, 0.4);
+}
+
+/* Comparison Section */
+.comparison-section {
+    padding: 80px 0;
+    background: var(--white);
+}
+
+.comparison-section h2 {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 50px;
+}
+
+.comparison-table {
+    overflow-x: auto;
+}
+
+.comparison-table table {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.comparison-table th {
+    background: #1e3a5f;
+    color: var(--white);
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.comparison-table th:first-child {
+    text-align: left;
+    border-radius: 10px 0 0 0;
+}
+
+.comparison-table th:last-child {
+    border-radius: 0 10px 0 0;
+}
+
+.comparison-table td:first-child {
+    text-align: left;
+    font-weight: 600;
+}
+
+.comparison-table tr:hover {
+    background: #f9f9f9;
+}
+
+/* FAQ Section */
+.faq-section {
+    padding: 80px 0;
+    background: #E8F4F8;
+}
+
+.faq-section h2 {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 50px;
+}
+
+.faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: var(--white);
+    border-radius: 15px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 30px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 17px;
+    transition: var(--transition);
+}
+
+.faq-question:hover {
+    background: #f9f9f9;
+}
+
+.faq-icon {
+    font-size: 24px;
+    font-weight: 300;
+    color: var(--primary-red);
+    transition: var(--transition);
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 200px;
+}
+
+.faq-answer p {
+    padding: 0 30px 25px;
+    color: var(--text-light);
+    line-height: 1.8;
+}
+
+/* CTA Section */
+.cta-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #1e3a5f 0%, #2d5a7a 100%);
+    color: var(--white);
+    text-align: center;
+}
+
+.cta-section h2 {
+    font-size: 40px;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.cta-section p {
+    font-size: 18px;
+    margin-bottom: 40px;
+    opacity: 0.9;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.btn-cta {
+    padding: 18px 40px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.btn-cta.phone {
+    background: var(--white);
+    color: #1e3a5f;
+}
+
+.btn-cta.phone:hover {
+    background: #f5f5f5;
+    transform: translateY(-2px);
+}
+
+.btn-cta.register {
+    background: var(--primary-red);
+    color: var(--white);
+}
+
+.btn-cta.register:hover {
+    background: var(--dark-red);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(230, 0, 0, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .pricing-hero h1 {
+        font-size: 32px;
+    }
+
+    .plans-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .plan-card {
+        padding: 30px 20px;
+    }
+
+    .comparison-section h2,
+    .faq-section h2,
+    .cta-section h2 {
+        font-size: 28px;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+        padding: 15px 10px;
+        font-size: 14px;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn-cta {
+        width: 100%;
+        max-width: 300px;
+    }
+}
