@@ -1,0 +1,409 @@
+/* ====================================
+   CITY PAGES - MODERN DESIGN
+   ==================================== */
+
+/* Hero Section */
+.city-hero {
+    height: 500px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+    background-size: cover;
+    background-position: center;
+}
+
+.city-hero.hcm {
+    background: linear-gradient(135deg, rgba(230, 0, 0, 0.9), rgba(30, 58, 95, 0.9)),
+                url('https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=1920') center/cover;
+}
+
+.city-hero.danang {
+    background: linear-gradient(135deg, rgba(0, 150, 136, 0.9), rgba(30, 58, 95, 0.9)),
+                url('https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=1920') center/cover;
+}
+
+.city-hero.cantho {
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.9), rgba(30, 58, 95, 0.9)),
+                url('https://images.unsplash.com/photo-1528127269322-539801943592?w=1920') center/cover;
+}
+
+.city-hero.dongnai {
+    background: linear-gradient(135deg, rgba(255, 152, 0, 0.9), rgba(30, 58, 95, 0.9)),
+                url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1920') center/cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.3);
+}
+
+.city-hero .container {
+    position: relative;
+    z-index: 1;
+}
+
+.city-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.city-hero h1 {
+    font-size: 52px;
+    font-weight: 900;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 15px rgba(0,0,0,0.5);
+}
+
+.city-hero p {
+    font-size: 20px;
+    opacity: 0.95;
+    margin-bottom: 40px;
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.hero-stat {
+    text-align: center;
+}
+
+.hero-stat .number {
+    display: block;
+    font-size: 48px;
+    font-weight: 900;
+}
+
+.hero-stat .label {
+    font-size: 14px;
+    opacity: 0.8;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Section Title */
+.section-title {
+    text-align: center;
+    font-size: 38px;
+    font-weight: 900;
+    margin-bottom: 50px;
+    color: #1e3a5f;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #e60000, #ff4444);
+    border-radius: 2px;
+}
+
+/* Locations Section */
+.locations-section {
+    padding: 80px 0;
+    background: linear-gradient(180deg, #f8fafc 0%, #e8f4f8 100%);
+}
+
+.locations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.location-card {
+    background: var(--white);
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+    transition: all 0.4s ease;
+}
+
+.location-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 25px 70px rgba(0,0,0,0.15);
+}
+
+.location-image {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+}
+
+.location-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.location-card:hover .location-image img {
+    transform: scale(1.1);
+}
+
+.location-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: linear-gradient(135deg, #e60000, #ff4444);
+    color: white;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.location-badge.new {
+    background: linear-gradient(135deg, #4CAF50, #8BC34A);
+}
+
+.location-info {
+    padding: 25px;
+}
+
+.location-info h3 {
+    font-size: 22px;
+    font-weight: 800;
+    color: #1e3a5f;
+    margin-bottom: 15px;
+}
+
+.location-address,
+.location-phone {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.location-features {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.location-features span {
+    background: #f0f4f8;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #555;
+}
+
+.location-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.btn-call, .btn-direction {
+    flex: 1;
+    padding: 14px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.btn-call {
+    background: linear-gradient(135deg, #e60000, #cc0000);
+    color: white;
+}
+
+.btn-call:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(230, 0, 0, 0.4);
+}
+
+.btn-direction {
+    background: #f0f4f8;
+    color: #1e3a5f;
+    border: 2px solid #1e3a5f;
+}
+
+.btn-direction:hover {
+    background: #1e3a5f;
+    color: white;
+}
+
+/* Other Cities */
+.other-cities {
+    padding: 80px 0;
+    background: var(--white);
+    text-align: center;
+}
+
+.other-cities h2 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #1e3a5f;
+    margin-bottom: 40px;
+}
+
+.cities-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.city-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 30px;
+    border-radius: 20px;
+    text-decoration: none;
+    color: white;
+    transition: all 0.4s ease;
+}
+
+.city-card.danang {
+    background: linear-gradient(135deg, #00968880, #1e3a5f);
+}
+
+.city-card.cantho {
+    background: linear-gradient(135deg, #4CAF5080, #1e3a5f);
+}
+
+.city-card.dongnai {
+    background: linear-gradient(135deg, #FF980080, #1e3a5f);
+}
+
+.city-card.hcm {
+    background: linear-gradient(135deg, #e6000080, #1e3a5f);
+}
+
+.city-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+}
+
+.city-name {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.city-count {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* CTA Section */
+.cta-section {
+    padding: 100px 0;
+    background: linear-gradient(-45deg, #1e3a5f, #e60000, #2d5a7a, #cc0000);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: var(--white);
+    text-align: center;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.cta-section h2 {
+    font-size: 42px;
+    font-weight: 900;
+    margin-bottom: 15px;
+}
+
+.cta-section p {
+    font-size: 18px;
+    margin-bottom: 35px;
+    opacity: 0.95;
+}
+
+.btn-cta {
+    display: inline-block;
+    background: var(--white);
+    color: #e60000;
+    padding: 20px 50px;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 800;
+    text-decoration: none;
+    transition: all 0.4s ease;
+}
+
+.btn-cta:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .city-hero h1 {
+        font-size: 38px;
+    }
+
+    .hero-stats {
+        gap: 30px;
+    }
+
+    .hero-stat .number {
+        font-size: 36px;
+    }
+
+    .cities-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .city-hero {
+        height: 450px;
+    }
+
+    .city-hero h1 {
+        font-size: 28px;
+    }
+
+    .city-hero p {
+        font-size: 16px;
+    }
+
+    .locations-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-title {
+        font-size: 28px;
+    }
+
+    .cta-section h2 {
+        font-size: 28px;
+    }
+}
