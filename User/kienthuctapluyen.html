@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kiến Thức Tập Luyện - The New Gym</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/kienthuctapluyen.css" />
+  </head>
+  <body>
+    <!-- Header với banner chạy -->
+    <div class="top-banner">
+      <div class="banner-content">
+        <span>GYM CHO MỌI NGƯỜI</span>
+        <span>GYM CHO MỌI NGƯỜI</span>
+        <span>GYM CHO MỌI NGƯỜI</span>
+        <span>GYM CHO MỌI NGƯỜI</span>
+        <span>GYM CHO MỌI NGƯỜI</span>
+        <span>GYM CHO MỌI NGƯỜI</span>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container">
+        <div class="nav-logo">
+          <a href="index.html">
+            <img src="/logoo.jpg" alt="Logo" />
+          </a>
+        </div>
+        <button class="mobile-toggle" id="mobileToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="giahoivien.html">Giá hội viên</a></li>
+          <li class="dropdown">
+            <a href="timphongtap.html">Tìm phòng tập</a>
+            <ul class="dropdown-menu">
+              <li><a href="hcm.html">Hồ Chí Minh</a></li>
+              <li><a href="danang.html">Đà Nẵng</a></li>
+              <li><a href="cantho.html">Cần Thơ</a></li>
+              <li><a href="dongnai.html">Đồng Nai</a></li>
+            </ul>
+          </li>
+          <li><a href="cosovatchat.html">Cơ sở vật chất</a></li>
+          <li><a href="kienthuctapluyen.html" class="active">Kiến thức tập luyện</a></li>
+          <li class="dropdown">
+            <a href="#">Tìm hiểu thêm</a>
+            <ul class="dropdown-menu">
+              <li><a href="timhieu.html">Về The New Gym</a></li>
+              <li><a href="pt.html">Gói Thuê PT</a></li>
+              <li><a href="groupfitness.html">Lớp Tập Nhóm</a></li>
+              <li><a href="lienhe.html">Liên Hệ</a></li>
+            </ul>
+          </li>
+        </ul>
+        <div class="nav-actions">
+          <button class="btn-search">🔍</button>
+          <a href="giahoivien.html" class="btn-join">Tham gia</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="blog-hero">
+      <div class="container">
+        <h1>KIẾN THỨC TẬP LUYỆN</h1>
+        <p>Chia sẻ bí quyết tập luyện, dinh dưỡng và lối sống khỏe mạnh</p>
+      </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories-section">
+      <div class="container">
+        <div class="categories-list">
+          <button class="category-btn active" data-category="all">Tất cả</button>
+          <button class="category-btn" data-category="workout">Bài tập</button>
+          <button class="category-btn" data-category="nutrition">Dinh dưỡng</button>
+          <button class="category-btn" data-category="tips">Mẹo hay</button>
+          <button class="category-btn" data-category="lifestyle">Lối sống</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Article -->
+    <section class="featured-section">
+      <div class="container">
+        <div class="featured-article">
+          <div class="featured-image">
+            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800" alt="Hướng dẫn tập gym cho người mới" />
+            <span class="featured-badge">NỔI BẬT</span>
+          </div>
+          <div class="featured-content">
+            <span class="article-category">Bài tập</span>
+            <h2>Hướng Dẫn Tập Gym Cho Người Mới Bắt Đầu</h2>
+            <p>Bạn mới bắt đầu tập gym và không biết nên bắt đầu từ đâu? Đây là hướng dẫn chi tiết giúp bạn có một khởi đầu hoàn hảo với các bài tập cơ bản, cách sử dụng thiết bị và lịch tập phù hợp.</p>
+            <div class="article-meta">
+              <span>📅 15/12/2025</span>
+              <span>⏱️ 10 phút đọc</span>
+              <span>👁️ 5.2K lượt xem</span>
+            </div>
+            <a href="#" class="btn-read-more">Đọc ngay →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Articles Grid -->
+    <section class="articles-section">
+      <div class="container">
+        <h2 class="section-title">BÀI VIẾT MỚI NHẤT</h2>
+        
+        <div class="articles-grid">
+          <!-- Article 1 -->
+          <article class="article-card" data-category="workout">
+            <div class="article-image">
+              <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600" alt="Bài tập ngực" />
+              <span class="article-tag">Bài tập</span>
+            </div>
+            <div class="article-body">
+              <h3>Top 10 Bài Tập Ngực Hiệu Quả Nhất</h3>
+              <p>Khám phá các bài tập ngực giúp phát triển cơ ngực săn chắc và đều đặn.</p>
+              <div class="article-footer">
+                <span class="date">📅 14/12/2025</span>
+                <a href="#" class="read-link">Đọc thêm →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 2 -->
+          <article class="article-card" data-category="nutrition">
+            <div class="article-image">
+              <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600" alt="Chế độ ăn tăng cơ" />
+              <span class="article-tag nutrition">Dinh dưỡng</span>
+            </div>
+            <div class="article-body">
+              <h3>Chế Độ Ăn Tăng Cơ Giảm Mỡ Hiệu Quả</h3>
+              <p>Hướng dẫn chi tiết về chế độ dinh dưỡng giúp tăng cơ và giảm mỡ cùng lúc.</p>
+              <div class="article-footer">
+                <span class="date">📅 13/12/2025</span>
+                <a href="#" class="read-link">Đọc thêm →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 3 -->
+          <article class="article-card" data-category="tips">
+            <div class="article-image">
+              <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600" alt="Sai lầm khi tập gym" />
+              <span class="article-tag tips">Mẹo hay</span>
+            </div>
+            <div class="article-body">
+              <h3>7 Sai Lầm Phổ Biến Khi Tập Gym</h3>
+              <p>Tránh những sai lầm này để đạt hiệu quả tập luyện tốt nhất và tránh chấn thương.</p>
+              <div class="article-footer">
+                <span class="date">📅 12/12/2025</span>
+                <a href="#" class="read-link">Đọc thêm →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 4 -->
+          <article class="article-card" data-category="workout">
+            <div class="article-image">
+              <img src="https://images.unsplash.com/photo-1434608519344-49d77a699e1d?w=600" alt="Bài tập chân" />
+              <span class="article-tag">Bài tập</span>
+            </div>
+            <div class="article-body">
+              <h3>Bài Tập Chân Cho Đôi Chân Khỏe Mạnh</h3>
+              <p>Các bài tập chân hiệu quả giúp phát triển cơ đùi, bắp chân săn chắc.</p>
+              <div class="article-footer">
+                <span class="date">📅 11/12/2025</span>
+                <a href="#" class="read-link">Đọc thêm →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 5 -->
+          <article class="article-card" data-category="lifestyle">
+            <div class="article-image">
+              <img src="https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=600" alt="Giấc ngủ và tập luyện" />
+              <span class="article-tag lifestyle">Lối sống</span>
+            </div>
+            <div class="article-body">
+              <h3>Tầm Quan Trọng Của Giấc Ngủ Với Tập Luyện</h3>
+              <p>Hiểu rõ vai trò của giấc ngủ trong quá trình phục hồi và phát triển cơ bắp.</p>
+              <div class="article-footer">
+                <span class="date">📅 10/12/2025</span>
+                <a href="#" class="read-link">Đọc thêm →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 6 -->
+          <article class="article-card" data-category="nutrition">
+            <div class="article-image">
+              <img src="https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=600" alt="Protein shake" />
+              <span class="article-tag nutrition">Dinh dưỡng</span>
+            </div>
+            <div class="article-body">
+              <h3>Hướng Dẫn Sử Dụng Whey Protein Đúng Cách</h3>
+              <p>Cách chọn và sử dụng whey protein hiệu quả cho người tập gym.</p>
+              <div class="article-footer">
+                <span class="date">📅 09/12/2025</span>
+                <a href="#" class="read-link">Đọc thêm →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 7 -->
+          <article class="article-card" data-category="workout">
+            <div class="article-image">
+              <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600" alt="Bài tập bụng" />
+              <span class="article-tag">Bài tập</span>
+            </div>
+            <div class="article-body">
+              <h3>Bài Tập Bụng 6 Múi Tại Nhà Và Phòng Gym</h3>
+              <p>Các bài tập bụng hiệu quả giúp bạn sở hữu vòng eo săn chắc.</p>
+              <div class="article-footer">
+                <span class="date">📅 08/12/2025</span>
+                <a href="#" class="read-link">Đọc thêm →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 8 -->
+          <article class="article-card" data-category="tips">
+            <div class="article-image">
+              <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600" alt="Khởi động" />
+              <span class="article-tag tips">Mẹo hay</span>
+            </div>
+            <div class="article-body">
+              <h3>Cách Khởi Động Đúng Cách Trước Khi Tập</h3>
+              <p>Hướng dẫn khởi động đúng cách để tránh chấn thương và tăng hiệu quả tập.</p>
+              <div class="article-footer">
+                <span class="date">📅 07/12/2025</span>
+                <a href="#" class="read-link">Đọc thêm →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 9 -->
+          <article class="article-card" data-category="lifestyle">
+            <div class="article-image">
+              <img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=600" alt="Động lực tập gym" />
+              <span class="article-tag lifestyle">Lối sống</span>
+            </div>
+            <div class="article-body">
+              <h3>Cách Duy Trì Động Lực Tập Gym Mỗi Ngày</h3>
+              <p>Bí quyết giữ vững động lực và không bỏ cuộc trên hành trình tập luyện.</p>
+              <div class="article-footer">
+                <span class="date">📅 06/12/2025</span>
+                <a href="#" class="read-link">Đọc thêm →</a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="load-more">
+          <button class="btn-load-more">Xem thêm bài viết</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section">
+      <div class="container">
+        <h2 class="section-title">VIDEO HƯỚNG DẪN</h2>
+        <div class="video-grid">
+          <div class="video-card">
+            <div class="video-thumbnail">
+              <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c149a?w=600" alt="Video tập ngực" />
+              <div class="play-button">▶</div>
+              <span class="video-duration">12:35</span>
+            </div>
+            <h4>Hướng Dẫn Tập Ngực Cho Người Mới</h4>
+          </div>
+          <div class="video-card">
+            <div class="video-thumbnail">
+              <img src="https://images.unsplash.com/photo-1603287681836-b174ce5074c2?w=600" alt="Video tập lưng" />
+              <div class="play-button">▶</div>
+              <span class="video-duration">15:20</span>
+            </div>
+            <h4>Bài Tập Lưng Xô Hiệu Quả</h4>
+          </div>
+          <div class="video-card">
+            <div class="video-thumbnail">
+              <img src="https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?w=600" alt="Video tập vai" />
+              <div class="play-button">▶</div>
+              <span class="video-duration">10:45</span>
+            </div>
+            <h4>Tập Vai Rộng Với Tạ Đơn</h4>
+          </div>
+          <div class="video-card">
+            <div class="video-thumbnail">
+              <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600" alt="Video tập tay" />
+              <div class="play-button">▶</div>
+              <span class="video-duration">08:50</span>
+            </div>
+            <h4>Bài Tập Tay To Cho Nam</h4>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter-section">
+      <div class="container">
+        <div class="newsletter-content">
+          <h2>ĐĂNG KÝ NHẬN BÀI VIẾT MỚI</h2>
+          <p>Nhận ngay các bài viết mới nhất về tập luyện và dinh dưỡng qua email</p>
+          <form class="newsletter-form">
+            <input type="email" placeholder="Nhập email của bạn..." required />
+            <button type="submit">Đăng ký</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-top">
+          <button class="back-to-top" id="backToTop">BACK TO TOP</button>
+        </div>
+
+        <div class="footer-content">
+          <div class="footer-col">
+            <img src="https://thenewgym.vn/wp-content/uploads/2025/09/Logo_white-01.png" alt="Logo" class="footer-logo" />
+            <button class="btn-app">TẢI APP NGAY</button>
+          </div>
+
+          <div class="footer-col">
+            <h4>Thông Tin</h4>
+            <ul>
+              <li><a href="#">Về Chúng Tôi</a></li>
+              <li><a href="timphongtap.html">Hệ Thống Phòng Tập</a></li>
+              <li><a href="kienthuctapluyen.html">Kiến Thức Tập Luyện</a></li>
+              <li><a href="#">Tuyển Dụng</a></li>
+              <li><a href="#">Liên Hệ</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Phòng Tập</h4>
+            <ul>
+              <li><a href="timphongtap.html">Hệ Thống Phòng Tập</a></li>
+              <li><a href="giahoivien.html">Giá Hội Viên</a></li>
+              <li><a href="cosovatchat.html">Cơ Sở Vật Chất</a></li>
+              <li><a href="#">Ứng Dụng</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Chính sách</h4>
+            <ul>
+              <li><a href="#">Chính Sách Bảo Mật</a></li>
+              <li><a href="#">Điều Khoản</a></li>
+              <li><a href="#">Chăm Sóc Khách Hàng</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2025 The New Gym.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Floating Buttons -->
+    <div class="floating-buttons">
+      <a href="tel:1900636920" class="float-btn phone" title="Gọi ngay">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+        </svg>
+      </a>
+      <a href="https://zalo.me/thenewgym" class="float-btn zalo" target="_blank" title="Chat Zalo">
+        <span>Z</span>
+      </a>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/kienthuctapluyen.js"></script>
+  </body>
+</html>
